@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+        return view('app.index');
+    });
+
+    Route::prefix('/app')->group(function () {
+        Route::get('/login', function () {
+            return view('app.login');
+        })->name('login');
+    });  
