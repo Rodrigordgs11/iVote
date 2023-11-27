@@ -23,7 +23,7 @@
         <meta property="og:url" content="https://keenthemes.com/metronic"/>
         <meta property="og:site_name" content="Metronic by Keenthemes" />
         <link rel="canonical" href="https://preview.keenthemes.com/metronic8"/>
-        <link rel="shortcut icon" href="assets/media/logos/favicon.ico"/>
+        <link rel="shortcut icon" href="app/assets/media/logos/favicon.ico"/>
         <!--begin::Fonts(mandatory for all pages)-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>        <!--end::Fonts-->
 <!--begin::Vendor Stylesheets(used for this page only)-->
@@ -75,7 +75,7 @@
                             <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
                             <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
                             <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-                            <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+                            <script src="app/assets/plugins/custom/datatables/datatables.bundle.js"></script>
                         <!--end::Vendors Javascript-->
                     <!--begin::Custom Javascript(used for this page only)-->
                         <script src="{{asset('app/assets/js/widgets.bundle.js')}}"></script>

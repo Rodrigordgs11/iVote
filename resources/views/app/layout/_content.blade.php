@@ -141,19 +141,19 @@
 																	<span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
 																</div>
 																<div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
-																	<img alt="Pic" src="assets/media/avatars/300-11.jpg" />
+																	<img alt="Pic" src="app/assets/media/avatars/300-11.jpg" />
 																</div>
 																<div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
 																	<span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
 																</div>
 																<div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
-																	<img alt="Pic" src="assets/media/avatars/300-2.jpg" />
+																	<img alt="Pic" src="app/assets/media/avatars/300-2.jpg" />
 																</div>
 																<div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
 																	<span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
 																</div>
 																<div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
-																	<img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+																	<img alt="Pic" src="app/assets/media/avatars/300-12.jpg" />
 																</div>
 																<a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
 																	<span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">+42</span>
@@ -242,8 +242,8 @@
 														<!--end::Title-->
 														<!--begin::Illustration-->
 														<div class="py-10 text-center">
-															<img src="assets/media/svg/illustrations/easy/2.svg" class="theme-light-show w-200px" alt="" />
-															<img src="assets/media/svg/illustrations/easy/2-dark.svg" class="theme-dark-show w-200px" alt="" />
+															<img src="app/assets/media/svg/illustrations/easy/2.svg" class="theme-light-show w-200px" alt="" />
+															<img src="app/assets/media/svg/illustrations/easy/2-dark.svg" class="theme-dark-show w-200px" alt="" />
 														</div>
 														<!--end::Illustration-->
 													</div>
@@ -400,7 +400,7 @@
 															<tbody>
 																<tr>
 																	<td>
-																		<img src="assets/media/stock/ecommerce/210.png" class="w-50px" alt="" />
+																		<img src="app/assets/media/stock/ecommerce/210.png" class="w-50px" alt="" />
 																	</td>
 																	<td class="ps-0">
 																		<a href="apps/ecommerce/sales/details.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 text-start pe-0">Elephant 1802</a>
@@ -412,7 +412,7 @@
 																</tr>
 																<tr>
 																	<td>
-																		<img src="assets/media/stock/ecommerce/215.png" class="w-50px" alt="" />
+																		<img src="app/assets/media/stock/ecommerce/215.png" class="w-50px" alt="" />
 																	</td>
 																	<td class="ps-0">
 																		<a href="apps/ecommerce/sales/details.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 text-start pe-0">Red Laga</a>
@@ -424,7 +424,7 @@
 																</tr>
 																<tr>
 																	<td>
-																		<img src="assets/media/stock/ecommerce/209.png" class="w-50px" alt="" />
+																		<img src="app/assets/media/stock/ecommerce/209.png" class="w-50px" alt="" />
 																	</td>
 																	<td class="ps-0">
 																		<a href="apps/ecommerce/sales/details.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 text-start pe-0">RiseUP</a>
@@ -436,7 +436,7 @@
 																</tr>
 																<tr>
 																	<td>
-																		<img src="assets/media/stock/ecommerce/214.png" class="w-50px" alt="" />
+																		<img src="app/assets/media/stock/ecommerce/214.png" class="w-50px" alt="" />
 																	</td>
 																	<td class="ps-0">
 																		<a href="apps/ecommerce/sales/details.html" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6 text-start pe-0">Yellow Stone</a>
@@ -869,7 +869,7 @@
 														<!--begin::Item-->
 														<div class="d-flex flex-stack">
 															<!--begin::Flag-->
-															<img src="assets/media/flags/united-states.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+															<img src="app/assets/media/flags/united-states.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 															<!--end::Flag-->
 															<!--begin::Section-->
 															<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -908,7 +908,7 @@
 														<!--begin::Item-->
 														<div class="d-flex flex-stack">
 															<!--begin::Flag-->
-															<img src="assets/media/flags/brazil.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+															<img src="app/assets/media/flags/brazil.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 															<!--end::Flag-->
 															<!--begin::Section-->
 															<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -947,7 +947,7 @@
 														<!--begin::Item-->
 														<div class="d-flex flex-stack">
 															<!--begin::Flag-->
-															<img src="assets/media/flags/turkey.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+															<img src="app/assets/media/flags/turkey.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 															<!--end::Flag-->
 															<!--begin::Section-->
 															<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -986,7 +986,7 @@
 														<!--begin::Item-->
 														<div class="d-flex flex-stack">
 															<!--begin::Flag-->
-															<img src="assets/media/flags/france.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+															<img src="app/assets/media/flags/france.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 															<!--end::Flag-->
 															<!--begin::Section-->
 															<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -1025,7 +1025,7 @@
 														<!--begin::Item-->
 														<div class="d-flex flex-stack">
 															<!--begin::Flag-->
-															<img src="assets/media/flags/india.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+															<img src="app/assets/media/flags/india.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 															<!--end::Flag-->
 															<!--begin::Section-->
 															<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -1064,7 +1064,7 @@
 														<!--begin::Item-->
 														<div class="d-flex flex-stack">
 															<!--begin::Flag-->
-															<img src="assets/media/flags/sweden.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
+															<img src="app/assets/media/flags/sweden.svg" class="me-4 w-25px" style="border-radius: 4px" alt="" />
 															<!--end::Flag-->
 															<!--begin::Section-->
 															<div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
@@ -1129,7 +1129,7 @@
 													<!--begin::Item-->
 													<div class="d-flex flex-stack">
 														<!--begin::Flag-->
-														<img src="assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+														<img src="app/assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 														<!--end::Flag-->
 														<!--begin::Section-->
 														<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1168,7 +1168,7 @@
 													<!--begin::Item-->
 													<div class="d-flex flex-stack">
 														<!--begin::Flag-->
-														<img src="assets/media/svg/brand-logos/linkedin-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+														<img src="app/assets/media/svg/brand-logos/linkedin-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 														<!--end::Flag-->
 														<!--begin::Section-->
 														<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1207,7 +1207,7 @@
 													<!--begin::Item-->
 													<div class="d-flex flex-stack">
 														<!--begin::Flag-->
-														<img src="assets/media/svg/brand-logos/slack-icon.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+														<img src="app/assets/media/svg/brand-logos/slack-icon.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 														<!--end::Flag-->
 														<!--begin::Section-->
 														<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1246,7 +1246,7 @@
 													<!--begin::Item-->
 													<div class="d-flex flex-stack">
 														<!--begin::Flag-->
-														<img src="assets/media/svg/brand-logos/youtube-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+														<img src="app/assets/media/svg/brand-logos/youtube-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 														<!--end::Flag-->
 														<!--begin::Section-->
 														<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1285,7 +1285,7 @@
 													<!--begin::Item-->
 													<div class="d-flex flex-stack">
 														<!--begin::Flag-->
-														<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+														<img src="app/assets/media/svg/brand-logos/instagram-2-1.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 														<!--end::Flag-->
 														<!--begin::Section-->
 														<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
@@ -1324,7 +1324,7 @@
 													<!--begin::Item-->
 													<div class="d-flex flex-stack">
 														<!--begin::Flag-->
-														<img src="assets/media/svg/brand-logos/facebook-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
+														<img src="app/assets/media/svg/brand-logos/facebook-3.svg" class="me-4 w-30px" style="border-radius: 4px" alt="" />
 														<!--end::Flag-->
 														<!--begin::Section-->
 														<div class="d-flex align-items-center flex-stack flex-wrap flex-row-fluid d-grid gap-2">
