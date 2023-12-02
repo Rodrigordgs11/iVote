@@ -21,4 +21,8 @@ use Illuminate\Support\Facades\Route;
         Route::get('/login', function () {
             return view('app.login');
         })->name('login');
+
+        Route::get('/register', function () {
+            return view('app.register');
+        })->name('register');
     });  

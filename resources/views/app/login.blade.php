@@ -65,7 +65,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Sign Up link-->
 							<div class="m-0">
 								<span class="text-gray-500 fw-bold fs-5 me-2" data-kt-translate="sign-in-head-desc">Not a Member yet?</span>
-								<a href="authentication/layouts/fancy/sign-up.html" class="link-primary fw-bold fs-5" data-kt-translate="sign-in-head-link">Sign Up</a>
+								<a href="/app/register" class="link-primary fw-bold fs-5" data-kt-translate="sign-in-head-link">Sign Up</a>
 							</div>
 							<!--end::Sign Up link=-->
 						</div>
