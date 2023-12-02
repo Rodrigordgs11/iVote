@@ -2,21 +2,21 @@
 <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
     <!--begin::Page-->
     <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
-    @include('app.layout._header')
+    @include('app.layout.partials._header')
         <!--begin::Wrapper-->
         <div class="app-wrapper  flex-column flex-row-fluid " id="kt_app_wrapper">
-        @include('app.layout._sidebar')
+        @include('app.layout.partials._sidebar')
             <!--begin::Main-->
             <div class="app-main flex-column flex-row-fluid " id="kt_app_main">
                 <!--begin::Content wrapper-->
                 <div class="d-flex flex-column flex-column-fluid">
-@include('app.layout._content')
+                @yield('content')
                                     </div>
                 <!--end::Content wrapper-->
-@include('app.layout._footer')
+                @include('app.layout.partials._footer')
                             </div>
             <!--end:::Main-->
-@include('app.layout._aside')
+                @include('app.layout.partials._aside')
                     </div>
         <!--end::Wrapper-->
             </div>

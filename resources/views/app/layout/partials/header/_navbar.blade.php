@@ -1,7 +1,7 @@
 <!--begin::Navbar-->
 <div class="app-navbar flex-grow-1 justify-content-end" id="kt_app_header_navbar">
     <div class="app-navbar-item d-flex align-items-stretch flex-lg-grow-1">
-    @include('app.layout.search._inline')
+    @include('app.partials.search._inline')
     </div>
     <!--begin::Notifications-->
     <div class="app-navbar-item ms-2 ms-lg-6">
@@ -9,7 +9,7 @@
         <div class="btn btn-icon btn-custom btn-color-gray-600 btn-active-color-primary w-35px h-35px w-md-40px h-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
             <i class="ki-outline ki-calendar fs-1"></i>
         </div>
-@include('app.layout.menus._notifications-menu')
+@include('app.partials.menus._notifications-menu')
         <!--end::Menu wrapper-->
     </div>
     <!--end::Notifications-->
@@ -19,7 +19,7 @@
         <div class="btn btn-icon btn-custom btn-color-gray-600 btn-active-color-primary w-35px h-35px w-md-40px h-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
             <i class="ki-outline ki-abstract-26 fs-1"></i>
         </div>
-@include('app.layout.menus._quick-links-menu')
+@include('app.partials.menus._quick-links-menu')
         <!--end::Menu wrapper-->
     </div>
     <!--end::Quick links-->
@@ -41,7 +41,7 @@
             data-kt-menu-placement="bottom-end">
             <img src="app/assets/media/avatars/300-2.jpg" alt="user"/>
         </div>
-@include('app.layout.menus._user-account-menu')
+@include('app.partials.menus._user-account-menu')
         <!--end::Menu wrapper-->
     </div>
     <!--end::User menu-->

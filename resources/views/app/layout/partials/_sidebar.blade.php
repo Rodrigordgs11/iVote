@@ -14,8 +14,8 @@
 		data-kt-scroll-dependencies="#kt_app_header"
 		data-kt-scroll-wrappers="#kt_app_sidebar_wrapper"
 		data-kt-scroll-offset="5px">
-@include('app.layout.sidebar._menu')
-@include('app.layout.sidebar._teams')
+@include('app.layout.partials.sidebar._menu')
+@include('app.layout.partials.sidebar._teams')
 	</div>
 </div>
 <!--end::Wrapper-->    </div>

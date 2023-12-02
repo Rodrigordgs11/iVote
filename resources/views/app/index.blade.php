@@ -3,7 +3,7 @@
 <html lang="en" >
     <!--begin::Head-->
     <head><base href=""/>
-        <title>Metronic - The World's #1 Selling Bootstrap Admin Template - Metronic by KeenThemes</title>
+        <title>iVote - @yield('title')</title>
         <meta charset="utf-8"/>
         <meta name="description" content="
             The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo,
@@ -46,14 +46,14 @@
     <!--begin::Body-->
     
     <body  id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-aside-enabled="true" data-kt-app-aside-fixed="true" data-kt-app-aside-push-toolbar="true" data-kt-app-aside-push-footer="true"  class="app-default" >
-@include('app.layout.theme-mode._init')
-@include('app.layout._default')
-@include('app.layout._scrolltop')
-                    <!--begin::Modals-->
-@include('app.layout.modals._upgrade-plan')
-@include('app.layout.modals._view-users')
-@include('app.layout.modals.users-search._main')
-@include('app.layout.modals._invite-friends')
+        @include('app.partials.theme-mode._init')
+        @include('app.layout._default')
+        @include('app.partials._scrolltop')
+            <!--begin::Modals-->
+        @include('app.partials.modals._upgrade-plan')
+        @include('app.partials.modals._view-users')
+        @include('app.partials.modals.users-search._main')
+        @include('app.partials.modals._invite-friends')
             <!--end::Modals-->
         <!--begin::Javascript-->
         <script>

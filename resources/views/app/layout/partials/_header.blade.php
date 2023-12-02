@@ -3,8 +3,8 @@
      >
                         <!--begin::Header main-->
 <div class="d-flex flex-stack flex-grow-1">
-@include('app.layout.header._logo')
-@include('app.layout.header._navbar')
+@include('app.layout.partials.header._logo')
+@include('app.layout.partials.header._navbar')
 </div>
 <!--end::Header main-->
 <!--begin::Separator-->

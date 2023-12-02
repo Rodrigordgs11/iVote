@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
     Route::get('/', function () {
-        return view('app.index');
+        return view('app.dashboard');
     });
 
     Route::prefix('/app')->group(function () {
