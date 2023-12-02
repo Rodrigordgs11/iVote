@@ -50310,7 +50310,7 @@ body,
     z-index: 100;
   }
   body:not([data-kt-app-aside-enabled=true]) .app-main {
-    margin-right: 20px;
+    margin-right: 10px;
   }
 }
 @media (max-width: 991.98px) {

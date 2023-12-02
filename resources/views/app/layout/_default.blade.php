@@ -10,16 +10,15 @@
             <div class="app-main flex-column flex-row-fluid " id="kt_app_main">
                 <!--begin::Content wrapper-->
                 <div class="d-flex flex-column flex-column-fluid">
-                @yield('content')
-                                    </div>
+                    @yield('content')
+                </div>
                 <!--end::Content wrapper-->
                 @include('app.layout.partials._footer')
-                            </div>
-            <!--end:::Main-->
-                @include('app.layout.partials._aside')
-                    </div>
-        <!--end::Wrapper-->
             </div>
+            <!--end:::Main-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
     <!--end::Page-->
 </div>
 <!--end::App-->
