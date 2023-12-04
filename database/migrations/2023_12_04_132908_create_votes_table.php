@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('user_type', ['admin', 'user']);
-            $table->string('phone_number')->unique();
-            $table->rememberToken();
+            $table->foreignUuid('option_uuid')->references('uuid')->on('options');
+            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls');
+            $table->foreignUuid('user_uuid')->references('uuid')->on('users');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('votes');
     }
 };
