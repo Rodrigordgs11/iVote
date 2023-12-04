@@ -17,6 +17,14 @@ use Illuminate\Support\Facades\Route;
         return view('app.dashboard');
     });
 
+    Route::get('/users', function () {
+        return view('app.users');
+    });
+
+    Route::get('/roles', function () {
+        return view('app.roles');
+    });
+
     Route::prefix('/app')->group(function () {
         Route::get('/login', function () {
             return view('app.login');
