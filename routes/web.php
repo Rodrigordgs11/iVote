@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,8 @@ use Illuminate\Support\Facades\Route;
         return view('app.dashboard');
     });
 
-    Route::get('/users', function () {
-        return view('app.users');
-    });
+    Route::get('/users', [UserController::class, 'show'])->name('users');
+    Route::post('/users', [UserController::class, 'create'])->name('users');
 
     Route::get('/roles', function () {
         return view('app.roles');
