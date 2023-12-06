@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -16,7 +17,7 @@ use App\Http\Controllers\UserController;
 
     Route::get('/', function () {
         return view('app.dashboard');
-    });
+    })->name('dashboard');
 
     Route::get('/users', [UserController::class, 'show'])->name('users');
     Route::post('/users', [UserController::class, 'create'])->name('users');
@@ -26,11 +27,7 @@ use App\Http\Controllers\UserController;
     });
 
     Route::prefix('/app')->group(function () {
-        Route::get('/login', function () {
-            return view('app.login');
-        })->name('login');
-
-        Route::get('/register', function () {
-            return view('app.register');
-        })->name('register');
-    });  
+        Route::view('/login', 'app.login')->name('login');
+        Route::post('/login',[AuthController::class, 'authenticate'])->name('login');
+        Route::view('/register', 'app.sign-up')->name('register');
+    });
