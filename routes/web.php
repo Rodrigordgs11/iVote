@@ -15,15 +15,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-    Route::get('/', function () {
-        return view('app.dashboard');
-    })->name('dashboard');
+    Route::middleware(['auth'])->group(function () {
+        Route::view('/', 'app.dashboard')->name('dashboard');
+        Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+        
+        Route::get('/users', [UserController::class, 'show'])->name('users');
+        Route::post('/users', [UserController::class, 'create'])->name('users');
 
-    Route::get('/users', [UserController::class, 'show'])->name('users');
-    Route::post('/users', [UserController::class, 'create'])->name('users');
-
-    Route::get('/roles', function () {
-        return view('app.roles');
+        Route::view('/roles', 'app.roles')->name('users');
     });
 
     Route::prefix('/app')->group(function () {

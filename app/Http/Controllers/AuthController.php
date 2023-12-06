@@ -17,13 +17,12 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
             return redirect()->route('dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'result' => 'The provided credentials do not match our records.',
+        ])->onlyInput('result');
     }
 
     public function logout(Request $request): RedirectResponse
@@ -34,6 +33,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->intended(route('home'));
+        return redirect()->route('login');
     }
 }

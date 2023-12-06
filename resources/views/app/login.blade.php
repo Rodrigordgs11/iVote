@@ -70,6 +70,7 @@ License: For each use you must have a valid license purchased only from above li
 						</div>
 						<!--end::Header-->
 						<!--begin::Body-->
+
 						<div class="py-20">
 							<!--begin::Form-->
 							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" method="POST" action="{{ route('login') }}">
@@ -90,12 +91,26 @@ License: For each use you must have a valid license purchased only from above li
 									<div class="fv-row mb-8">
 										<!--begin::Email-->
 										<input type="text" placeholder="Email" name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" />
+										@if($errors->any())
+											@foreach($errors->get('email') as $error)
+												<div class="alert alert-danger mt-2"  role="alert">
+													<div class="alert-text">{{ $error }}</div>
+												</div>
+											@endforeach
+										@endif
 										<!--end::Email-->
 									</div>
 									<!--end::Input group=-->
 									<div class="fv-row mb-7">
 										<!--begin::Password-->
 										<input type="password" placeholder="Password" name="password" autocomplete="off" data-kt-translate="sign-in-input-password" class="form-control form-control-solid" />
+										@if($errors->any())
+											@foreach($errors->get('password') as $error)
+												<div class="alert alert-danger mt-2" role="alert">
+													<div class="alert-text">{{ $error }}</div>
+												</div>
+											@endforeach
+										@endif
 										<!--end::Password-->
 									</div>
 									<!--end::Input group=-->
@@ -225,6 +240,29 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Body-->
 			</div>
 			<!--end::Authentication - Sign-in-->
+
+			@if($errors->any())
+				<script>
+					setTimeout(function() {
+						var errorMessage = '';
+
+						@foreach($errors->get('result') as $error)
+							errorMessage += '{{ $error }}\n';
+						@endforeach
+
+						Swal.fire({
+							text: errorMessage,
+							icon: "error",
+							buttonsStyling: false,
+							confirmButtonText: "Ok, got it!",
+							customClass: {
+								confirmButton: "btn btn-primary"
+							}
+						});
+					}, 300);
+				</script>
+			@endif
+
 		</div>
 		<!--end::Root-->
 		<!--begin::Javascript-->
@@ -234,8 +272,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="{{asset('/app/assets/plugins/global/plugins.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Custom Javascript(used for this page only)-->
-		<!--<script src="{{asset('/app/assets/js/custom/authentication/sign-in/general.js')}}"></script>-->
-		<script src="assets/js/custom/authentication/sign-in/i18n.js"></script>
+		<script src="{{asset('/app/assets/js/custom/authentication/sign-in/i18n.js')}}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

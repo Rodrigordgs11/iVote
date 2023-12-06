@@ -26,9 +26,11 @@
     <!--begin::Action-->
     <div class="app-navbar-item ms-2 ms-lg-6 me-lg-6">
         <!--begin::Link-->
-        <a href="/app/login" class="btn btn-icon btn-custom btn-color-gray-600 btn-active-color-primary w-35px h-35px w-md-40px h-md-40px">
+        <a  method="GET" href="{{ route('logout') }}" class="btn btn-icon btn-custom btn-color-gray-600 btn-active-color-primary w-35px h-35px w-md-40px h-md-40px">
+            @csrf
             <i class="ki-outline ki-exit-right fs-1"></i>
         </a>
+
         <!--end::Link-->
     </div>
     <!--end::Action-->
