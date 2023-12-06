@@ -16,7 +16,7 @@ License: For each use you must have a valid license purchased only from above li
 	<!--begin::Head-->
 	<head>
 <base href="" />
-		<title>Metronic - The World's #1 Selling Bootstrap Admin Template - Metronic by KeenThemes</title>
+		<title>iVote - Register Page</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -40,9 +40,6 @@ License: For each use you must have a valid license purchased only from above li
 	<!--end::Head-->
 	<!--begin::Body-->
 	<body id="kt_body" class="app-blank">
-		<!--begin::Theme mode setup on page load-->
-		<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
-		<!--end::Theme mode setup on page load-->
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root" id="kt_app_root">
 			<!--begin::Authentication - Sign-up -->
@@ -59,17 +56,11 @@ License: For each use you must have a valid license purchased only from above li
 					<div class="d-flex justify-content-between flex-column-fluid flex-column w-100 mw-450px">
 						<!--begin::Header-->
 						<div class="d-flex flex-stack py-2">
-							<!--begin::Back link-->
-							<div class="me-2">
-								<a href="authentication/layouts/fancy/sign-in.html" class="btn btn-icon bg-light rounded-circle">
-									<i class="ki-outline ki-black-left fs-2 text-gray-800"></i>
-								</a>
-							</div>
-							<!--end::Back link-->
 							<!--begin::Sign Up link-->
+							<div class="me-2"></div>
 							<div class="m-0">
-								<span class="text-gray-500 fw-bold fs-5 me-2" data-kt-translate="sign-up-head-desc">Already a member ?</span>
-								<a href="authentication/layouts/fancy/sign-in.html" class="link-primary fw-bold fs-5" data-kt-translate="sign-up-head-link">Sign In</a>
+								<span class="text-gray-500 fw-bold fs-5 me-2" data-kt-translate="sign-up-head-desc">Already a member?</span>
+								<a href="/app/login" class="link-primary fw-bold fs-5" data-kt-translate="sign-up-head-link">Login</a>
 							</div>
 							<!--end::Sign Up link=-->
 						</div>
@@ -77,40 +68,52 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Body-->
 						<div class="py-20">
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" data-kt-redirect-url="authentication/layouts/fancy/sign-in.html" action="#">
+							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form"  method="POST" action="{{ route('register') }}">
+								@csrf
 								<!--begin::Heading-->
 								<div class="text-start mb-10">
 									<!--begin::Title-->
 									<h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="sign-up-title">Create an Account</h1>
 									<!--end::Title-->
 									<!--begin::Text-->
-									<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">Get unlimited access & earn money</div>
+									<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc"></div>
 									<!--end::Link-->
 								</div>
 								<!--end::Heading-->
-								<!--begin::Input group-->
-								<div class="row fv-row mb-7">
-									<!--begin::Col-->
-									<div class="col-xl-6">
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="First Name" name="first-name" autocomplete="off" data-kt-translate="sign-up-input-first-name" />
-									</div>
-									<!--end::Col-->
-									<!--begin::Col-->
-									<div class="col-xl-6">
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="Last Name" name="last-name" autocomplete="off" data-kt-translate="sign-up-input-last-name" />
-									</div>
-									<!--end::Col-->
+								<div class="fv-row mb-7">
+									<!--begin::Label-->
+									<label class="required fw-semibold fs-6 mb-2">Full Name</label>
+									<!--end::Label-->
+									<!--begin::Input-->
+									<input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name"/>
+									<!--end::Input-->
 								</div>
 								<!--end::Input group-->
 								<!--begin::Input group-->
-								<div class="fv-row mb-10">
-									<input class="form-control form-control-lg form-control-solid" type="email" placeholder="Email" name="email" autocomplete="off" data-kt-translate="sign-up-input-email" />
+								<div class="fv-row mb-7">
+									<!--begin::Label-->
+									<label class="required fw-semibold fs-6 mb-2">Email</label>
+									<!--end::Label-->
+									<!--begin::Input-->
+									<input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@ivote.com"/>
+									<!--end::Input-->
+								</div>
+								<!--end::Input group-->
+								<!--begin::Input group-->
+								<div class="fv-row mb-7">
+									<!--begin::Label-->
+									<label class="required fw-semibold fs-6 mb-2">Phone number</label>
+									<!--end::Label-->
+									<!--begin::Input-->
+									<input type="text" name="phone_number" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="966612345"/>
+									<!--end::Input-->
 								</div>
 								<!--end::Input group-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10" data-kt-password-meter="true">
 									<!--begin::Wrapper-->
 									<div class="mb-1">
+										<label class="required fw-semibold fs-6 mb-2">Password</label>
 										<!--begin::Input wrapper-->
 										<div class="position-relative mb-3">
 											<input class="form-control form-control-lg form-control-solid" type="password" placeholder="Password" name="password" autocomplete="off" data-kt-translate="sign-up-input-password" />
@@ -136,9 +139,10 @@ License: For each use you must have a valid license purchased only from above li
 								</div>
 								<!--end::Input group=-->
 								<!--begin::Input group-->
-								<div class="fv-row mb-10">
+								<!-- <div class="fv-row mb-10">
+									<label class="fw-semibold fs-6 mb-2">Confirm Password</label>
 									<input class="form-control form-control-lg form-control-solid" type="password" placeholder="Confirm Password" name="confirm-password" autocomplete="off" data-kt-translate="sign-up-input-confirm-password" />
-								</div>
+								</div> -->
 								<!--end::Input group-->
 								<!--begin::Actions-->
 								<div class="d-flex flex-stack">
@@ -254,17 +258,37 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Body-->
 			</div>
 			<!--end::Authentication - Sign-up-->
+			@if($errors->any())
+				<script>
+					setTimeout(function() {
+						var errorMessage = '';
+
+						@foreach($errors->all() as $error)
+							errorMessage += '{!! addslashes($error) !!}\n';
+						@endforeach
+
+						Swal.fire({
+							text: errorMessage,
+							icon: "error",
+							buttonsStyling: false,
+							confirmButtonText: "Ok, got it!",
+							customClass: {
+								confirmButton: "btn btn-primary"
+							}
+						});
+					}, 300);
+				</script>
+			@endif
 		</div>
 		<!--end::Root-->
 		<!--begin::Javascript-->
 		<script>var hostUrl = "assets/";</script>
 		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
-		<script src="assets/plugins/global/plugins.bundle.js"></script>
-		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="{{asset('/app/assets/plugins/global/plugins.bundle.js')}}"></script>
+		<script src="{{asset('/app/assets/js/scripts.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Custom Javascript(used for this page only)-->
-		<script src="assets/js/custom/authentication/sign-up/general.js"></script>
-		<script src="assets/js/custom/authentication/sign-in/i18n.js"></script>
+		<script src="{{asset('/app/assets/js/custom/authentication/sign-in/i18n.js')}}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

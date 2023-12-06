@@ -26,6 +26,9 @@ var KTUsersAddUser = function () {
                         validators: {
                             notEmpty: {
                                 message: 'Valid email address is required'
+                            },
+                            emailAddress: {
+                                message: 'The value is not a valid email address'
                             }
                         }
                     },
@@ -33,6 +36,11 @@ var KTUsersAddUser = function () {
                         validators: {
                             notEmpty: {
                                 message: 'Valid password address is required'
+                            },
+                            stringLength: {
+                                min: 8,
+                                max: 20,
+                                message: 'The password must be 8-20 characters long'
                             }
                         }
                     },
@@ -40,11 +48,15 @@ var KTUsersAddUser = function () {
                         validators: {
                             notEmpty: {
                                 message: 'Valid Phone number is required'
+                            },
+                            stringLength: {
+                                min: 4,
+                                max: 20,
+                                message: 'The Phone number must be 4-20 characters long'
                             }
                         }
                     }
                 },
-
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
                     bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -82,21 +94,23 @@ var KTUsersAddUser = function () {
                             submitButton.disabled = false;
 
                             // Show popup confirmation 
-                            Swal.fire({
-                                text: "Form has been successfully submitted!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn btn-primary"
-                                }
-                            }).then(function (result) {
+                            const handleConfirmation = function (result) {
                                 if (result.isConfirmed) {
+                                    // User confirmed, hide the modal and submit the form
+                                    form.submit();
                                     modal.hide();
                                 }
-                            });
+                            };
 
-                            form.submit(); // Submit form
+                            // Assuming you're using some library like Swal (SweetAlert)
+                            Swal.fire({
+                                title: 'Confirmation',
+                                text: 'Are you sure?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes',
+                                cancelButtonText: 'No',
+                            }).then(handleConfirmation);
                         }, 2000);
                     } else {
                         // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
@@ -133,7 +147,7 @@ var KTUsersAddUser = function () {
             }).then(function (result) {
                 if (result.value) {
                     form.reset(); // Reset form			
-                    modal.hide();	
+                    modal.hide();
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",
@@ -167,7 +181,7 @@ var KTUsersAddUser = function () {
             }).then(function (result) {
                 if (result.value) {
                     form.reset(); // Reset form			
-                    modal.hide();	
+                    modal.hide();
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",

@@ -444,4 +444,26 @@
 </div>
 <!--end::Modal - Add task-->
 
+@if($errors->any())
+    <script>
+        setTimeout(function() {
+            var errorMessage = '';
+
+            @foreach($errors->all() as $error)
+                errorMessage += '{!! addslashes($error) !!}\n';
+            @endforeach
+
+            Swal.fire({
+                text: errorMessage,
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, got it!",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        }, 300);
+    </script>
+@endif
+
 @endsection
