@@ -84,8 +84,14 @@
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/table.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/add.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
+
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
+                        
                         <script src="{{asset('app/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/utilities/modals/users-search.js')}}"></script>
+                        
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/view.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-details.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
@@ -95,6 +101,7 @@
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-role.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-auth-app.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-one-time-password.js')}}"></script>
+
                         <script src="{{asset('app/assets/js/widgets.bundle.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/widgets.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/chat/chat.js')}}"></script>

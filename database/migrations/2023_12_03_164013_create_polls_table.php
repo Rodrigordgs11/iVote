@@ -15,8 +15,10 @@ return new class extends Migration
             $table->uuid()->primary();
             $table->string('title');
             $table->string('description');
-            $table->string('poll_privacy');
+            $table->enum('poll_privacy', ['private', 'public']);
+            $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->foreignUuid('owner_uuid')->references('uuid')->on('users');
             $table->timestamps();
         });
     }

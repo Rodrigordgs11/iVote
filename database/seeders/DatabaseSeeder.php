@@ -34,5 +34,14 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '987654321',
             'is_deleted' => false
         ]);
+
+        \App\Models\Poll::factory()->create([
+            'uuid' => str::uuid(),
+            'title' => 'Poll 1',
+            'description' => 'Poll 1 description',
+            'poll_privacy' => 'public',
+            'start_date' => now(),
+            'end_date' => now()
+        ]);
     }
 }

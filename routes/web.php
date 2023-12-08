@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,12 @@ use App\Http\Controllers\DashboardController;
         Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users', [UserController::class, 'delete'])->name('users');
 
+        Route::get('/polls', [PollController::class, 'show'])->name('polls');
+        Route::get('/polls/{poll}', [PollController::class, 'showById'])->name('polls.getId');
+        Route::post('/polls', [PollController::class, 'create'])->name('polls');
+        Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
+        Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
+        
         Route::view('/roles', 'app.roles')->name('roles');
     });
 
