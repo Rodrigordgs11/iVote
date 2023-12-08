@@ -51,4 +51,9 @@ class User extends Authenticatable
         'password' => 'hashed',
         'is_deleted' => 'boolean'
     ];
+
+    public function polls()
+    {
+        return $this->belongsToMany(Poll::class, 'poll_user');
+    }
 }
