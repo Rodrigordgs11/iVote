@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +17,14 @@ use App\Http\Controllers\UserController;
 */
 
     Route::middleware(['auth'])->group(function () {
-        Route::view('/', 'app.dashboard')->name('dashboard');
+        Route::get('/', [DashboardController::class, 'showStatistics'])->name('dashboard');
         Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
         
         Route::get('/users', [UserController::class, 'show'])->name('users');
+        Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
         Route::post('/users', [UserController::class, 'create'])->name('users');
+        Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users', [UserController::class, 'delete'])->name('users');
 
         Route::view('/roles', 'app.roles')->name('roles');
     });
@@ -28,6 +32,7 @@ use App\Http\Controllers\UserController;
     Route::prefix('/app')->group(function () {
         Route::view('/login', 'app.login')->name('login');
         Route::post('/login',[AuthController::class, 'authenticate'])->name('login');
+        
         Route::view('/register', 'app.register')->name('register');
         Route::post('/register',[AuthController::class, 'register'])->name('register');
     });

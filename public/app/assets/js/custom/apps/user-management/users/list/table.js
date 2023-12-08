@@ -165,11 +165,11 @@ var KTUsersList = function () {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
                         }).then(function () {
+                            const form = document.querySelector('#kt_modal_delete');
+                            // Submit the form
+                            form.submit();
                             // Remove current row
                             datatable.row($(parent)).remove().draw();
-                        }).then(function () {
-                            // Detect checked checkboxes
-                            toggleToolbars();
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
@@ -234,6 +234,9 @@ var KTUsersList = function () {
                             confirmButton: "btn fw-bold btn-primary",
                         }
                     }).then(function () {
+                        const form = document.querySelector('#kt_modal_delete');
+                        // Submit the form
+                        form.submit();
                         // Remove all selected customers
                         checkboxes.forEach(c => {
                             if (c.checked) {

@@ -12,18 +12,12 @@
                 <!--begin::Toolbar wrapper-->
                 <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
                     <!--begin::Page title-->
-                    <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                    <div class="page-title d-flex flex-column justify-content-center gap-1 me-3 pb-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">Users management</h1>
                         <!--end::Title-->
                     </div>
                     <!--end::Page title-->
-                    <!--begin::Actions-->
-                    <div class="d-flex align-items-center gap-2 gap-lg-3">
-                        <a href="#" class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">Add Member</a>
-                        <a href="#" class="btn btn-flex btn-primary h-40px fs-7 fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_create_campaign">New Campaign</a>
-                    </div>
-                    <!--end::Actions-->
                 </div>
                 <!--end::Toolbar wrapper-->
             </div>
@@ -219,40 +213,47 @@
                                         <td class="d-flex align-items-center">
                                             <!--begin:: Avatar -->
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                <a href="apps/user-management/users/view.html">
+                                                <a href="{{route('users.getId', ['user' => $user])}}">
                                                     <div class="symbol-label">
-                                                        <img src="assets/media/avatars/300-6.jpg" alt="Emma Smith" class="w-100" />
+                                                        <img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
                                                     </div>
                                                 </a>
                                             </div>
                                             <!--end::Avatar-->
                                             <!--begin::User details-->
                                             <div class="d-flex flex-column">
-                                                <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                                <a href="{{route('users.getId', ['user' => $user])}}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
                                                 <span>{{ $user->email }}</span>
                                             </div>
                                             <!--begin::User details-->
                                         </td>
                                         <td>{{ $user->user_type }}</td>
+                                                                      
                                         <td>
                                             <div class="badge badge-light fw-bold">{{ $user->phone_number }}</div>
                                         </td>
                                         <td>{{ $user->created_at }}</td>
                                         <td>{{ $user->updated_at }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
+                                            <a class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
                                             <i class="ki-outline ki-down fs-5 ms-1"></i></a>
                                             <!--begin::Menu-->
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="apps/user-management/users/view.html" class="menu-link px-3">Edit</a>
+                                                    <a href="{{route('users.getId', ['user' => $user])}}" class="menu-link px-3">Edit</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                                    <form id="kt_modal_delete" method="POST" action="{{ route('users', ['uuid' => $user->uuid]) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a type="submit" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                                    </form>
                                                 </div>
+
+
                                                 <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->

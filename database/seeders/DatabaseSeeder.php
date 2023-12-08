@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10000)->create();
+        \App\Models\User::factory(100)->create();
 
        \App\Models\User::factory()->create([
             'uuid' => str::uuid(),
@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'rodrigo@ivote.com',
             'password' => bcrypt('password'),
             'user_type' => 'admin',
-            'phone_number' => '1234567890'
+            'phone_number' => '1234567890',
+            'is_deleted' => false
         ]);
 
         \App\Models\User::factory()->create([
@@ -30,7 +31,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'pedro@ivote.com',
             'password' => bcrypt('password'),
             'user_type' => 'admin',
-            'phone_number' => '987654321'
+            'phone_number' => '987654321',
+            'is_deleted' => false
         ]);
     }
 }

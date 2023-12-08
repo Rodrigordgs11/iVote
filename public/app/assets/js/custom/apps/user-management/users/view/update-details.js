@@ -98,23 +98,23 @@ var KTUsersUpdateDetails = function () {
                 // Enable button
                 submitButton.disabled = false;
 
-                // Show popup confirmation 
+                // Assuming you're using some library like Swal (SweetAlert)
                 Swal.fire({
-                    text: "Form has been successfully submitted!",
-                    icon: "success",
-                    buttonsStyling: false,
-                    confirmButtonText: "Ok, got it!",
-                    customClass: {
-                        confirmButton: "btn btn-primary"
-                    }
+                    title: 'Confirmation',
+                    text: 'Are you sure?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
                 }).then(function (result) {
                     if (result.isConfirmed) {
+                        // User confirmed, hide the modal and submit the form
+                        form.submit();
                         modal.hide();
                     }
-                });
-
-                //form.submit(); // Submit form
-            }, 2000);
+                }
+            )
+        }, 2000);;
         });
     }
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('user_type', ['admin', 'user']);
             $table->string('phone_number')->unique();
+            $table->boolean('is_deleted')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
