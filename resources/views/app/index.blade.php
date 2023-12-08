@@ -23,7 +23,7 @@
         <meta property="og:url" content="https://keenthemes.com/metronic"/>
         <meta property="og:site_name" content="Metronic by Keenthemes" />
         <link rel="canonical" href="https://preview.keenthemes.com/metronic8"/>
-        <link rel="shortcut icon" href="app/assets/media/logos/favicon.ico"/>
+        <link rel="shortcut icon" href="{{asset('app/assets/media/logos/favicon.ico')}}"/>
         <!--begin::Fonts(mandatory for all pages)-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>        <!--end::Fonts-->
 <!--begin::Vendor Stylesheets(used for this page only)-->
@@ -85,6 +85,21 @@
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/add.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/utilities/modals/users-search.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/view.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-details.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-task.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-email.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-password.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-role.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-auth-app.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-one-time-password.js')}}"></script>
+                        <script src="{{asset('app/assets/js/widgets.bundle.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/widgets.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/chat/chat.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/utilities/modals/create-campaign.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/utilities/modals/users-search.js')}}"></script>
                         <!--end::Custom Javascript-->
                 <!--end::Javascript-->

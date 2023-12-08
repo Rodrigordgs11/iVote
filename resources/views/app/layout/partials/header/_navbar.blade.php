@@ -17,7 +17,7 @@
             data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
             data-kt-menu-attach="parent"
             data-kt-menu-placement="bottom-end">
-            <img src="app/assets/media/avatars/300-2.jpg" alt="user"/>
+            <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="user"/>
         </div>
 @include('app.partials.menus._user-account-menu')
         <!--end::Menu wrapper-->
