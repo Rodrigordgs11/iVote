@@ -18,8 +18,7 @@
     <!--end::Sidebar mobile toggle-->
     <!--begin::Logo-->
     <a href="?page=index" class="app-sidebar-logo">
-        <img alt="Logo" src="app/assets/media/logos/demo39.svg" class="h-25px theme-light-show"/>
-        <img alt="Logo" src="app/assets/media/logos/demo39-dark.svg" class="h-25px theme-dark-show"/>
+        <img alt="Logo" src="app/assets/media/logos/logo.png" class="h-25px theme-light-show"/>
     </a>
     <!--end::Logo-->
 </div>
