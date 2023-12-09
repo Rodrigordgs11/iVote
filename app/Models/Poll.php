@@ -9,6 +9,7 @@ class Poll extends Model
 {
     use HasFactory;
     protected $primaryKey = 'uuid';
+    public $incrementing = false;
     protected $keyType = 'string';
 
 

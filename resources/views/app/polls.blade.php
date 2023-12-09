@@ -58,17 +58,17 @@
                                     <div class="px-7 py-5" data-kt-poll-table-filter="form">
                                         <!--begin::Input group-->
                                         <div class="mb-10">
-                                            <label class="form-label fs-6 fw-semibold">Role:</label>
-                                            <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-poll-table-filter="role" data-hide-search="true">
+                                            <label class="form-label fs-6 fw-semibold">Privacy:</label>
+                                            <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-poll-table-filter="privacy" data-hide-search="true">
                                                 <option></option>
-                                                <option value="admin">Administrator</option>
-                                                <option value="user">User</option>
+                                                <option value="public">Public</option>
+                                                <option value="private">Private</option>
                                             </select>
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="mb-10">
-                                            <label class="form-label fs-6 fw-semibold">Two Step Verification:</label>
+                                            <label class="form-label fs-6 fw-semibold">Start Date:</label>
                                             <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-poll-table-filter="two-step" data-hide-search="true">
                                                 <option></option>
                                                 <option value="Enabled">Enabled</option>
@@ -211,7 +211,7 @@
                                                 <input class="form-check-input" type="checkbox" value="1" />
                                             </div>
                                         </td>
-                                        <td>{{ $poll->title }}</td>                              
+                                        <td><a href="{{route('polls.getId', ['poll' => $poll])}}">{{ $poll->title }}</a></td>                           
                                         <td>{{ $poll->description }}</td>
                                         <td>{{ $poll->poll_privacy }}</td>
                                         <td>{{ $poll->start_date }}</td>
