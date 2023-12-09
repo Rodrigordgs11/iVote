@@ -17,13 +17,13 @@
 							<div class="card bg-body card-xl-stretch mb-xl-8">
 								<!--begin::Body-->
 								<div class="card-body my-3">
-									<a href="#" class="card-title fw-bold text-info fs-5 mb-3 d-block">Company Finance</a>
+									<a href="/users" class="card-title fw-bold text-info fs-5 mb-3 d-block">Users</a>
 									<div class="py-1">
-										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
-										<span class="fw-semibold text-muted fs-7">48k Goal</span>
+										<span class="text-gray-900 fs-1 fw-bold me-2">{{ $progressBar }}%</span>
+										<span class="fw-semibold text-muted fs-7">20k Goal</span>
 									</div>
 									<div class="progress h-7px bg-info bg-opacity-50 mt-7">
-										<div class="progress-bar bg-info" role="progressbar" style="width: 15%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-info" role="progressbar" style="width: {{ $progressBar }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<!--end:: Body-->
