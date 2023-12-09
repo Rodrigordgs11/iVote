@@ -22,9 +22,9 @@ class PollController extends Controller
 
     public function showById(Poll $poll)
     {
-        $users = User::all();
         $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
-        return view('app.pollView', ['poll' => $poll, 'users' => $users, 'attachments' => $attachments]);
+        $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
+        return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users]);
     }    
 
     public function create(Request $request)
@@ -46,7 +46,7 @@ class PollController extends Controller
             $attachment->create($request);
         }
 
-        return redirect()->route('polls');
+        return redirect()->back();
     }
 
     public function update(Request $request, Poll $poll)
@@ -76,8 +76,8 @@ class PollController extends Controller
         }
         
         $poll->update($request->all());
-
-        return redirect()->route('polls')->with('success', 'Poll updated successfully');
+        
+        return redirect()->back()->with('success', 'Poll updated successfully');
     }
 
     public function delete(Request $request)
@@ -96,6 +96,27 @@ class PollController extends Controller
         $poll->delete();
 
         // Redirect to the users list page
-        return redirect()->route('polls');
+        return redirect()->back();
     }
+
+    public function addSelectedUser(Request $request, Poll $poll)
+    {
+        $poll->users()->attach($request->input('user'));
+
+        return redirect()->back()->with('success', 'Selected users added successfully.');
+    }
+
+    public function deleteSelectedUsers(Request $request, Poll $poll)
+    {
+        // Retrieve the selected user IDs from the request
+        $selectedUserUuids = json_decode($request->input('selected_users'));
+
+        //Delete shared polls
+        foreach ($selectedUserUuids as $uuid) {
+            $poll->users()->detach($uuid);
+        }
+
+        return redirect()->back()->with('success', 'Selected users deleted successfully.');
+    }
+
 }

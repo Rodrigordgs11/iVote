@@ -294,17 +294,17 @@
                         <!--end::Modal-->
                     </div>
                     <!--end::Sidebar-->
-                    
+                    @if($poll->poll_privacy == 'private')
                     <!--begin::Content-->
                     <div class="flex-lg-row-fluid ms-lg-10">
                         <!--begin::Card-->
-                        <div class="card card-flush mb-6 mb-xl-9">
+                        <div class="card card-flush mb-6 mb-xl-9 justify-content-around">
                             <!--begin::Card header-->
                             <div class="card-header pt-5">
                                 <!--begin::Card title-->
                                 <div class="card-title">
-                                    <h2 class="d-flex align-items-center">Users Assigned
-                                    <span class="text-gray-600 fs-6 ms-1">(14)</span></h2>
+                                    <h2 class="d-flex align-items-center">Users Shared
+                                    <span class="text-gray-600 fs-6 ms-1">({{ count($poll->users) }})</span></h2>
                                 </div>
                                 <!--end::Card title-->
                                 <!--begin::Card toolbar-->
@@ -314,6 +314,12 @@
                                         <i class="ki-outline ki-magnifier fs-1 position-absolute ms-6"></i>
                                         <input type="text" data-kt-roles-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Users" />
                                     </div>
+                                    <div  >
+                                        <!--begin::Add user-->
+                                        <button type="button" class="btn btn-primary ms-10 me-10" data-bs-toggle="modal" data-bs-target="#kt_modal_add_users">
+                                        <i class="ki-outline ki-plus fs-2"></i>Add User</button>
+                                        <!--end::Add user-->
+                                    </div>
                                     <!--end::Search-->
                                     <!--begin::Group actions-->
                                     <div class="d-flex justify-content-end align-items-center d-none" data-kt-view-roles-table-toolbar="selected">
@@ -321,6 +327,11 @@
                                         <span class="me-2" data-kt-view-roles-table-select="selected_count"></span>Selected</div>
                                         <button type="button" class="btn btn-danger" data-kt-view-roles-table-select="delete_selected">Delete Selected</button>
                                     </div>
+                                    <form id="deleteForm" action="{{ route('polls.deleteSelected', ['poll' => $poll]) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="selected_users" id="selectedUsers">
+                                    </form>
                                     <!--end::Group actions-->
                                 </div>
                                 <!--end::Card toolbar-->
@@ -337,617 +348,39 @@
                                                     <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_roles_view_table .form-check-input" value="1" />
                                                 </div>
                                             </th>
-                                            <th class="min-w-50px">ID</th>
-                                            <th class="min-w-150px">User</th>
-                                            <th class="min-w-125px">Joined Date</th>
-                                            <th class="text-end min-w-100px">Actions</th>
+                                            <th class="min-w-125px">Name</th>
+                                            <th class="min-w-125px">Role</th>
+                                            <th class="min-w-125px">Phone number</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
+                                        @foreach($poll->users as $user)
                                         <tr>
                                             <td>
                                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                    <input class="form-check-input" type="checkbox" value="{{$user->uuid}}" />
                                                 </div>
                                             </td>
-                                            <td>ID7243</td>
                                             <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-6.jpg" alt="Emma Smith" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
-                                                    <span>smith@kpmg.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>20 Jun 2023, 2:40 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
+                                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                                <a href="{{route('users.getId', ['user' => $user])}}">
+                                                    <div class="symbol-label">
+                                                        <img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
                                                     </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
+                                                </a>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <a href="{{route('users.getId', ['user' => $user])}}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                                <span>{{ $user->email }}</span>
+                                            </div>
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID7831</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label fs-3 bg-light-danger text-danger">M</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Melody Macy</a>
-                                                    <span>melody@altbox.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>10 Mar 2023, 5:30 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
+                                                {{ $user->user_type }}
                                             <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID2812</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-1.jpg" alt="Max Smith" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Max Smith</a>
-                                                    <span>max@kt.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>25 Jul 2023, 10:10 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
+                                                {{ $user->phone_number }}
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID5398</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-5.jpg" alt="Sean Bean" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Sean Bean</a>
-                                                    <span>sean@dellito.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>20 Dec 2023, 6:43 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID9048</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-25.jpg" alt="Brian Cox" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Brian Cox</a>
-                                                    <span>brian@exchange.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>10 Nov 2023, 6:43 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID7378</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label fs-3 bg-light-warning text-warning">C</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Mikaela Collins</a>
-                                                    <span>mik@pex.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>10 Nov 2023, 2:40 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID1534</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-9.jpg" alt="Francis Mitcham" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Francis Mitcham</a>
-                                                    <span>f.mit@kpmg.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>20 Jun 2023, 6:43 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID8013</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label fs-3 bg-light-danger text-danger">O</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Olivia Wild</a>
-                                                    <span>olivia@corpmail.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>25 Oct 2023, 11:05 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID3207</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label fs-3 bg-light-primary text-primary">N</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Neil Owen</a>
-                                                    <span>owen.neil@gmail.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>22 Sep 2023, 8:43 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID3623</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-23.jpg" alt="Dan Wilson" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Dan Wilson</a>
-                                                    <span>dam@consilting.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>20 Dec 2023, 10:30 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID5530</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label fs-3 bg-light-danger text-danger">E</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Bold</a>
-                                                    <span>emma@intenso.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>25 Oct 2023, 8:43 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID9398</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-12.jpg" alt="Ana Crown" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Ana Crown</a>
-                                                    <span>ana.cf@limtel.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>20 Jun 2023, 5:30 pm</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID7069</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label fs-3 bg-light-info text-info">A</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Robert Doe</a>
-                                                    <span>robert@benko.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>25 Oct 2023, 11:30 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
-                                                </div>
-                                            </td>
-                                            <td>ID1500</td>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a href="apps/user-management/users/view.html">
-                                                        <div class="symbol-label">
-                                                            <img src="assets/media/avatars/300-13.jpg" alt="John Miller" class="w-100" />
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">John Miller</a>
-                                                    <span>miller@mapple.com</span>
-                                                </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>10 Mar 2023, 11:30 am</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
-                                                <i class="ki-outline ki-down fs-5 m-0"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="apps/user-management/users/view.html" class="menu-link px-3">View</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-roles-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <!--end::Table-->
@@ -956,14 +389,80 @@
                         </div>
                         <!--end::Card-->
                     </div>
+                    @endif
                     <!--end::Content-->
-                    
                 </div>
                 <!--end::Layout-->
             </div>
             <!--end::Content container-->
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="kt_modal_add_users" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_add_users_header">
+                <!--begin::Modal title-->
+                <h2 class="fw-bold">Add User</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-user-modal-action="close">
+                    <i class="ki-outline ki-cross fs-1"></i>
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body px-5 my-7">
+                <!--begin::Form-->
+                <form id="kt_modal_add_user_form" class="form"  method="POST" action="{{route('polls.addSelected', ['poll' => $poll])}}">
+                    @csrf
+                    <!--begin::Scroll-->
+                    <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-7 fv-row">
+                            <!--begin::Label-->
+                            <label class="fs-6 fw-semibold mb-2">
+                                <span>Users</span>
+                                <span class="ms-1" data-bs-toggle="tooltip" title="Users">
+                                    <i class="ki-outline ki-information fs-7"></i>
+                                </span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <select name="user" aria-label="Select a user" data-control="select2" data-placeholder="Select a User..." class="form-select form-select-solid" data-dropdown-parent="#kt_modal_add_users">
+                                <option value="">Select a User...</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->uuid }}">{{ $user->name }}</option>
+                                @endforeach    
+                            </select>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                    </div>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-10">
+                        <button type="reset" class="btn btn-light me-3" data-kt-polls-modal-action="cancel">Discard</button>
+                        <button type="submit" class="btn btn-primary" data-kt-polls-modal-action="submit">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait... 
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
 </div>
 
 @if($errors->any())

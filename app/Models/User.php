@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -52,8 +53,10 @@ class User extends Authenticatable
         'is_deleted' => 'boolean'
     ];
 
-    public function polls()
+    public function polls(): BelongsToMany
     {
-        return $this->belongsToMany(Poll::class, 'poll_user');
+        return $this->belongsToMany(Poll::class, 'shared_polls');
     }
+
+    
 }

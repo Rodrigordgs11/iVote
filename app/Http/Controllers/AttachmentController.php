@@ -26,6 +26,6 @@ class AttachmentController extends Controller
         else $attachment->poll_uuid = $request->uuid;
         $attachment->save();
 
-        return redirect()->route('polls');
+        return redirect()->back();
     }
 }

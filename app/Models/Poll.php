@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Poll extends Model
 {
@@ -32,5 +33,10 @@ class Poll extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'owner_uuid', 'uuid');
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shared_polls');
     }
 }

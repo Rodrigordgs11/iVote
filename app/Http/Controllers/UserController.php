@@ -12,6 +12,7 @@ class UserController extends Controller
     public function show()
     {
         $users = User::all();
+
         return view('app.users', ['users' => $users]);
     }
 
@@ -62,7 +63,7 @@ class UserController extends Controller
         $user->save();
         
         // Redirect to the user's profile page
-        return redirect()->route('users');
+        return redirect()->back();
     }
 
     public function update(User $user, Request $request)
@@ -109,7 +110,7 @@ class UserController extends Controller
         
         $user->update($request->all());
 
-        return redirect()->route('users')->with('success', 'User updated successfully');
+        return redirect()->back()->with('success', 'User updated successfully');
     }
 
     public function delete(Request $request)
@@ -128,7 +129,7 @@ class UserController extends Controller
         $user->delete();
 
         // Redirect to the users list page
-        return redirect()->route('users');
+        return redirect()->back();
     }
 
 }

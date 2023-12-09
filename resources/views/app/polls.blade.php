@@ -68,7 +68,7 @@
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
                                         <div class="mb-10">
-                                            <label class="form-label fs-6 fw-semibold">Start Date:</label>
+                                        <label class="form-label fs-6 fw-semibold">Two Step Verification:</label>
                                             <select class="form-select form-select-solid fw-bold" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-poll-table-filter="two-step" data-hide-search="true">
                                                 <option></option>
                                                 <option value="Enabled">Enabled</option>
@@ -195,9 +195,9 @@
                                     </th>
                                     <th class="min-w-125px">Title</th>
                                     <th class="min-w-125px">Description</th>
-                                    <th class="min-w-125px">Poll_privacy</th>
-                                    <th class="min-w-125px">Start_date</th>
-                                    <th class="min-w-125px">End_date</th>
+                                    <th class="min-w-125px">Privacy</th>
+                                    <th class="min-w-125px">Start Date</th>
+                                    <th class="min-w-125px">End Date</th>
                                     <th class="min-w-125px">Owner</th>
                                     <th class="text-center min-w-100px">Actions</th>
                                     <th></th>

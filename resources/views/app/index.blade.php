@@ -102,6 +102,8 @@
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-auth-app.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-one-time-password.js')}}"></script>
 
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/roles/view/view.js')}}"></script>
+
                         <script src="{{asset('app/assets/js/widgets.bundle.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/widgets.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/chat/chat.js')}}"></script>

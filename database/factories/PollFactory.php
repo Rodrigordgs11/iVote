@@ -24,15 +24,19 @@ class PollFactory extends Factory
         $description = $this->faker->paragraph();
         $description = Str::limit($title, 50);
 
+        $start_date = $this->faker->dateTimeBetween('now', '+1 year');
+        $end_date = $this->faker->dateTimeBetween($start_date, '+1 year');
+
 
         return [
             'uuid' => $this->faker->uuid(),
             'title' => $title,
             'description' => $description,
             'poll_privacy' => $this->faker->randomElement(['private', 'public']),
-            'start_date' => $this->faker->dateTime(),
-            'end_date' => $this->faker->dateTime(),
-            'owner_uuid' => $user->uuid
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'owner_uuid' => $user->uuid,
+            'owner_uuid' => $user->uuid,
         ];
     }
 }

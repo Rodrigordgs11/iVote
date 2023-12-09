@@ -115,8 +115,8 @@ var KTUsersUpdatePermissions = function () {
                         modal.hide();
                     }
                 }
-            )
-        }, 2000);;
+                )
+            }, 2000);
         });
     }
 

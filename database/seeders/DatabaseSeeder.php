@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(100)->create();
-        \App\Models\Poll::factory(100)->create();
+
+        $users = \App\Models\User::factory(100)->create();
+        $polls = \App\Models\Poll::factory(100)->create();
+
+        foreach ($polls->where('poll_privacy', 'private') as $poll) {
+            $randomUsers = $users->random(random_int(1, 5)); 
+            $poll->users()->attach($randomUsers, [
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
 
        \App\Models\User::factory()->create([
             'uuid' => str::uuid(),
