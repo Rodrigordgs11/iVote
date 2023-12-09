@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls');
             $table->string('attachment');
+            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls')->onDelete('cascade');
             $table->timestamps();
         });
     }

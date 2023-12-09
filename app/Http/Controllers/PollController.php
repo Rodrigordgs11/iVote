@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Poll;
 use App\Models\User;
+use App\Models\Attachment;
 use Ramsey\Uuid\Uuid;
 
 
@@ -22,8 +23,9 @@ class PollController extends Controller
     public function showById(Poll $poll)
     {
         $users = User::all();
-        return view('app.pollView', ['poll' => $poll, 'users' => $users]);
-    }
+        $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
+        return view('app.pollView', ['poll' => $poll, 'users' => $users, 'attachments' => $attachments]);
+    }    
 
     public function create(Request $request)
     {
@@ -37,6 +39,12 @@ class PollController extends Controller
         $poll->end_date = $request->event_datetime_end;
         $poll->owner_uuid = $request->user;
         $poll->save();
+
+        if ($request->has('avatar')) {
+            $request->uuid = $poll->uuid;
+            $attachment = new AttachmentController();
+            $attachment->create($request);
+        }
 
         return redirect()->route('polls');
     }

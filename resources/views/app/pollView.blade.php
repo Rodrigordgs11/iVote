@@ -50,6 +50,20 @@
                             <!--end::Card footer-->
                         </div>
                         <!--end::Card-->
+                        <div class="card card-flush mt-10">
+                            <!--begin::Card footer-->
+                            <div class="card-footer pt-0 mt-6">
+                                @if($attachments->count() > 0)    
+                                    @foreach($attachments as $attachment)
+                                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100" class="mb-6"> 
+                                    @endforeach
+                                    @else
+                                        <h3 class="mb-0">This poll hasn't images</h>
+                                    @endif
+                                <button type="button" class="btn btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_attachment">Add attachment</button>
+                            </div>
+                            <!--end::Card footer-->
+                        </div>
                         <!--begin::Modal-->
                         <!--begin::Modal - Update role-->
                         <div class="modal fade" id="kt_modal_update_poll" tabindex="-1" aria-hidden="true">
@@ -190,9 +204,97 @@
                             <!--end::Modal dialog-->
                         </div>
                         <!--end::Modal - Update role-->
+                        <!--begin::Modal - Update role-->
+                        <div class="modal fade" id="kt_modal_add_attachment" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bold">Add attachment</h2>
+                                        <!--end::Modal title-->
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
+                                            <i class="ki-outline ki-cross fs-1"></i>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <!--end::Modal header-->
+                                    <!--begin::Modal body-->
+                                    <div class="modal-body scroll-y mx-5 my-7">
+                                        <!--begin::Form-->
+                                        <form id="kt_modal_add_poll_form" enctype="multipart/form-data" class="form" method="POST" action="{{ route('attachments', ['poll' => $poll])}}">
+                                            @csrf
+                                            @method('POST')
+                                            <!--begin::Scroll-->
+                                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header" data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
+                                                <!--begin::Input group-->
+                                                    <div class="fv-row mb-7">
+                                                        <!--begin::Label-->
+                                                        <label class="d-block fw-semibold fs-6 mb-5">Avatar</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Image placeholder-->
+                                                        <style>.image-input-placeholder { background-image: url('assets/media/svg/files/blank-image.svg'); } [data-bs-theme="dark"] .image-input-placeholder { background-image: url('assets/media/svg/files/blank-image-dark.svg'); }</style>
+                                                        <!--end::Image placeholder-->
+                                                        <!--begin::Image input-->
+                                                        <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
+                                                            <!--begin::Preview existing avatar-->
+                                                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/300-6.jpg);"></div>
+                                                            <!--end::Preview existing avatar-->
+                                                            <!--begin::Label-->
+                                                            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                                                <i class="ki-outline ki-pencil fs-7"></i>
+                                                                <!--begin::Inputs-->
+                                                                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                                                                <input type="hidden" name="avatar_remove" />
+                                                                <!--end::Inputs-->
+                                                            </label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Cancel-->
+                                                            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                                                <i class="ki-outline ki-cross fs-2"></i>
+                                                            </span>
+                                                            <!--end::Cancel-->
+                                                            <!--begin::Remove-->
+                                                            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                                                <i class="ki-outline ki-cross fs-2"></i>
+                                                            </span>
+                                                            <!--end::Remove-->
+                                                        </div>
+                                                        <!--end::Image input-->
+                                                        <!--begin::Hint-->
+                                                        <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end::Scroll-->
+                                            <!--begin::Actions-->
+                                            <div class="text-center pt-15">
+                                                <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
+                                                <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                                                    <span class="indicator-label">Submit</span>
+                                                    <span class="indicator-progress">Please wait... 
+                                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Modal body-->
+                                </div>
+                                <!--end::Modal content-->
+                            </div>
+                            <!--end::Modal dialog-->
+                        </div>
+                        <!--end::Modal - Update role-->
                         <!--end::Modal-->
                     </div>
                     <!--end::Sidebar-->
+                    
                     <!--begin::Content-->
                     <div class="flex-lg-row-fluid ms-lg-10">
                         <!--begin::Card-->
@@ -855,6 +957,7 @@
                         <!--end::Card-->
                     </div>
                     <!--end::Content-->
+                    
                 </div>
                 <!--end::Layout-->
             </div>

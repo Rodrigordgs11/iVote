@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('polls', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->string('title');
-            $table->string('description');
+            $table->string('title', 50);
+            $table->string('description', 100);
             $table->enum('poll_privacy', ['private', 'public']);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->foreignUuid('owner_uuid')->references('uuid')->on('users');
+            $table->foreignUuid('owner_uuid')->references('uuid')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

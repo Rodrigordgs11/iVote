@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PollController;
+use App\Http\Controllers\AttachmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ use App\Http\Controllers\PollController;
         Route::post('/polls', [PollController::class, 'create'])->name('polls');
         Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
         Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
+
+        Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
         
         Route::view('/roles', 'app.roles')->name('roles');
     });
