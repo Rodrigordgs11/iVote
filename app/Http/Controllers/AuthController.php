@@ -43,7 +43,7 @@ class AuthController extends Controller
             'user_type' => 'User',
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Login with success!');
     }
 
     public function authenticate(Request $request): RedirectResponse

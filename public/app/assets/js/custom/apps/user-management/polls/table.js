@@ -140,7 +140,7 @@ var KTPollsList = function () {
                 console.log('delete rows');
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete ?",
+                    text: "Are you sure you want to delete this poll?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -153,7 +153,7 @@ var KTPollsList = function () {
                 }).then(function (result) {
                     if (result.value) {
                         Swal.fire({
-                            text: "You have deleted!.",
+                            text: "You have deleted the poll successfully.",
                             icon: "success",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",

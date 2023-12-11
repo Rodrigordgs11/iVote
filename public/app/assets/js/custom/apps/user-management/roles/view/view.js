@@ -5,6 +5,10 @@ var KTUsersViewRole = function () {
     // Shared variables
     var datatable;
     var table;
+    const element = document.getElementById('kt_modal_add_users');
+    const form = element.querySelector('#kt_modal_add_user_form');
+    const modal = new bootstrap.Modal(element);
+
 
     // Init add schedule modal
     var initViewRole = () => {
@@ -28,11 +32,79 @@ var KTUsersViewRole = function () {
                 { orderable: false, targets: 3 }, // Disable ordering on column 4 (actions)
             ]
         });
+
+        // Cancel button handler
+    const cancelButton = element.querySelector('[data-kt-usersPoll-modal-action="cancel"]');
+    cancelButton.addEventListener('click', e => {
+        e.preventDefault();
+
+        Swal.fire({
+            text: "Are you sure you would like to cancel?",
+            icon: "warning",
+            showCancelButton: true,
+            buttonsStyling: false,
+            confirmButtonText: "Yes, cancel it!",
+            cancelButtonText: "No, return",
+            customClass: {
+                confirmButton: "btn btn-primary",
+                cancelButton: "btn btn-active-light"
+            }
+        }).then(function (result) {
+            if (result.value) {
+                form.reset(); // Reset form			
+                modal.hide();
+            } else if (result.dismiss === 'cancel') {
+                Swal.fire({
+                    text: "Your form has not been cancelled!.",
+                    icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                    }
+                });
+            }
+        });
+    });
+
+    // Close button handler
+    const closeButton = element.querySelector('[data-kt-usersPoll-modal-action="close"]');
+    closeButton.addEventListener('click', e => {
+        e.preventDefault();
+
+        Swal.fire({
+            text: "Are you sure you would like to cancel?",
+            icon: "warning",
+            showCancelButton: true,
+            buttonsStyling: false,
+            confirmButtonText: "Yes, cancel it!",
+            cancelButtonText: "No, return",
+            customClass: {
+                confirmButton: "btn btn-primary",
+                cancelButton: "btn btn-active-light"
+            }
+        }).then(function (result) {
+            if (result.value) {
+                form.reset(); // Reset form			
+                modal.hide();
+            } else if (result.dismiss === 'cancel') {
+                Swal.fire({
+                    text: "Your form has not been cancelled!.",
+                    icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                    }
+                });
+            }
+        });
+    });
     }
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-roles-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-usersPoll-table-filter="search"]');
         filterSearch.addEventListener('keyup', function (e) {
             datatable.search(e.target.value).draw();
         });

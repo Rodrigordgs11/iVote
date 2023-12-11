@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->save();
         
         // Redirect to the user's profile page
-        return redirect()->back();
+        return redirect()->route('users')->with('success', 'User created successfully');
     }
 
     public function update(User $user, Request $request)

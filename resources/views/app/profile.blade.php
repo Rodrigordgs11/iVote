@@ -2929,4 +2929,20 @@
     </script>
 @endif
 
+@if (session()->has('success'))
+    <script>
+        setTimeout(function() {
+            Swal.fire({
+                text: "{{ session('success') }}",
+                icon: "success",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, got it!",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        }, 300);
+    </script>
+@endif
+
 @endsection
