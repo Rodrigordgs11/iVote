@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->uuid()->primary();
             $table->string('description');
-            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls');
+            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls')->onDelete('cascade');
             $table->timestamps();
         });
     }

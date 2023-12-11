@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->foreignUuid('option_uuid')->references('uuid')->on('options');
-            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls');
-            $table->foreignUuid('user_uuid')->references('uuid')->on('users');
+            $table->foreignUuid('option_uuid')->references('uuid')->on('options')->onDelete('cascade');
+            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls')->onDelete('cascade');
+            $table->foreignUuid('user_uuid')->references('uuid')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

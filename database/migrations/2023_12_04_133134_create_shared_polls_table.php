@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('shared_polls', function (Blueprint $table) {
-            $table->foreignUuid('user_uuid')->references('uuid')->on('users');
-            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls');
+            $table->foreignUuid('user_uuid')->references('uuid')->on('users')->onDelete('cascade');
+            $table->foreignUuid('poll_uuid')->references('uuid')->on('polls')->onDelete('cascade');
             $table->primary(['user_uuid', 'poll_uuid']);
             $table->timestamps();
         });
