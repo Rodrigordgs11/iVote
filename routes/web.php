@@ -35,7 +35,7 @@ use App\Http\Controllers\AttachmentController;
         Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
 
         Route::delete('/polls/{poll}/deleteUsers', [PollController::class, 'deleteSelectedUsers'])->name('polls.deleteSelected');
-        Route::post('/polls/{poll}/addUser', [PollController::class, 'addSelectedUser'])->name('polls.addSelected');
+        Route::post('/polls/{poll}/addUser', [PollController::class, 'addSelectedUsers'])->name('polls.addSelectedUsers');
 
 
         Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
