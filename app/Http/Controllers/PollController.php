@@ -103,6 +103,24 @@ class PollController extends Controller
 
     public function addSelectedUsers(Request $request, Poll $poll)
     {
+        // Validation rules
+        $rules = [
+            'users[]' => 'required',
+        ];
+
+        // Custom error messages
+        $messages = [
+            'users[].required' => 'User field is required.',
+        ];
+
+        // Validate the request
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        // If validation fails, redirect back with errors
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $users = $request->input('users');
 
         $uniqueUsers = array_unique($users);

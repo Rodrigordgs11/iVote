@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $users = \App\Models\User::factory(100)->create();
         $polls = \App\Models\Poll::factory(100)->create();
         $options = \App\Models\Option::factory(100)->create();
+        $votes = \App\Models\Vote::factory(100)->create();
 
         foreach ($polls->where('poll_privacy', 'private') as $poll) {
             $randomUsers = $users->random(random_int(1, 5)); 
