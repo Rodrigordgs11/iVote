@@ -48,10 +48,18 @@ class AuthController extends Controller
 
     public function authenticate(Request $request): RedirectResponse
     {
+        $customMessages = [
+            'email.required' => 'The email field is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.max' => 'The email field must not exceed :max characters.',
+            'password.required' => 'The password field is required.',
+            'password.min' => 'The password must be at least :min characters.',
+        ];
+
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+        ], $customMessages);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

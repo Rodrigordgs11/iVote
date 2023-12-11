@@ -91,26 +91,12 @@ License: For each use you must have a valid license purchased only from above li
 									<div class="fv-row mb-8">
 										<!--begin::Email-->
 										<input type="text" placeholder="Email" name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" />
-										@if($errors->any())
-											@foreach($errors->get('email') as $error)
-												<div class="alert alert-danger mt-2"  role="alert">
-													<div class="alert-text">{{ $error }}</div>
-												</div>
-											@endforeach
-										@endif
 										<!--end::Email-->
 									</div>
 									<!--end::Input group=-->
 									<div class="fv-row mb-7">
 										<!--begin::Password-->
 										<input type="password" placeholder="Password" name="password" autocomplete="off" data-kt-translate="sign-in-input-password" class="form-control form-control-solid" />
-										@if($errors->any())
-											@foreach($errors->get('password') as $error)
-												<div class="alert alert-danger mt-2" role="alert">
-													<div class="alert-text">{{ $error }}</div>
-												</div>
-											@endforeach
-										@endif
 										<!--end::Password-->
 									</div>
 									<!--end::Input group=-->
@@ -246,8 +232,8 @@ License: For each use you must have a valid license purchased only from above li
 					setTimeout(function() {
 						var errorMessage = '';
 
-						@foreach($errors->get('result') as $error)
-							errorMessage += '{{ $error }}\n';
+						@foreach($errors->all() as $error)
+							errorMessage += '{!! addslashes($error) !!}\n';
 						@endforeach
 
 						Swal.fire({
