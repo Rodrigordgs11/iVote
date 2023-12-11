@@ -1,24 +1,24 @@
 "use strict";
 
 // Class definition
-var KTUsersViewRole = function () {
+var KTOption = function () {
     // Shared variables
     var datatable;
     var table;
-    const element = document.getElementById('kt_modal_add_users');
-    const form = element.querySelector('#kt_modal_add_user_form');
+    const element = document.getElementById('kt_modal_add_options');
+    const form = element.querySelector('#kt_modal_add_option_form');
     const modal = new bootstrap.Modal(element);
 
 
     // Init add schedule modal
-    var initViewRole = () => {
+    var initViewOption = () => {
         // Set date data order
         const tableRows = table.querySelectorAll('tbody tr');
 
         tableRows.forEach(row => {
             const dateRow = row.querySelectorAll('td');
-            const realDate = moment(dateRow[3].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
-            dateRow[3].setAttribute('data-order', realDate);
+            const realDate = moment(dateRow[2].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
+            dateRow[2].setAttribute('data-order', realDate);
         });
 
         // Init datatable --- more info on datatables: https://datatables.net/manual/
@@ -29,12 +29,12 @@ var KTUsersViewRole = function () {
             "lengthChange": false,
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 3 }, // Disable ordering on column 4 (actions)
+                { orderable: false, targets: 2 }, // Disable ordering on column 4 (actions)
             ]
         });
 
             // Cancel button handler
-        const cancelButton = element.querySelector('[data-kt-usersPoll-modal-action="cancel"]');
+        const cancelButton = element.querySelector('[data-kt-option-modal-action="cancel"]');
         cancelButton.addEventListener('click', e => {
             e.preventDefault();
 
@@ -68,7 +68,7 @@ var KTUsersViewRole = function () {
         });
 
         // Close button handler
-        const closeButton = element.querySelector('[data-kt-usersPoll-modal-action="close"]');
+        const closeButton = element.querySelector('[data-kt-option-modal-action="close"]');
         closeButton.addEventListener('click', e => {
             e.preventDefault();
 
@@ -104,7 +104,7 @@ var KTUsersViewRole = function () {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-usersPoll-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-option-table-filter="search"]');
         filterSearch.addEventListener('keyup', function (e) {
             datatable.search(e.target.value).draw();
         });
@@ -113,7 +113,7 @@ var KTUsersViewRole = function () {
     // Delete user
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[data-kt-roles-table-filter="delete_row"]');
+        const deleteButtons = table.querySelectorAll('[data-kt-option-table-filter="delete_row"]');
 
         deleteButtons.forEach(d => {
             // Delete button on click
@@ -173,10 +173,10 @@ var KTUsersViewRole = function () {
         // Toggle selected action toolbar
 
         // Select elements
-        const deleteForm = document.getElementById('deleteForm');
-        const deleteSelected = document.querySelector('[data-kt-view-roles-table-select="delete_selected"]');
-        const selectedUsersInput = document.getElementById('selectedUsers');
-        const checkboxes = document.querySelectorAll('#kt_roles_view_table [type="checkbox"]');
+        const deleteForm = document.getElementById('deleteOptionForm');
+        const deleteSelected = document.querySelector('[data-kt-option-table-select="delete_selected"]');
+        const selectedUsersInput = document.getElementById('selectedOptions');
+        const checkboxes = document.querySelectorAll('#kt_options_view_table [type="checkbox"]');
 
         // Toggle delete selected toolbar
         checkboxes.forEach(c => {
@@ -256,9 +256,9 @@ var KTUsersViewRole = function () {
     // Toggle toolbars
     const toggleToolbars = () => {
         // Define variables
-        const toolbarBase = document.querySelector('[data-kt-view-roles-table-toolbar="base"]');
-        const toolbarSelected = document.querySelector('[data-kt-view-roles-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-view-roles-table-select="selected_count"]');
+        const toolbarBase = document.querySelector('[data-kt-option-table-toolbar="base"]');
+        const toolbarSelected = document.querySelector('[data-kt-option-table-toolbar="selected"]');
+        const selectedCount = document.querySelector('[data-kt-option-table-select="selected_count"]');
 
         // Select refreshed checkbox DOM elements 
         const allCheckboxes = table.querySelectorAll('tbody [type="checkbox"]');
@@ -289,13 +289,13 @@ var KTUsersViewRole = function () {
     return {
         // Public functions
         init: function () {
-            table = document.querySelector('#kt_roles_view_table');
+            table = document.querySelector('#kt_options_view_table');
 
             if (!table) {
                 return;
             }
 
-            initViewRole();
+            initViewOption();
             handleSearchDatatable();
             handleDeleteRows();
             initToggleToolbar();
@@ -305,5 +305,5 @@ var KTUsersViewRole = function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-    KTUsersViewRole.init();
+    KTOption.init();
 });

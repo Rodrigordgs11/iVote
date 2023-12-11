@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Poll;
 use App\Models\User;
+use App\Models\Option;
 use App\Models\Attachment;
 use Ramsey\Uuid\Uuid;
 
@@ -23,8 +24,9 @@ class PollController extends Controller
     public function showById(Poll $poll)
     {
         $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
+        $options = Option::where('poll_uuid', $poll->uuid)->get();
         $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
-        return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users]);
+        return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options]);
     }    
 
     public function create(Request $request)
@@ -46,13 +48,13 @@ class PollController extends Controller
             $attachment->create($request);
         }
 
-        return redirect()->back();
+        return redirect()->route('polls.getId', ['poll' => $poll])->with('success', 'Poll created successfully');
     }
 
     public function update(Request $request, Poll $poll)
     {
-         // Validation rules
-         $rules = [
+        // Validation rules
+        $rules = [
             'title' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
@@ -99,24 +101,40 @@ class PollController extends Controller
         return redirect()->back();
     }
 
-    public function addSelectedUser(Request $request, Poll $poll)
+    public function addSelectedUsers(Request $request, Poll $poll)
     {
-        $poll->users()->attach($request->input('user'));
+        $users = $request->input('users');
+
+        $uniqueUsers = array_unique($users);
+        $poll->users()->attach($uniqueUsers);
 
         return redirect()->back()->with('success', 'Selected users added successfully.');
     }
 
     public function deleteSelectedUsers(Request $request, Poll $poll)
     {
-        // Retrieve the selected user IDs from the request
         $selectedUserUuids = json_decode($request->input('selected_users'));
 
-        //Delete shared polls
-        foreach ($selectedUserUuids as $uuid) {
-            $poll->users()->detach($uuid);
-        }
+        $poll->users()->detach($selectedUserUuids);
 
         return redirect()->back()->with('success', 'Selected users deleted successfully.');
     }
 
+    public function addSelectedOptions(Request $request, Poll $poll)
+    {
+        $option = new OptionController();
+        $option->create($request, $poll);
+
+        return redirect()->back()->with('success', 'Selected options added successfully.');
+    }
+
+    public function deleteSelectedOptions(Request $request, Poll $poll)
+    {
+        $selectedOptionUuids = json_decode($request->input('selected_options'));
+        //chamar o delete do option controller
+        $option = new OptionController();
+        $option->delete($selectedOptionUuids);
+
+        return redirect()->back()->with('success', 'Selected options deleted successfully.');
+    }
 }

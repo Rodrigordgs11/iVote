@@ -88,6 +88,7 @@
                         <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/polls/view-options.js')}}"></script>
                         
                         <script src="{{asset('app/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/utilities/modals/users-search.js')}}"></script>
