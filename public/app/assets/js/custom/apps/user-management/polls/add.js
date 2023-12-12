@@ -10,17 +10,36 @@ var KTPollsAddPoll = function () {
     // Init add schedule modal
     var initAddPoll = () => {
 
-        // Init flatpickr -- for more info: https://flatpickr.js.org/
+
+        // Inicializar o seletor de data de início
         $("#kt_modal_datepicker_start").flatpickr({
             enableTime: true,
             dateFormat: "Y-m-d H:i",
+            minDate: new Date().toISOString(),
+            onChange: function (selectedDates, dateStr, instance) {
+                // Adiciona uma hora à data de início
+                var endDate = new Date(selectedDates[0]);
+                endDate.setHours(endDate.getHours() + 1);
+
+                // Limpa o valor do campo "End date"
+                $("#kt_modal_datepicker_end").flatpickr().clear();
+
+                // Inicializa o seletor de data de término com a nova configuração
+                $("#kt_modal_datepicker_end").flatpickr({
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i",
+                    minDate: endDate,
+                });
+            }
         });
 
-        // Init flatpickr -- for more info: https://flatpickr.js.org/
+        // Inicializa o seletor de data de término
         $("#kt_modal_datepicker_end").flatpickr({
             enableTime: true,
             dateFormat: "Y-m-d H:i",
+            minDate: $("#kt_modal_datepicker_start").val(),
         });
+
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         var validator = FormValidation.formValidation(
@@ -35,23 +54,30 @@ var KTPollsAddPoll = function () {
                         }
                     },
                     'event_datetime_start': {
-						validators: {
-							notEmpty: {
-								message: 'Event date & time is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'Start date & time is required'
+                            }
+                        }
+                    },
                     'event_datetime_end': {
-						validators: {
-							notEmpty: {
-								message: 'Event date & time is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'End date & time is required'
+                            }
+                        }
+                    },
                     'poll_description': {
                         validators: {
                             notEmpty: {
                                 message: 'Description is required'
+                            }
+                        }
+                    },
+                    'user': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Owner is required'
                             }
                         }
                     },

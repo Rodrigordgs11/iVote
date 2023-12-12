@@ -64,10 +64,10 @@ class PollController extends Controller
 
         // Custom error messages
         $messages = [
-            'title.required' => 'The name field is required.',
-            'start_date.required' => 'The email field is required.',
-            'end_date.required' => 'The password field is required.',
-            'description.required' => 'The phone number field is required.',
+            'title.required' => 'The title field is required.',
+            'start_date.required' => 'The start date field is required.',
+            'end_date.required' => 'The end date field is required.',
+            'description.required' => 'The description field is required.',
         ];
 
         // Validate the request
