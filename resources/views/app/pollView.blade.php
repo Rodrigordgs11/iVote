@@ -396,7 +396,7 @@
                 <h2 class="fw-bold">Update Poll</h2>
                 <!--end::Modal title-->
                 <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-polls-modal-action="close">
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
                     <i class="ki-outline ki-cross fs-1"></i>
                 </div>
                 <!--end::Close-->
@@ -505,7 +505,7 @@
                     <!--end::Scroll-->
                     <!--begin::Actions-->
                     <div class="text-center pt-15">
-                        <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button>
+                        <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
                         <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait... 
