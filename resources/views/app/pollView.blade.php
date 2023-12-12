@@ -120,6 +120,7 @@
                                                 </th>
                                                 <th class="min-w-125px">Title</th>
                                                 <th class="min-w-125px">Description</th>
+                                                <th class="min-w-125px text-end">Votes</th>
                                             </tr>
                                         </thead>
                                         <tbody class="fw-semibold text-gray-600">
@@ -132,6 +133,7 @@
                                                 </td>
                                                 <td>{{ $option->title }}</td>
                                                 <td>{{ $option->description }}</td>
+                                                <td class="text-end"><a href="{{route('votes.getByPollId', ['poll' => $poll])}}">{{$voteCount}}</a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -211,23 +213,20 @@
                                                         </div>
                                                     </td>
                                                     <td class="d-flex align-items-center">
-                                                    <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                        <a href="{{route('users.getId', ['user' => $user])}}">
-                                                            <div class="symbol-label">
-                                                                <img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <div class="d-flex flex-column">
-                                                        <a href="{{route('users.getId', ['user' => $user])}}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
-                                                        <span>{{ $user->email }}</span>
-                                                    </div>
+                                                        <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                                            <a href="{{route('users.getId', ['user' => $user])}}">
+                                                                <div class="symbol-label">
+                                                                    <img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <a href="{{route('users.getId', ['user' => $user])}}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                                            <span>{{ $user->email }}</span>
+                                                        </div>
                                                     </td>
-                                                    <td>
-                                                        {{ $user->user_type }}
-                                                    <td>
-                                                        {{ $user->phone_number }}
-                                                    </td>
+                                                    <td>{{ $user->user_type }}</td>
+                                                    <td>{{ $user->phone_number }}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -271,7 +270,6 @@
                 <!--begin::Form-->
                 <form id="kt_modal_add_user_form" class="form"  method="POST" action="{{ route('polls.addSelectedUsers', ['poll' => $poll]) }}">
                     @csrf
-
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                         <button type="button" class="btn btn-primary" id="addUserOption">Add User</button>

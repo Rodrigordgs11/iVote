@@ -105,6 +105,8 @@
 
                         <script src="{{asset('app/assets/js/custom/apps/user-management/roles/view/view.js')}}"></script>
 
+                        <script src="{{asset('app/assets/js/custom/apps/user-management/votes/table.js')}}"></script>
+
                         <script src="{{asset('app/assets/js/widgets.bundle.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/widgets.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/chat/chat.js')}}"></script>

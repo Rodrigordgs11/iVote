@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ use App\Http\Controllers\AttachmentController;
 
         Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
         
-        Route::view('/roles', 'app.roles')->name('roles');
+        Route::get('/votes/{poll}', [VoteController::class, 'showById'])->name('votes.getByPollId');
     });
 
     Route::prefix('/app')->group(function () {

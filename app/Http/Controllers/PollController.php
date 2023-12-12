@@ -8,8 +8,8 @@ use App\Models\Poll;
 use App\Models\User;
 use App\Models\Option;
 use App\Models\Attachment;
+use App\Models\Vote;
 use Ramsey\Uuid\Uuid;
-
 
 class PollController extends Controller
 {
@@ -25,8 +25,9 @@ class PollController extends Controller
     {
         $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
         $options = Option::where('poll_uuid', $poll->uuid)->get();
+        $voteCount = Vote::where('poll_uuid', $poll->uuid)->count();
         $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
-        return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options]);
+        return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
     }    
 
     public function create(Request $request)
@@ -103,14 +104,14 @@ class PollController extends Controller
 
     public function addSelectedUsers(Request $request, Poll $poll)
     {
-        // Validation rules
+        
         $rules = [
-            'users[]' => 'required',
+            'users.*' => 'required', 
         ];
-
+        
         // Custom error messages
         $messages = [
-            'users[].required' => 'User field is required.',
+            'users.*.required' => 'The field cannot be empty.',
         ];
 
         // Validate the request
