@@ -473,7 +473,7 @@
                                         <!--begin::Label-->
                                         <label class="form-check-label" for="kt_modal_update_role_option_0">
                                             <div class="fw-bold text-gray-800">Private</div>
-                                            <div class="text-gray-600">Best for business owners and company user.</div>
+                                            <div class="text-gray-600">The poll will be avilable only for those who you share with.</div>
                                         </label>
                                         <!--end::Label-->
                                     </div>
@@ -491,7 +491,7 @@
                                         <!--begin::Label-->
                                         <label class="form-check-label" for="kt_modal_update_role_option_0">
                                             <div class="fw-bold text-gray-800">Public</div>
-                                            <div class="text-gray-600">Best for business owners and company user.</div>
+                                            <div class="text-gray-600">The poll will available to everyone.</div>
                                         </label>
                                         <!--end::Label-->
                                     </div>
