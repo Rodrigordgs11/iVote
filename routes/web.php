@@ -54,4 +54,6 @@ use App\Http\Controllers\VoteController;
         
         Route::view('/register', 'app.register')->name('register');
         Route::post('/register',[AuthController::class, 'register'])->name('register');
+        
+        Route::view('/home', 'app.home')->name('home');
     });

@@ -64,3 +64,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## How to I setup my development environment?
+
+- Install Docker Desktop.
+- Create an .env file in the root folder of this codebase.
+- DB_CONNECTION=mysql
+- DB_HOST=mysql
+- DB_PORT=3306
+- DB_DATABASE=ivote
+- DB_USERNAME=sail
+- DB_PASSWORD=password
+- Run sail command - docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
+- ./vendor/bin/sail up 
+- ./vendor/bin/sail artisan migrate:fresh --seed
+- ./vendor/bin/sail artisan storage:link
