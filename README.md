@@ -65,22 +65,54 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## How to I setup my development environment?
+## Project Setup Instructions
 
-- Install Docker Desktop.
-- Create an .env file in the root folder of this codebase.
-- DB_CONNECTION=mysql
-- DB_HOST=mysql
-- DB_PORT=3306
-- DB_DATABASE=ivote
-- DB_USERNAME=sail
-- DB_PASSWORD=password
-- Run sail command - docker run --rm \
+### Install Docker Desktop
+Make sure you have Docker Desktop installed on your machine. You can download it from Docker's official website.
+
+### Create an .env file
+Create a file named .env in the root folder of this codebase and add the following content:
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=ivote
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
+### Run Docker Sail Commands
+
+#### Install Dependencies
+Run the following command to install project dependencies:
+
+```
+docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
     laravelsail/php83-composer:latest \
     composer install --ignore-platform-reqs
-- ./vendor/bin/sail up 
-- ./vendor/bin/sail artisan migrate:fresh --seed
-- ./vendor/bin/sail artisan storage:link
+```
+
+#### Start the Docker Containers
+Run the following command to start the Docker containers:
+
+```
+./vendor/bin/sail up
+```
+
+#### Run Database Migrations and Seed
+Run the following commands to migrate the database and seed it with data:
+
+```
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+#### Create Symbolic Link for Storage
+Run the following command to create a symbolic link for storage:
+
+```
+./vendor/bin/sail artisan storage:link
+```
+
+Now, your Laravel application should be up and running. Visit http://localhost in your web browser to access the application.

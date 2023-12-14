@@ -35,7 +35,7 @@
 							<div class="card bg-body card-xl-stretch mb-xl-8">
 								<!--begin::Body-->
 								<div class="card-body my-3">
-									<a href="#" class="card-title fw-bold text-primary fs-5 mb-3 d-block">Company Finance</a>
+									<a href="#" class="card-title fw-bold text-primary fs-5 mb-3 d-block">Total Votes</a>
 									<div class="py-1">
 										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
 										<span class="fw-semibold text-muted fs-7">48k Goal</span>
@@ -53,7 +53,7 @@
 							<div class="card bg-body card-xl-stretch mb-xl-8">
 								<!--begin::Body-->
 								<div class="card-body my-3">
-									<a href="#" class="card-title fw-bold text-warning fs-5 mb-3 d-block">Company Finance</a>
+									<a href="#" class="card-title fw-bold text-warning fs-5 mb-3 d-block">Number of Visits to Landing Page</a>
 									<div class="py-1">
 										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
 										<span class="fw-semibold text-muted fs-7">48k Goal</span>
@@ -71,7 +71,7 @@
 							<div class="card bg-body card-xl-stretch mb-xl-8">
 								<!--begin::Body-->
 								<div class="card-body my-3">
-									<a href="#" class="card-title fw-bold text-success fs-5 mb-3 d-block">Company Finance</a>
+									<a href="#" class="card-title fw-bold text-success fs-5 mb-3 d-block">Active Polls</a>
 									<div class="py-1">
 										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
 										<span class="fw-semibold text-muted fs-7">48k Goal</span>
@@ -100,1191 +100,85 @@
 										<div class="card-header mt-6">
 											<!--begin::Card title-->
 											<div class="card-title flex-column">
-												<h2 class="mb-1">User's Schedule</h2>
-												<div class="fs-6 fw-semibold text-muted">2 upcoming meetings</div>
+												<h2 class="mb-1">New Polls Of The Next 7 Days</h2>
 											</div>
 											<!--end::Card title-->
-											<!--begin::Card toolbar-->
-											<div class="card-toolbar">
-												<button type="button" class="btn btn-light-primary btn-sm" data-bs-toggle="modal" data-bs-target="#kt_modal_add_schedule">
-												<i class="ki-outline ki-brush fs-3"></i>Add Schedule</button>
-											</div>
-											<!--end::Card toolbar-->
 										</div>
 										<!--end::Card header-->
 										<!--begin::Card body-->
 										<div class="card-body p-9 pt-4">
 											<!--begin::Dates-->
-											<ul class="nav nav-pills d-flex flex-nowrap hover-scroll-x py-2">
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_0">
-														<span class="opacity-50 fs-7 fw-semibold">Su</span>
-														<span class="fs-6 fw-bolder">21</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary active" data-bs-toggle="tab" href="#kt_schedule_day_1">
-														<span class="opacity-50 fs-7 fw-semibold">Mo</span>
-														<span class="fs-6 fw-bolder">22</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_2">
-														<span class="opacity-50 fs-7 fw-semibold">Tu</span>
-														<span class="fs-6 fw-bolder">23</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_3">
-														<span class="opacity-50 fs-7 fw-semibold">We</span>
-														<span class="fs-6 fw-bolder">24</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_4">
-														<span class="opacity-50 fs-7 fw-semibold">Th</span>
-														<span class="fs-6 fw-bolder">25</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_5">
-														<span class="opacity-50 fs-7 fw-semibold">Fr</span>
-														<span class="fs-6 fw-bolder">26</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_6">
-														<span class="opacity-50 fs-7 fw-semibold">Sa</span>
-														<span class="fs-6 fw-bolder">27</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_7">
-														<span class="opacity-50 fs-7 fw-semibold">Su</span>
-														<span class="fs-6 fw-bolder">28</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_8">
-														<span class="opacity-50 fs-7 fw-semibold">Mo</span>
-														<span class="fs-6 fw-bolder">29</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_9">
-														<span class="opacity-50 fs-7 fw-semibold">Tu</span>
-														<span class="fs-6 fw-bolder">30</span>
-													</a>
-												</li>
-												<!--end::Date-->
-												<!--begin::Date-->
-												<li class="nav-item me-1">
-													<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_10">
-														<span class="opacity-50 fs-7 fw-semibold">We</span>
-														<span class="fs-6 fw-bolder">31</span>
-													</a>
-												</li>
-												<!--end::Date-->
+											<ul class="nav nav-pills d-flex flex-nowrap hover-scroll-x py-2" id="scheduleDates">
+												<!-- Loop through each day and create a tab for it -->
+												@foreach($pollsByDay as $day => $polls)
+													@php
+														// Get the day number for the current day
+														$dayNumber = Carbon\Carbon::parse($day)->format('d');
+													@endphp
+													<li class="nav-item me-1">
+														<a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary" data-bs-toggle="tab" href="#kt_schedule_day_{{ $loop->index }}">
+															<span class="opacity-50 fs-7 fw-semibold">{{ $day }}</span>
+															<span class="fs-6 fw-bolder">{{ $dayNumber }}</span>
+														</a>
+													</li>
+												@endforeach
 											</ul>
 											<!--end::Dates-->
+											<!-- Message to prompt user to choose a day -->
+											<div class="text-center mt-4" id="chooseDayMessage">
+												<p>Please choose a day to view polls.</p>
+											</div>
 											<!--begin::Tab Content-->
 											<div class="tab-content">
-												<!--begin::Day-->
-												<div id="kt_schedule_day_0" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Development Team Capacity Review</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Sean Bean</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
+												<!-- Loop through each day's polls and create content for each tab -->
+												@foreach($pollsByDay as $day => $polls)
+													<div id="kt_schedule_day_{{ $loop->index }}" class="tab-pane fade show">
+														@if(count($polls) > 0)
+															@foreach($polls as $poll)
+																<!--begin::Time-->
+																<div class="d-flex flex-stack position-relative mt-6 show">
+																	<!--begin::Bar-->
+																	<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+																	<!--end::Bar-->
+																	<!--begin::Info-->
+																	<div class="fw-semibold ms-5">
+																		<!--begin::Time-->
+																		<div class="fs-7 mb-1">Starts at: {{ $poll->start_date->format('H:i') }}
+																			<span class="fs-7 text-muted text-uppercase">{{ $poll->start_date->format('a') }}</span>
+																		</div>
+																		<!--end::Time-->
+																		<!--begin::Title-->
+																		<label class="fs-4 fw-bold text-gray-900">{{ $poll->title }}</label>
+																		<!--end::Title-->
+																		<!--begin::User-->
+																		<div class="fs-7 text-muted">{{ $poll->description }}</a></div>
+																		<!--end::User-->
+																		<div class="fs-7 text mb-2">Owned by: {{ $poll->user->name }}</a></div>
+																		<div class="fs-7 text">Ends on: {{ $poll->end_date->format('d-m-Y H:i:s') }}</div>
+																		<div class="fs-7 text">Days left: {{ now()->diffInDays($poll->end_date) }}</div>
+
+																	</div>
+																	<!--end::Info-->
+																	<!--begin::Action-->
+																	<a href="{{route('polls.getId', ['poll' => $poll])}}" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+																	<!--end::Action-->
+																</div>
+															@endforeach
+														@else
+															<!-- Display a message when there are no polls for the current day -->
+															<div class="text-center mt-4">
+																<p>No polls available for {{ $day }}.</p>
+															</div>
+														@endif
 													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">12:00 - 13:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Peter Marcus</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sales Pitch Proposal</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Mark Randall</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">David Stevenson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Walter White</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_1" class="tab-pane fade show active">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Team Backlog Grooming Session</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Kendell Trevor</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Project Review & Testing</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Walter White</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">12:00 - 13:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sales Pitch Proposal</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Yannis Gloverson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_2" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">11:00 - 11:45 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Terry Robins</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Creative Content Initiative</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">David Stevenson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lunch & Learn Catch Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Peter Marcus</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Karina Clarke</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">10:00 - 11:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Mark Randall</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_3" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lunch & Learn Catch Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Bob Harris</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">David Stevenson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Project Review & Testing</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Terry Robins</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_4" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Committee Review Approvals</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">David Stevenson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">11:00 - 11:45 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lunch & Learn Catch Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Yannis Gloverson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Development Team Capacity Review</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Yannis Gloverson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">12:00 - 13:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Kendell Trevor</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_5" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">14:30 - 15:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Naomi Hayabusa</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">12:00 - 13:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Naomi Hayabusa</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Walter White</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Mark Randall</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_6" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Committee Review Approvals</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Peter Marcus</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Project Review & Testing</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Yannis Gloverson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Michael Walters</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_7" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">10:00 - 11:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Michael Walters</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Team Backlog Grooming Session</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Karina Clarke</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">12:00 - 13:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Peter Marcus</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_8" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Dashboard UI/UX Design Review</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Sean Bean</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">13:00 - 14:00 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Development Team Capacity Review</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Naomi Hayabusa</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Marketing Campaign Discussion</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Caleb Donaldson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_9" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Michael Walters</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">10:00 - 11:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lunch & Learn Catch Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Naomi Hayabusa</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">9:00 - 10:00 
-															<span class="fs-7 text-muted text-uppercase">am</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Weekly Team Stand-Up</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Naomi Hayabusa</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">14:30 - 15:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sales Pitch Proposal</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Terry Robins</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
-												<!--begin::Day-->
-												<div id="kt_schedule_day_10" class="tab-pane fade show">
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Committee Review Approvals</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Naomi Hayabusa</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">14:30 - 15:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Creative Content Initiative</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">David Stevenson</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sales Pitch Proposal</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Sean Bean</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-													<!--begin::Time-->
-													<div class="d-flex flex-stack position-relative mt-6">
-														<!--begin::Bar-->
-														<div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
-														<!--end::Bar-->
-														<!--begin::Info-->
-														<div class="fw-semibold ms-5">
-															<!--begin::Time-->
-															<div class="fs-7 mb-1">16:30 - 17:30 
-															<span class="fs-7 text-muted text-uppercase">pm</span></div>
-															<!--end::Time-->
-															<!--begin::Title-->
-															<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">9 Degree Project Estimation Meeting</a>
-															<!--end::Title-->
-															<!--begin::User-->
-															<div class="fs-7 text-muted">Lead by 
-															<a href="#">Michael Walters</a></div>
-															<!--end::User-->
-														</div>
-														<!--end::Info-->
-														<!--begin::Action-->
-														<a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
-														<!--end::Action-->
-													</div>
-													<!--end::Time-->
-												</div>
-												<!--end::Day-->
+												@endforeach
 											</div>
 											<!--end::Tab Content-->
 										</div>
 										<!--end::Card body-->
 									</div>
-									<!--end::Card-->
+									<!--end::Card body-->
 								</div>
-								<!--end:::Tab pane-->
 								<!--begin:::Tab pane-->
 								<div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
 									<!--begin::Card-->
@@ -1774,7 +668,7 @@
 										<!--begin::Card body-->
 										<div class="card-body py-0">
 											<!--begin::Table-->
-											<table class="table align-middle table-row-dashed fs-6 text-gray-600 fw-semibold gy-5" id="kt_table_customers_events">
+											<!-- <table class="table align-middle table-row-dashed fs-6 text-gray-600 fw-semibold gy-5" id="kt_table_customers_events">
 												<tbody>
 													<tr>
 														<td class="min-w-400px">
@@ -1840,7 +734,7 @@
 														<td class="pe-0 text-gray-600 text-end min-w-200px">10 Nov 2023, 6:43 am</td>
 													</tr>
 												</tbody>
-											</table>
+											</table> -->
 											<!--end::Table-->
 										</div>
 										<!--end::Card body-->
@@ -1991,4 +885,5 @@
 			<!--end::Modal dialog-->
 		</div>
 	</div>
+
 @endsection

@@ -7,8 +7,63 @@ var KTUsersAddSchedule = function () {
     const form = element.querySelector('#kt_modal_add_schedule_form');
     const modal = new bootstrap.Modal(element);
 
+    var generateDates = (numberOfDays, startDate) => {
+        const scheduleDatesList = document.getElementById("scheduleDates");
+
+
+        scheduleDatesList.innerHTML = '';
+
+        for (var i = 0; i < numberOfDays; i++) {
+            var currentDate = new Date(startDate);
+            currentDate.setDate(startDate.getDate() + i);
+
+            var dayAbbreviation = currentDate.toLocaleDateString("en-US", { weekday: "short" });
+            var dayNumber = currentDate.getDate();
+
+            var listItem = document.createElement("li");
+            listItem.className = "nav-item me-1";
+
+            var link = document.createElement("a");
+            link.className = "nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary";
+            link.setAttribute("data-bs-toggle", "tab");
+            link.href = "#kt_schedule_day_" + i;
+
+            var spanAbbreviation = document.createElement("span");
+            spanAbbreviation.className = "opacity-50 fs-7 fw-semibold";
+            spanAbbreviation.textContent = dayAbbreviation;
+
+            var spanDate = document.createElement("span");
+            spanDate.className = "fs-6 fw-bolder";
+            spanDate.textContent = dayNumber;
+
+            link.appendChild(spanAbbreviation);
+            link.appendChild(spanDate);
+            listItem.appendChild(link);
+
+            scheduleDatesList.appendChild(listItem);
+        }
+        displayChooseDayMessage();
+    };
+
+    // Function to display the "chooseDayMessage" element
+    var displayChooseDayMessage = () => {
+        // Check if there are any elements with the class "nav-link" (days)
+        const days = document.querySelectorAll('.nav-link');
+        if (days.length > 0) {
+            // Set up a click event listener for each day
+            days.forEach(day => {
+                day.addEventListener('click', function () {
+                    // Hide the "chooseDayMessage" element when a day is selected
+                    document.getElementById('chooseDayMessage').style.display = 'none';
+                });
+            });
+        }
+        // Display the "chooseDayMessage" element
+        document.getElementById('chooseDayMessage').style.display = 'block';
+    }
+
     // Init add schedule modal
-    var initAddSchedule = () => {       
+    var initAddSchedule = () => {
 
         // Init flatpickr -- for more info: https://flatpickr.js.org/
         $("#kt_modal_add_schedule_datepicker").flatpickr({
@@ -30,50 +85,50 @@ var KTUsersAddSchedule = function () {
         });
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-		var validator = FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					'event_datetime': {
-						validators: {
-							notEmpty: {
-								message: 'Event date & time is required'
-							}
-						}
-					},
+        var validator = FormValidation.formValidation(
+            form,
+            {
+                fields: {
+                    'event_datetime': {
+                        validators: {
+                            notEmpty: {
+                                message: 'Event date & time is required'
+                            }
+                        }
+                    },
                     'event_name': {
-						validators: {
-							notEmpty: {
-								message: 'Event name is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'Event name is required'
+                            }
+                        }
+                    },
                     'event_org': {
-						validators: {
-							notEmpty: {
-								message: 'Event organiser is required'
-							}
-						}
-					},
+                        validators: {
+                            notEmpty: {
+                                message: 'Event organiser is required'
+                            }
+                        }
+                    },
                     'event_invitees': {
-						validators: {
-							notEmpty: {
-								message: 'Event invitees is required'
-							}
-						}
-					},					
-				},
-				
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap5({
-						rowSelector: '.fv-row',
+                        validators: {
+                            notEmpty: {
+                                message: 'Event invitees is required'
+                            }
+                        }
+                    },
+                },
+
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                        rowSelector: '.fv-row',
                         eleInvalidClass: '',
                         eleValidClass: ''
-					})
-				}
-			}
-		);
+                    })
+                }
+            }
+        );
 
         // Revalidate country field. For more info, plase visit the official plugin site: https://select2.org/
         $(form.querySelector('[name="event_invitees"]')).on('change', function () {
@@ -151,68 +206,69 @@ var KTUsersAddSchedule = function () {
 
         // Submit button handler
         const submitButton = element.querySelector('[data-kt-users-modal-action="submit"]');
-		submitButton.addEventListener('click', function (e) {
-			// Prevent default button action
-			e.preventDefault();
+        submitButton.addEventListener('click', function (e) {
+            // Prevent default button action
+            e.preventDefault();
 
-			// Validate form before submit
-			if (validator) {
-				validator.validate().then(function (status) {
-					console.log('validated!');
+            // Validate form before submit
+            if (validator) {
+                validator.validate().then(function (status) {
+                    console.log('validated!');
 
-					if (status == 'Valid') {
-						// Show loading indication
-						submitButton.setAttribute('data-kt-indicator', 'on');
+                    if (status == 'Valid') {
+                        // Show loading indication
+                        submitButton.setAttribute('data-kt-indicator', 'on');
 
-						// Disable button to avoid multiple click 
-						submitButton.disabled = true;
+                        // Disable button to avoid multiple click 
+                        submitButton.disabled = true;
 
-						// Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-						setTimeout(function() {
-							// Remove loading indication
-							submitButton.removeAttribute('data-kt-indicator');
+                        // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        setTimeout(function () {
+                            // Remove loading indication
+                            submitButton.removeAttribute('data-kt-indicator');
 
-							// Enable button
-							submitButton.disabled = false;
-							
-							// Show popup confirmation 
-							Swal.fire({
-								text: "Form has been successfully submitted!",
-								icon: "success",
-								buttonsStyling: false,
-								confirmButtonText: "Ok, got it!",
-								customClass: {
-									confirmButton: "btn btn-primary"
-								}
-							}).then(function (result) {
-								if (result.isConfirmed) {
-									modal.hide();
-								}
-							});
+                            // Enable button
+                            submitButton.disabled = false;
 
-							//form.submit(); // Submit form
-						}, 2000);   						
-					} else {
-						// Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-						Swal.fire({
-							text: "Sorry, looks like there are some errors detected, please try again.",
-							icon: "error",
-							buttonsStyling: false,
-							confirmButtonText: "Ok, got it!",
-							customClass: {
-								confirmButton: "btn btn-primary"
-							}
-						});
-					}
-				});
-			}
-		});
+                            // Show popup confirmation 
+                            Swal.fire({
+                                text: "Form has been successfully submitted!",
+                                icon: "success",
+                                buttonsStyling: false,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                }
+                            }).then(function (result) {
+                                if (result.isConfirmed) {
+                                    modal.hide();
+                                }
+                            });
+
+                            //form.submit(); // Submit form
+                        }, 2000);
+                    } else {
+                        // Show popup warning. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                        Swal.fire({
+                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            icon: "error",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
     return {
         // Public functions
         init: function () {
             initAddSchedule();
+            generateDates(7, new Date());
         }
     };
 }();
