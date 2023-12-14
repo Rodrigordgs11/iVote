@@ -19,18 +19,15 @@ use App\Http\Controllers\VoteController;
 |
 */
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'is_admin'])->group(function () {
+
         Route::get('/', [DashboardController::class, 'showStatistics'])->name('dashboard');
-        Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
         
         Route::get('/users', [UserController::class, 'show'])->name('users');
-        Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
         Route::post('/users', [UserController::class, 'create'])->name('users');
-        Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
         Route::delete('/users', [UserController::class, 'delete'])->name('users');
 
         Route::get('/polls', [PollController::class, 'show'])->name('polls');
-        Route::get('/polls/{poll}', [PollController::class, 'showById'])->name('polls.getId');
         Route::post('/polls', [PollController::class, 'create'])->name('polls');
         Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
         Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
@@ -54,6 +51,16 @@ use App\Http\Controllers\VoteController;
         
         Route::view('/register', 'app.register')->name('register');
         Route::post('/register',[AuthController::class, 'register'])->name('register');
-        
-        Route::view('/home', 'app.home')->name('home');
+
+        Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+
+        Route::middleware(['auth'])->group(function () {
+            Route::get('/home', [PollController::class, 'show'])->name('home');
+
+            Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
+
+            Route::get('/polls/{poll}', [PollController::class, 'showById'])->name('polls.getId');
+            Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
+
+        });
     });
