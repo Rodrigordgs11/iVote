@@ -763,22 +763,23 @@
 										<table class="table align-middle gs-0 gy-5">
 											<!--begin::Table body-->
 											<tbody>
-												<tr>
-													<td>
-														<div class="symbol symbol-50px me-2">
-															<span class="symbol-label">
-																<img src="assets/media/svg/brand-logos/plurk.svg" class="h-50 align-self-center" alt="" />
-															</span>
-														</div>
-													</td>
-													<td class="align-items-start">
-														<a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Top Authors</a>
-														<span class="text-muted fw-semibold d-block fs-7">Successful Fellas</span>
-													</td>
-													<td class="text-end">
-														<span class="text-muted fw-bold">4600 Users</span>
-													</td>
-												</tr>
+												@foreach($bestContributors as $key => $contributor)
+													<tr>
+														<td class="w-10">
+															<div class="symbol symbol-50px me-2">
+																<span class="symbol-label">
+                                                        			<img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
+																</span>
+															</div>
+														</td>
+														<td class="text-start">
+															<a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{ $contributor->name }}</a>
+														</td>
+														<td class="text-end">
+															<span class="text-muted fw-bold">{{ $contributor->total }} Votes</span>
+														</td>
+													</tr>
+												@endforeach
 											</tbody>
 											<!--end::Table body-->
 										</table>

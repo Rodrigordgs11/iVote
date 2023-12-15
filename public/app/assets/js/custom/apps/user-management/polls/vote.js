@@ -17,8 +17,8 @@ var KTOption = function () {
 
         tableRows.forEach(row => {
             const dateRow = row.querySelectorAll('td');
-            const realDate = moment(dateRow[2].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
-            dateRow[2].setAttribute('data-order', realDate);
+            const realDate = moment(dateRow[1].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
+            dateRow[1].setAttribute('data-order', realDate);
         });
 
         // Init datatable --- more info on datatables: https://datatables.net/manual/
@@ -29,7 +29,7 @@ var KTOption = function () {
             "lengthChange": false,
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 2 }, // Disable ordering on column 4 (actions)
+                { orderable: false, targets: 1 }, // Disable ordering on column 4 (actions)
             ]
         });
 
@@ -195,69 +195,6 @@ var KTOption = function () {
                 setTimeout(function () {
                     toggleToolbars();
                 }, 50);
-            });
-        });
-
-        // Deleted selected rows
-        optionSeleted.addEventListener('click', function () {
-            var selectedUserIds = Array.from(checkboxes)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.value);
-
-            // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-            Swal.fire({
-                text: "Are you sure you want to delete selected customers?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, delete!",
-                cancelButtonText: "No, cancel",
-                customClass: {
-                    confirmButton: "btn fw-bold btn-danger",
-                    cancelButton: "btn fw-bold btn-active-light-primary"
-                }
-            }).then(function (result) {
-                if (result.value) {
-                    Swal.fire({
-                        text: "You have deleted all selected customers!.",
-                        icon: "success",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn fw-bold btn-primary",
-                        }
-                    }).then(function () {
-                        // Remove all selected customers
-                        checkboxes.forEach(c => {
-                            if (c.checked) {
-                                datatable.row($(c.closest('tbody tr'))).remove().draw();
-                            }
-                        });
-
-                        // Remove header checked box
-                        const headerCheckbox = table.querySelectorAll('[type="checkbox"]')[0];
-                        headerCheckbox.checked = false;
-
-                        // Set the selected user IDs in the hidden input field
-                        selectedUsersInput.value = JSON.stringify(selectedUserIds);
-
-                        // Submit the form once after processing all selected checkboxes
-                        deleteForm.submit();
-                    }).then(function () {
-                        toggleToolbars(); // Detect checked checkboxes
-                        initToggleToolbar(); // Re-init toolbar to recalculate checkboxes
-                    });
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Selected customers were not deleted.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn fw-bold btn-primary",
-                        }
-                    });
-                }
             });
         });
 

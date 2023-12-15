@@ -9,6 +9,7 @@ use App\Models\Vote;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\CarbonPeriod;
 use Illuminate\Support\Facades\Cache;
+
 class DashboardController extends Controller
 {
     public function showStatistics()
@@ -28,12 +29,20 @@ class DashboardController extends Controller
         $numberOfVisits = Cache::get('visitor_count', 0);
         $progressBarVisit = round(($numberOfVisits * 100) / 100);
 
+        $bestContributors = Vote::select('users.name')
+            ->selectRaw('COUNT(*) as total')
+            ->groupBy('user_uuid')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->join('users', 'votes.user_uuid', '=', 'users.uuid')
+            ->get();
+
         $pollsByDay = $this->getPollsByDay(); 
 
-        return view('app.dashboard', ['progressBarUser' => $progressBarUser, 'pollsByDay' => $pollsByDay, 'progressBarVote' => $progressBarVote, 'progressBarPoll' => $progressBarPoll, 'progressBarVisit' => $progressBarVisit]);
+        return view('app.dashboard', ['progressBarUser' => $progressBarUser, 'pollsByDay' => $pollsByDay, 'progressBarVote' => $progressBarVote, 'progressBarPoll' => $progressBarPoll, 'progressBarVisit' => $progressBarVisit, 'bestContributors' => $bestContributors]);
     }
 
-    public function getPollsByDay()
+    private function getPollsByDay()
     {
         $next7Days = [];
         for ($i = 0; $i < 7; $i++) {

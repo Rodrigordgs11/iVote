@@ -17,8 +17,8 @@ var KTOption = function () {
 
         tableRows.forEach(row => {
             const dateRow = row.querySelectorAll('td');
-            const realDate = moment(dateRow[2].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
-            dateRow[2].setAttribute('data-order', realDate);
+            const realDate = moment(dateRow[1].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
+            dateRow[1].setAttribute('data-order', realDate);
         });
 
         // Init datatable --- more info on datatables: https://datatables.net/manual/
@@ -29,7 +29,7 @@ var KTOption = function () {
             "lengthChange": false,
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 2 }, // Disable ordering on column 4 (actions)
+                { orderable: false, targets: 1 }, // Disable ordering on column 4 (actions)
             ]
         });
 
