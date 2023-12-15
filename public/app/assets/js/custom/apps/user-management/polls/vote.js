@@ -113,58 +113,68 @@ var KTOption = function () {
     // Delete user
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const deleteButtons = table.querySelectorAll('[data-kt-option-table-filter="delete_row"]');
+        const optionSeleted = document.querySelector('[data-kt-option-table-select="option_seleted"]');
 
-        deleteButtons.forEach(d => {
-            // Delete button on click
-            d.addEventListener('click', function (e) {
-                e.preventDefault();
+        optionSeleted.addEventListener('click', function () {
+            var selectedOptionsIds = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
 
-                // Select parent row
-                const parent = e.target.closest('tr');
-
-                // Get customer name
-                const userName = parent.querySelectorAll('td')[1].innerText;
-
-                // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-                Swal.fire({
-                    text: "Are you sure you want to delete " + userName + "?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    buttonsStyling: false,
-                    confirmButtonText: "Yes, delete!",
-                    cancelButtonText: "No, cancel",
-                    customClass: {
-                        confirmButton: "btn fw-bold btn-danger",
-                        cancelButton: "btn fw-bold btn-active-light-primary"
-                    }
-                }).then(function (result) {
-                    if (result.value) {
-                        Swal.fire({
-                            text: "You have deleted " + userName + "!.",
-                            icon: "success",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary",
-                            }
-                        }).then(function () {
-                            // Remove current row
-                            datatable.row($(parent)).remove().draw();
-                        });
-                    } else if (result.dismiss === 'cancel') {
-                        Swal.fire({
-                            text: customerName + " was not deleted.",
-                            icon: "error",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary",
+            // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+            Swal.fire({
+                text: "Are you sure you want to choose this option?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, vote!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-success",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    Swal.fire({
+                        text: "Thank you for your collaboration!.",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary",
+                        }
+                    }).then(function () {
+                        // Remove all selected customers
+                        checkboxes.forEach(c => {
+                            if (c.checked) {
+                                datatable.row($(c.closest('tbody tr'))).remove().draw();
                             }
                         });
-                    }
-                });
-            })
+
+                        // Remove header checked box
+                        const headerCheckbox = table.querySelectorAll('[type="checkbox"]')[0];
+                        headerCheckbox.checked = false;
+
+                        // Set the selected user IDs in the hidden input field
+                        selectedUsersInput.value = JSON.stringify(selectedOptionsIds);
+
+                        // Submit the form once after processing all selected checkboxes
+                        deleteForm.submit();
+                    }).then(function () {
+                        toggleToolbars(); // Detect checked checkboxes
+                        initToggleToolbar(); // Re-init toolbar to recalculate checkboxes
+                    });
+                } else if (result.dismiss === 'cancel') {
+                    Swal.fire({
+                        text: "Selected customers were not deleted.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary",
+                        }
+                    });
+                }
+            });
         });
     }
 
@@ -174,7 +184,7 @@ var KTOption = function () {
 
         // Select elements
         const deleteForm = document.getElementById('deleteOptionForm');
-        const deleteSelected = document.querySelector('[data-kt-option-table-select="delete_selected"]');
+        const optionSeleted = document.querySelector('[data-kt-option-table-select="option_seleted"]');
         const selectedUsersInput = document.getElementById('selectedOptions');
         const checkboxes = document.querySelectorAll('#kt_options_view_table [type="checkbox"]');
 
@@ -189,7 +199,7 @@ var KTOption = function () {
         });
 
         // Deleted selected rows
-        deleteSelected.addEventListener('click', function () {
+        optionSeleted.addEventListener('click', function () {
             var selectedUserIds = Array.from(checkboxes)
                 .filter(checkbox => checkbox.checked)
                 .map(checkbox => checkbox.value);

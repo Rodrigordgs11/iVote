@@ -40,8 +40,6 @@ use App\Http\Controllers\VoteController;
 
         Route::get('/options/{options}', [AttachmentController::class, 'showById'])->name('options.getId');
 
-        Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
-        
         Route::get('/votes/{poll}', [VoteController::class, 'showById'])->name('votes.getByPollId');
     });
 
@@ -58,9 +56,14 @@ use App\Http\Controllers\VoteController;
             Route::get('/home', [PollController::class, 'show'])->name('home');
 
             Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
+            Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
 
             Route::get('/polls/{poll}', [PollController::class, 'showById'])->name('polls.getId');
-            Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
+            Route::get('/polls/{poll}/vote', [PollController::class, 'showById'])->name('vote');
+
+            Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
+
+            Route::post('/votes', [VoteController::class, 'create'])->name('votes');
 
         });
     });

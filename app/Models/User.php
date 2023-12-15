@@ -57,6 +57,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Poll::class, 'shared_polls');
     }
-
-    
 }

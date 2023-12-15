@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Poll;
 use App\Models\User;
 use App\Models\Option;
@@ -17,9 +19,12 @@ class PollController extends Controller
     {
         $polls = Poll::all();
         $users = User::all();
-        return view('app.polls', ['polls' => $polls, 'users' => $users]);
-    }
+        $attachments = Attachment::all();
 
+        if (Auth::user()->user_type == 'admin') return view('app.polls', ['polls' => $polls, 'users' => $users]);
+        else return view('app.home', ['polls' => $polls, 'attachments' => $attachments]);
+    }
+    
 
     public function showById(Poll $poll)
     {
@@ -27,7 +32,9 @@ class PollController extends Controller
         $options = Option::where('poll_uuid', $poll->uuid)->get();
         $voteCount = Vote::where('poll_uuid', $poll->uuid)->count();
         $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
-        return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
+
+        if (Auth::user()->uuid != $poll->owner_uuid && Auth::user()->user_type != 'admin') return view('app.vote', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
+        else return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
     }    
 
     public function create(Request $request)
