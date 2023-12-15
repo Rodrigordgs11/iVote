@@ -5,8 +5,8 @@ var KTOption = function () {
     // Shared variables
     var datatable;
     var table;
-    const element = document.getElementById('kt_modal_add_options');
-    const form = element.querySelector('#kt_modal_add_option_form');
+    const element = document.getElementById('kt_modal_add_options_vote');
+    const form = element.querySelector('#kt_modal_add_option_vote_form');
     const modal = new bootstrap.Modal(element);
 
 
@@ -17,8 +17,8 @@ var KTOption = function () {
 
         tableRows.forEach(row => {
             const dateRow = row.querySelectorAll('td');
-            const realDate = moment(dateRow[1].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
-            dateRow[1].setAttribute('data-order', realDate);
+            const realDate = moment(dateRow[2].innerHTML, "DD MMM YYYY, LT").format(); // select date from 5th column in table
+            dateRow[2].setAttribute('data-order', realDate);
         });
 
         // Init datatable --- more info on datatables: https://datatables.net/manual/
@@ -29,12 +29,12 @@ var KTOption = function () {
             "lengthChange": false,
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 1 }, // Disable ordering on column 4 (actions)
+                { orderable: false, targets: 2 }, // Disable ordering on column 4 (actions)
             ]
         });
 
-            // Cancel button handler
-        const cancelButton = element.querySelector('[data-kt-option-modal-action="cancel"]');
+        // Cancel button handler
+        const cancelButton = element.querySelector('[data-kt-option-vote-modal-action="cancel"]');
         cancelButton.addEventListener('click', e => {
             e.preventDefault();
 
@@ -68,7 +68,7 @@ var KTOption = function () {
         });
 
         // Close button handler
-        const closeButton = element.querySelector('[data-kt-option-modal-action="close"]');
+        const closeButton = element.querySelector('[data-kt-option-vote-modal-action="close"]');
         closeButton.addEventListener('click', e => {
             e.preventDefault();
 
@@ -104,7 +104,7 @@ var KTOption = function () {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-option-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-option-vote-table-filter="search"]');
         filterSearch.addEventListener('keyup', function (e) {
             datatable.search(e.target.value).draw();
         });
@@ -113,7 +113,7 @@ var KTOption = function () {
     // Delete user
     var handleDeleteRows = () => {
         // Select all delete buttons
-        const optionSeleted = document.querySelector('[data-kt-option-table-select="option_seleted"]');
+        const optionSeleted = document.querySelector('[data-kt-option-vote-table-select="option_seleted"]');
 
         optionSeleted.addEventListener('click', function () {
             var selectedOptionsIds = Array.from(checkboxes)
@@ -183,10 +183,10 @@ var KTOption = function () {
         // Toggle selected action toolbar
 
         // Select elements
-        const deleteForm = document.getElementById('deleteOptionForm');
-        const optionSeleted = document.querySelector('[data-kt-option-table-select="option_seleted"]');
+        const deleteForm = document.getElementById('voteForm');
+        const optionSeleted = document.querySelector('[data-kt-option-vote-table-select="option_seleted"]');
         const selectedUsersInput = document.getElementById('selectedOptions');
-        const checkboxes = document.querySelectorAll('#kt_options_view_table [type="checkbox"]');
+        const checkboxes = document.querySelectorAll('#kt_vote_options_view_table [type="checkbox"]');
 
         // Toggle delete selected toolbar
         checkboxes.forEach(c => {
@@ -195,6 +195,69 @@ var KTOption = function () {
                 setTimeout(function () {
                     toggleToolbars();
                 }, 50);
+            });
+        });
+
+        // Deleted selected rows
+        optionSeleted.addEventListener('click', function () {
+            var selectedUserIds = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
+            // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+            Swal.fire({
+                text: "Are you sure you want to delete selected customers?",
+                icon: "warning",
+                showCancelButton: true,
+                buttonsStyling: false,
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No, cancel",
+                customClass: {
+                    confirmButton: "btn fw-bold btn-danger",
+                    cancelButton: "btn fw-bold btn-active-light-primary"
+                }
+            }).then(function (result) {
+                if (result.value) {
+                    Swal.fire({
+                        text: "You have deleted all selected customers!.",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary",
+                        }
+                    }).then(function () {
+                        // Remove all selected customers
+                        checkboxes.forEach(c => {
+                            if (c.checked) {
+                                datatable.row($(c.closest('tbody tr'))).remove().draw();
+                            }
+                        });
+
+                        // Remove header checked box
+                        const headerCheckbox = table.querySelectorAll('[type="checkbox"]')[0];
+                        headerCheckbox.checked = false;
+
+                        // Set the selected user IDs in the hidden input field
+                        selectedUsersInput.value = JSON.stringify(selectedUserIds);
+
+                        // Submit the form once after processing all selected checkboxes
+                        deleteForm.submit();
+                    }).then(function () {
+                        toggleToolbars(); // Detect checked checkboxes
+                        initToggleToolbar(); // Re-init toolbar to recalculate checkboxes
+                    });
+                } else if (result.dismiss === 'cancel') {
+                    Swal.fire({
+                        text: "Selected customers were not deleted.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn fw-bold btn-primary",
+                        }
+                    });
+                }
             });
         });
 
@@ -266,9 +329,9 @@ var KTOption = function () {
     // Toggle toolbars
     const toggleToolbars = () => {
         // Define variables
-        const toolbarBase = document.querySelector('[data-kt-option-table-toolbar="base"]');
-        const toolbarSelected = document.querySelector('[data-kt-option-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-option-table-select="selected_count"]');
+        const toolbarBase = document.querySelector('[data-kt-option-vote-table-toolbar="base"]');
+        const toolbarSelected = document.querySelector('[data-kt-option-vote-table-toolbar="selected"]');
+        const selectedCount = document.querySelector('[data-kt-option-vote-table-select="selected_count"]');
 
         // Select refreshed checkbox DOM elements 
         const allCheckboxes = table.querySelectorAll('tbody [type="checkbox"]');
@@ -299,7 +362,7 @@ var KTOption = function () {
     return {
         // Public functions
         init: function () {
-            table = document.querySelector('#kt_options_view_table');
+            table = document.querySelector('#kt_vote_options_view_table');
 
             if (!table) {
                 return;

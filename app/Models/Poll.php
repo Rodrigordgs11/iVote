@@ -39,4 +39,8 @@ class Poll extends Model
     {
         return $this->belongsToMany(User::class, 'shared_polls');
     }
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'poll_uuid', 'uuid');
+    }
 }

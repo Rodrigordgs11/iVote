@@ -72,18 +72,18 @@
                                     <!--begin::Card toolbar-->
                                     <div class="card-toolbar">
                                         <!--begin::Search-->
-                                        <div class="d-flex align-items-center position-relative my-1" data-kt-option-table-toolbar="base">
+                                        <div class="d-flex align-items-center position-relative my-1" data-kt-option-vote-table-toolbar="base">
                                             <i class="ki-outline ki-magnifier fs-1 position-absolute ms-6"></i>
-                                            <input type="text" data-kt-option-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Options" />
+                                            <input type="text" data-kt-option-vote-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Options" />
                                         </div>
                                         <!--end::Search-->
                                         <!--begin::Group actions-->
-                                        <div class="d-flex justify-content-end align-items-center d-none" data-kt-option-table-toolbar="selected">
+                                        <div class="d-flex justify-content-end align-items-center d-none" data-kt-option-vote-table-toolbar="selected">
                                             <div class="fw-bold me-5">
-                                            <span class="me-2" data-kt-option-table-select="selected_count"></span>Selected</div>
-                                            <button type="button" class="btn btn-success" data-kt-option-table-select="option_seleted">Vote</button>
+                                            <span class="me-2" data-kt-option-vote-table-select="selected_count"></span>Selected</div>
+                                            <button type="button" class="btn btn-success" data-kt-option-vote-table-select="option_seleted">Vote</button>
                                         </div>
-                                        <form id="deleteOptionForm" action="{{ route('votes', ['poll' => $poll]) }}" method="POST" style="display: none;">
+                                        <form id="voteForm" action="{{ route('votes', ['poll' => $poll]) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('POST')
                                             <input type="hidden" name="selected_options" id="selectedOptions">
@@ -96,12 +96,12 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Table-->
-                                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_options_view_table">
+                                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_vote_options_view_table">
                                         <thead>
                                             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                                 <th class="w-10px pe-2">
                                                     <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                        <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_options_view_table .form-check-input" value="1" />
+                                                        <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_vote_options_view_table .form-check-input" value="1" />
                                                     </div>
                                                 </th>
                                                 <th class="min-w-125px">Title</th>
@@ -297,18 +297,18 @@
     <!--end::Modal dialog-->
 </div>
 
-<div class="modal fade" id="kt_modal_add_options" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="kt_modal_add_options_vote" tabindex="-1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Modal header-->
-            <div class="modal-header" id="kt_modal_add_options_header">
+            <div class="modal-header" id="kt_modal_add_options_vote_header">
                 <!--begin::Modal title-->
                 <h2 class="fw-bold">Add Option</h2>
                 <!--end::Modal title-->
                 <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-option-modal-action="close">
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-option-vote-modal-action="close">
                     <i class="ki-outline ki-cross fs-1"></i>
                 </div>
                 <!--end::Close-->
@@ -317,7 +317,7 @@
             <!--begin::Modal body-->
             <div class="modal-body px-5 my-7">
                 <!--begin::Form-->
-                <form id="kt_modal_add_option_form" class="form"  method="POST" action="{{ route('polls.addOption', ['poll' => $poll]) }}">
+                <form id="kt_modal_add_option_vote_form" class="form"  method="POST" action="{{ route('polls.addOption', ['poll' => $poll]) }}">
                     @csrf
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_option_scroll" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
@@ -349,7 +349,7 @@
                     <!--end::Scroll-->
                     <!--begin::Actions-->
                     <div class="text-center pt-10">
-                        <button type="reset" class="btn btn-light me-3" data-kt-option-modal-action="cancel">Discard</button>
+                        <button type="reset" class="btn btn-light me-3" data-kt-option-vote-modal-action="cancel">Discard</button>
                         <button type="submit" class="btn btn-primary" data-kt-option-modal-action="submit">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

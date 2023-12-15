@@ -17,7 +17,7 @@ class PollController extends Controller
 {
     public function show()
     {
-        $polls = Poll::all();
+        $polls = Poll::all()->sortBy('title');
         $users = User::all();
         $attachments = Attachment::all();
 
