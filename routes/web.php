@@ -52,7 +52,7 @@ use App\Http\Controllers\VoteController;
 
         Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 
-        Route::middleware(['auth'])->group(function () {
+        Route::middleware(['auth', 'track_visits'])->group(function () {
             Route::get('/home', [PollController::class, 'show'])->name('home');
 
             Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');

@@ -5,20 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Poll;
+use App\Models\Vote;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\CarbonPeriod;
-
+use Illuminate\Support\Facades\Cache;
 class DashboardController extends Controller
 {
     public function showStatistics()
     {
         $users = User::all();
         $usersCount = count($users);
-        $progressBar = round(($usersCount * 100) / 20000);
+        $progressBarUser = round(($usersCount * 100) / 20000);
+
+        $votes = Vote::all();
+        $votesCount = count($votes);
+        $progressBarVote = round(($votesCount * 100) / 15000);
+
+        $polls = Poll::where('start_date', '<=', now())->get();
+        $pollsCount = count($polls);
+        $progressBarPoll = round(($pollsCount * 100) / 500);
+
+        $numberOfVisits = Cache::get('visitor_count', 0);
+        $progressBarVisit = round(($numberOfVisits * 100) / 100);
 
         $pollsByDay = $this->getPollsByDay(); 
 
-        return view('app.dashboard', ['progressBar' => $progressBar, 'pollsByDay' => $pollsByDay]);
+        return view('app.dashboard', ['progressBarUser' => $progressBarUser, 'pollsByDay' => $pollsByDay, 'progressBarVote' => $progressBarVote, 'progressBarPoll' => $progressBarPoll, 'progressBarVisit' => $progressBarVisit]);
     }
 
     public function getPollsByDay()

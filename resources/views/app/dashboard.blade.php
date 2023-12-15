@@ -19,11 +19,11 @@
 								<div class="card-body my-3">
 									<a href="/users" class="card-title fw-bold text-info fs-5 mb-3 d-block">Users</a>
 									<div class="py-1">
-										<span class="text-gray-900 fs-1 fw-bold me-2">{{ $progressBar }}%</span>
+										<span class="text-gray-900 fs-1 fw-bold me-2">{{ $progressBarUser }}%</span>
 										<span class="fw-semibold text-muted fs-7">20k Goal</span>
 									</div>
 									<div class="progress h-7px bg-info bg-opacity-50 mt-7">
-										<div class="progress-bar bg-info" role="progressbar" style="width: {{ $progressBar }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-info" role="progressbar" style="width: {{ $progressBarUser }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<!--end:: Body-->
@@ -37,11 +37,11 @@
 								<div class="card-body my-3">
 									<a href="#" class="card-title fw-bold text-primary fs-5 mb-3 d-block">Total Votes</a>
 									<div class="py-1">
-										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
-										<span class="fw-semibold text-muted fs-7">48k Goal</span>
+										<span class="text-gray-900 fs-1 fw-bold me-2">{{ $progressBarVote }}%</span>
+										<span class="fw-semibold text-muted fs-7">15k Goal</span>
 									</div>
 									<div class="progress h-7px bg-primary bg-opacity-50 mt-7">
-										<div class="progress-bar bg-primary" role="progressbar" style="width: 15%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-primary" role="progressbar" style="width: {{ $progressBarVote }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<!--end:: Body-->
@@ -53,13 +53,13 @@
 							<div class="card bg-body card-xl-stretch mb-xl-8">
 								<!--begin::Body-->
 								<div class="card-body my-3">
-									<a href="#" class="card-title fw-bold text-warning fs-5 mb-3 d-block">Number of Visits to Landing Page</a>
+									<a href="#" class="card-title fw-bold text-warning fs-5 mb-3 d-block">Visits to client area</a>
 									<div class="py-1">
-										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
-										<span class="fw-semibold text-muted fs-7">48k Goal</span>
+										<span class="text-gray-900 fs-1 fw-bold me-2">{{ $progressBarVisit }}%</span>
+										<span class="fw-semibold text-muted fs-7">100 Goal</span>
 									</div>
 									<div class="progress h-7px bg-warning bg-opacity-50 mt-7">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: 15%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-warning" role="progressbar" style="width: {{ $progressBarVisit }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<!--end:: Body-->
@@ -73,11 +73,11 @@
 								<div class="card-body my-3">
 									<a href="#" class="card-title fw-bold text-success fs-5 mb-3 d-block">Active Polls</a>
 									<div class="py-1">
-										<span class="text-gray-900 fs-1 fw-bold me-2">15%</span>
-										<span class="fw-semibold text-muted fs-7">48k Goal</span>
+										<span class="text-gray-900 fs-1 fw-bold me-2">{{ $progressBarPoll }}%</span>
+										<span class="fw-semibold text-muted fs-7">500 Goal</span>
 									</div>
 									<div class="progress h-7px bg-success bg-opacity-50 mt-7">
-										<div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-success" role="progressbar" style="width: {{ $progressBarPoll }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
 								<!--end:: Body-->
