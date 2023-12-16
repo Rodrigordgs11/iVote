@@ -24,7 +24,7 @@
             <span class="menu-link"><span class="menu-icon"><i class="ki-outline ki-book fs-2"></i></span><span class="menu-title">Pages</span><span class="menu-arrow"></span></span>
             <div  class="menu-sub menu-sub-accordion">
                 <div class="menu-item" ><a class="menu-link" href="#"><span class="menu-bullet"><span class="ki-solid ki-user"></span></span><span class="menu-title">Roles Management</span></a></div>
-                <div class="menu-item" ><a class="menu-link" href="#"><span class="menu-bullet"><span class="ki-solid ki-book-square"></span></span><span class="menu-title">Polls Management</span></a></div>
+                <div class="menu-item" ><a class="menu-link" href="/app/my-polls/myPolls"><span class="menu-bullet"><span class="ki-solid ki-book-square"></span></span><span class="menu-title">Polls Management</span></a></div>
             </div>    
         </div>
     @endif

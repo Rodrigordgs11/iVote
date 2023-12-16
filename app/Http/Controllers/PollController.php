@@ -35,12 +35,36 @@ class PollController extends Controller
 
         if (Auth::user()->uuid != $poll->owner_uuid && Auth::user()->user_type != 'admin') return view('app.vote', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
         else return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
-    }    
+    }  
+    
+    public function showByUser()
+    {
+        $polls = Poll::where('owner_uuid', auth()->user()->uuid)->get();
+        $attachments = Attachment::all();
+
+        return view('app.userPolls', ['polls' => $polls, 'attachments' => $attachments]);
+    }
+
+    public function sharedPolls()
+    {
+        $polls = Auth::user()->polls;
+        $attachments = Attachment::all();
+
+        return view('app.userPolls', ['polls' => $polls, 'attachments' => $attachments]);
+    }
+
+    public function togglePolls($currentRoute)
+    {
+        if ($currentRoute == 'my.polls') {
+            return redirect()->route('shared.polls');
+        } else if ($currentRoute == 'shared.polls') {
+            return redirect()->route('my.polls');
+        }
+    }
 
     public function create(Request $request)
     {
         $poll = new Poll();
-
         $poll->uuid = Uuid::uuid4()->toString();
         $poll->title = $request->poll_title;
         $poll->description = $request->poll_description;

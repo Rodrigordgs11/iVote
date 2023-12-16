@@ -29,7 +29,6 @@ use App\Http\Controllers\VoteController;
 
         Route::get('/polls', [PollController::class, 'show'])->name('polls');
         Route::post('/polls', [PollController::class, 'create'])->name('polls');
-        Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
         Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
 
         Route::delete('/polls/{poll}/deleteUsers', [PollController::class, 'deleteSelectedUsers'])->name('polls.deleteSelected');
@@ -54,12 +53,19 @@ use App\Http\Controllers\VoteController;
 
         Route::middleware(['auth', 'track_visits'])->group(function () {
             Route::get('/home', [PollController::class, 'show'])->name('home');
+            Route::get('/my-polls/myPolls', [PollController::class, 'showByUser'])->name('my.polls');
+            Route::get('/my-polls/sharedPolls', [PollController::class, 'sharedPolls'])->name('shared.polls');
+            Route::get('/my-polls/{currentRoute}', [PollController::class, 'togglePolls'])->name('toggle.polls');
+
 
             Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
             Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
 
             Route::get('/polls/{poll}', [PollController::class, 'showById'])->name('polls.getId');
             Route::get('/polls/{poll}/vote', [PollController::class, 'showById'])->name('vote');
+            Route::post('/myPolls', [PollController::class, 'create'])->name('userPolls');
+            Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
+
 
             Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
 
