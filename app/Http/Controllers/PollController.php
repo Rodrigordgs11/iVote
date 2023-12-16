@@ -163,4 +163,18 @@ class PollController extends Controller
 
         return redirect()->back()->with('success', 'Selected options deleted successfully.');
     }
+
+    public function searchPolls(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        // Realize a busca no banco de dados com base no termo de pesquisa
+        $polls = Poll::where('title', 'like', '%' . $searchTerm . '%')->get();
+
+        $users = User::all();
+        $attachments = Attachment::all();
+
+        if (Auth::user()->user_type == 'admin') return view('app.polls', ['polls' => $polls, 'users' => $users]);
+        else return view('app.home', ['polls' => $polls, 'attachments' => $attachments]);
+    }
 }

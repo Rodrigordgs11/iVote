@@ -65,5 +65,7 @@ use App\Http\Controllers\VoteController;
 
             Route::post('/votes', [VoteController::class, 'create'])->name('votes');
 
+            Route::get('/search-polls', [PollController::class, 'searchPolls'])->name('search.polls');
+
         });
     });
