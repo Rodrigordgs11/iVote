@@ -51,14 +51,20 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $input = $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
         // Create a new user
         $user = new User();
 
+        $path = $input['avatar']->store('users', 'public');
         $user->uuid = Uuid::uuid4()->toString();
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->password = bcrypt($request->user_password);
         $user->phone_number = $request->user_phone;
+        $user->photo = $path;
         $user->user_type = $request->user_role;
         $user->save();
         
@@ -115,6 +121,7 @@ class UserController extends Controller
 
     public function delete(Request $request)
     {
+        dd($request->all());
         $uuid = $request->input('uuid');
 
         // Find the user by UUID
@@ -132,4 +139,16 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function deleteSelected(Request $request)
+    {
+        $selectedUserUuids = json_decode($request->input('selected_users', []));
+
+        User::whereIn('uuid', $selectedUserUuids)->delete();
+        
+        return redirect()->back();
+    }
+
+
 }
+
+

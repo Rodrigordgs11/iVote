@@ -89,6 +89,11 @@
                                 <span class="me-2" data-kt-poll-table-select="selected_count"></span>Selected</div>
                                 <button type="button" class="btn btn-danger" data-kt-poll-table-select="delete_selected">Delete Selected</button>
                             </div>
+                            <form id="kt_modal_delete" action="{{ route('polls.deleteSelected') }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="selected_polls" id="selectedPolls">
+                            </form>
                             <!--end::Group actions-->
                         </div>
                         <!--end::Card toolbar-->
@@ -120,7 +125,7 @@
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" />
+                                                <input class="form-check-input" type="checkbox" value="{{$poll->uuid}}" />
                                             </div>
                                         </td>
                                         <td><a href="{{route('polls.getId', ['poll' => $poll])}}">{{ $poll->title }}</a></td>                           

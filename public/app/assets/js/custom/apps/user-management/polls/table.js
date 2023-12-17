@@ -190,6 +190,8 @@ var KTPollsList = function () {
         const checkboxes = table.querySelectorAll('[type="checkbox"]');
 
         // Select elements
+        const form = document.querySelector('#kt_modal_delete');
+        const selectedPollsInput = document.getElementById('selectedPolls');
         toolbarBase = document.querySelector('[data-kt-poll-table-toolbar="base"]');
         toolbarSelected = document.querySelector('[data-kt-poll-table-toolbar="selected"]');
         selectedCount = document.querySelector('[data-kt-poll-table-select="selected_count"]');
@@ -207,9 +209,13 @@ var KTPollsList = function () {
 
         // Deleted selected rows
         deleteSelected.addEventListener('click', function () {
+            var selectedPollIds = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
             Swal.fire({
-                text: "Are you sure you want to delete selected customers?",
+                text: "Are you sure you want to delete selected polls?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -222,7 +228,7 @@ var KTPollsList = function () {
             }).then(function (result) {
                 if (result.value) {
                     Swal.fire({
-                        text: "You have deleted all selected customers!.",
+                        text: "You have deleted all selected polls!.",
                         icon: "success",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",
@@ -230,10 +236,6 @@ var KTPollsList = function () {
                             confirmButton: "btn fw-bold btn-primary",
                         }
                     }).then(function () {
-                        const form = document.querySelector('#kt_modal_delete');
-                        // Submit the form
-                        form.submit();
-                        // Remove all selected customers
                         checkboxes.forEach(c => {
                             if (c.checked) {
                                 datatable.row($(c.closest('tbody tr'))).remove().draw();
@@ -243,13 +245,19 @@ var KTPollsList = function () {
                         // Remove header checked box
                         const headerCheckbox = table.querySelectorAll('[type="checkbox"]')[0];
                         headerCheckbox.checked = false;
+
+                        // Set the selected user IDs in the hidden input field
+                        selectedPollsInput.value = JSON.stringify(selectedPollIds);
+
+                        // Submit the form once after processing all selected checkboxes
+                        form.submit();
                     }).then(function () {
                         toggleToolbars(); // Detect checked checkboxes
                         initToggleToolbar(); // Re-init toolbar to recalculate checkboxes
                     });
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Selected customers was not deleted.",
+                        text: "Selected polls was not deleted.",
                         icon: "error",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",

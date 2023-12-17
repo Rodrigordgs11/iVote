@@ -133,6 +133,15 @@ class PollController extends Controller
         return redirect()->back();
     }
 
+    public function deleteSelected(Request $request)
+    {
+        $selectedPollUuids = json_decode($request->input('selected_polls'));
+
+        Poll::whereIn('uuid', $selectedPollUuids)->delete();
+
+        return redirect()->back();
+    }
+
     public function addSelectedUsers(Request $request, Poll $poll)
     {
         

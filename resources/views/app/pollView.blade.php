@@ -178,7 +178,7 @@
                                                 <span class="me-2" data-kt-view-roles-table-select="selected_count"></span>Selected</div>
                                                 <button type="button" class="btn btn-danger" data-kt-view-roles-table-select="delete_selected">Delete Selected</button>
                                             </div>
-                                            <form id="deleteForm" action="{{ route('polls.deleteSelected', ['poll' => $poll]) }}" method="POST" style="display: none;">
+                                            <form id="deleteForm" action="{{ route('polls.deleteSelectedUsers', ['poll' => $poll]) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="selected_users" id="selectedUsers">
@@ -655,5 +655,14 @@
         document.getElementById('userList').appendChild(newUserLine);
     });
 </script>
+
+@endsection
+
+@section('scripts')
+
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/view-options.js')}}"></script>
 
 @endsection

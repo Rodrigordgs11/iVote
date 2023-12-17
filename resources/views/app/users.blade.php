@@ -89,8 +89,12 @@
                                 <span class="me-2" data-kt-user-table-select="selected_count"></span>Selected</div>
                                 <button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete Selected</button>
                             </div>
+                            <form id="kt_modal_delete" action="{{ route('users.deleteSelected') }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="selected_users" id="selectedUsers">
+                            </form>
                             <!--end::Group actions-->
-                            
                         </div>
                         <!--end::Card toolbar-->
                     </div>
@@ -120,7 +124,7 @@
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" />
+                                                <input class="form-check-input" type="checkbox" value="{{$user->uuid}}" />
                                             </div>
                                         </td>
                                         <td class="d-flex align-items-center">
@@ -128,7 +132,7 @@
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{route('users.getId', ['user' => $user])}}">
                                                     <div class="symbol-label">
-                                                        <img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
+                                                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($user->photo) }}" alt="" width="100"> 
                                                     </div>
                                                 </a>
                                             </div>
@@ -165,8 +169,6 @@
                                                         <a type="submit" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
                                                     </form>
                                                 </div>
-
-
                                                 <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->
@@ -207,7 +209,7 @@
             <!--begin::Modal body-->
             <div class="modal-body px-5 my-7">
                 <!--begin::Form-->
-                <form id="kt_modal_add_user_form" class="form" method="POST" action="{{ route('users') }}">
+                <form id="kt_modal_add_user_form" class="form" enctype="multipart/form-data" method="POST" action="{{ route('users') }}">
                     @csrf
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
@@ -402,18 +404,7 @@
 
 
 @section('scripts')
-
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/view.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-details.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-task.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-email.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-password.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-role.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-auth-app.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-one-time-password.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/table.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/add.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
-
 @endsection

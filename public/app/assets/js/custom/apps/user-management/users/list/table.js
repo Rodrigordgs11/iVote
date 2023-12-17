@@ -187,7 +187,6 @@ var KTUsersList = function () {
         });
     }
 
-    // Init toggle toolbar
     var initToggleToolbar = () => {
         // Toggle selected action toolbar
         // Select all checkboxes
@@ -197,6 +196,8 @@ var KTUsersList = function () {
         toolbarBase = document.querySelector('[data-kt-user-table-toolbar="base"]');
         toolbarSelected = document.querySelector('[data-kt-user-table-toolbar="selected"]');
         selectedCount = document.querySelector('[data-kt-user-table-select="selected_count"]');
+        const form = document.querySelector('#kt_modal_delete');
+        const selectedUsersInput = document.getElementById('selectedUsers');
         const deleteSelected = document.querySelector('[data-kt-user-table-select="delete_selected"]');
 
         // Toggle delete selected toolbar
@@ -211,9 +212,13 @@ var KTUsersList = function () {
 
         // Deleted selected rows
         deleteSelected.addEventListener('click', function () {
+            var selectedUserIds = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
             Swal.fire({
-                text: "Are you sure you want to delete selected customers?",
+                text: "Are you sure you want to delete selected users?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -226,7 +231,7 @@ var KTUsersList = function () {
             }).then(function (result) {
                 if (result.value) {
                     Swal.fire({
-                        text: "You have deleted all selected customers!.",
+                        text: "You have deleted all selected users!.",
                         icon: "success",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",
@@ -234,10 +239,6 @@ var KTUsersList = function () {
                             confirmButton: "btn fw-bold btn-primary",
                         }
                     }).then(function () {
-                        const form = document.querySelector('#kt_modal_delete');
-                        // Submit the form
-                        form.submit();
-                        // Remove all selected customers
                         checkboxes.forEach(c => {
                             if (c.checked) {
                                 datatable.row($(c.closest('tbody tr'))).remove().draw();
@@ -247,6 +248,12 @@ var KTUsersList = function () {
                         // Remove header checked box
                         const headerCheckbox = table.querySelectorAll('[type="checkbox"]')[0];
                         headerCheckbox.checked = false;
+
+                        // Set the selected user IDs in the hidden input field
+                        selectedUsersInput.value = JSON.stringify(selectedUserIds);
+
+                        // Submit the form once after processing all selected checkboxes
+                        form.submit();
                     }).then(function () {
                         toggleToolbars(); // Detect checked checkboxes
                         initToggleToolbar(); // Re-init toolbar to recalculate checkboxes
