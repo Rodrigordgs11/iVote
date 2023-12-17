@@ -404,3 +404,12 @@
 </div>
 
 @endsection
+
+@section('scripts')
+
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/view-options.js')}}"></script>
+
+@endsection
