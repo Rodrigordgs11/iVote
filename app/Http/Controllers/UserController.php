@@ -121,7 +121,6 @@ class UserController extends Controller
 
     public function delete(Request $request)
     {
-        dd($request->all());
         $uuid = $request->input('uuid');
 
         // Find the user by UUID

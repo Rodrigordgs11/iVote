@@ -408,6 +408,10 @@
     });
 </script>
 
+@endsection
 
+@section('scripts')
+
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
 
 @endsection

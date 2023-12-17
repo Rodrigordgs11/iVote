@@ -130,15 +130,16 @@ var KTPollsList = function () {
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-polls-table-filter="delete_row"]');
+
         deleteButtons.forEach(d => {
             // Delete button on click
             d.addEventListener('click', function (e) {
                 e.preventDefault();
+
                 // Select parent row
                 const parent = e.target.closest('tr');
-                // Get user name
-                console.log('delete rows');
-                // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+
+                // SweetAlert2 pop up
                 Swal.fire({
                     text: "Are you sure you want to delete this poll?",
                     icon: "warning",
@@ -161,15 +162,19 @@ var KTPollsList = function () {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
                         }).then(function () {
-                            const form = document.querySelector('#kt_modal_delete');
+                            // Get the form associated with the clicked button
+                            const formId = e.target.closest('form').id;
+                            const form = document.querySelector(`#${formId}`);
+
                             // Submit the form
                             form.submit();
+
                             // Remove current row
                             datatable.row($(parent)).remove().draw();
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: customerName + " was not deleted.",
+                            text: "The poll was not deleted.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -179,9 +184,10 @@ var KTPollsList = function () {
                         });
                     }
                 });
-            })
+            });
         });
     }
+
 
     // Init toggle toolbar
     var initToggleToolbar = () => {

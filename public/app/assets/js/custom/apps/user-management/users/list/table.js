@@ -142,7 +142,11 @@ var KTUsersList = function () {
                 // Get user name
                 const userName = parent.querySelectorAll('td')[1].querySelectorAll('a')[1].innerText;
 
-                // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+                // Extract the UUID from the form ID
+                const formUuid = e.target.closest('form').id.split('_').pop();
+                console.log(formUuid);
+
+                // SweetAlert2 pop up
                 Swal.fire({
                     text: "Are you sure you want to delete " + userName + "?",
                     icon: "warning",
@@ -156,6 +160,8 @@ var KTUsersList = function () {
                     }
                 }).then(function (result) {
                     if (result.value) {
+                        const form = document.querySelector(`#kt_modal_delete_${formUuid}`);
+
                         Swal.fire({
                             text: "You have deleted " + userName + "!.",
                             icon: "success",
@@ -165,15 +171,12 @@ var KTUsersList = function () {
                                 confirmButton: "btn fw-bold btn-primary",
                             }
                         }).then(function () {
-                            const form = document.querySelector('#kt_modal_delete');
                             // Submit the form
                             form.submit();
-                            // Remove current row
-                            datatable.row($(parent)).remove().draw();
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: customerName + " was not deleted.",
+                            text: userName + " was not deleted.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -183,9 +186,10 @@ var KTUsersList = function () {
                         });
                     }
                 });
-            })
+            });
         });
     }
+
 
     var initToggleToolbar = () => {
         // Toggle selected action toolbar
@@ -196,7 +200,7 @@ var KTUsersList = function () {
         toolbarBase = document.querySelector('[data-kt-user-table-toolbar="base"]');
         toolbarSelected = document.querySelector('[data-kt-user-table-toolbar="selected"]');
         selectedCount = document.querySelector('[data-kt-user-table-select="selected_count"]');
-        const form = document.querySelector('#kt_modal_delete');
+        const form = document.querySelector('#delete_form');
         const selectedUsersInput = document.getElementById('selectedUsers');
         const deleteSelected = document.querySelector('[data-kt-user-table-select="delete_selected"]');
 

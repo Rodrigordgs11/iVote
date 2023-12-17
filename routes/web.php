@@ -26,12 +26,12 @@ use App\Http\Controllers\VoteController;
         Route::get('/users', [UserController::class, 'show'])->name('users');
         Route::post('/users', [UserController::class, 'create'])->name('users');
         Route::delete('/users', [UserController::class, 'delete'])->name('users');
-        Route::delete('/users/', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
+        Route::delete('/users-selected', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
 
         Route::get('/polls', [PollController::class, 'show'])->name('polls');
         Route::post('/polls', [PollController::class, 'create'])->name('polls');
         Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
-        Route::delete('/polls', [PollController::class, 'deleteSelected'])->name('polls.deleteSelected');
+        Route::delete('/polls-selected', [PollController::class, 'deleteSelected'])->name('polls.deleteSelected');
 
         Route::delete('/polls/{poll}/deleteUsers', [PollController::class, 'deleteSelectedUsers'])->name('polls.deleteSelectedUsers');
         Route::post('/polls/{poll}/addUser', [PollController::class, 'addSelectedUsers'])->name('polls.addSelectedUsers');

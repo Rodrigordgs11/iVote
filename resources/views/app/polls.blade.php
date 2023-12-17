@@ -146,7 +146,7 @@
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <form id="kt_modal_delete" method="POST" action="{{ route('polls', ['uuid' => $poll->uuid]) }}">
+                                                    <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls', ['uuid' => $poll->uuid]) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a type="submit" class="menu-link px-3" data-kt-polls-table-filter="delete_row">Delete</a>
@@ -412,9 +412,8 @@
 
 @section('scripts')
 
-    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/view-options.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
+
 
 @endsection

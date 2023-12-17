@@ -89,7 +89,7 @@
                                 <span class="me-2" data-kt-user-table-select="selected_count"></span>Selected</div>
                                 <button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete Selected</button>
                             </div>
-                            <form id="kt_modal_delete" action="{{ route('users.deleteSelected') }}" method="POST" style="display: none;">
+                            <form id="delete_form" action="{{ route('users.deleteSelected') }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="selected_users" id="selectedUsers">
@@ -163,7 +163,7 @@
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <form id="kt_modal_delete" method="POST" action="{{ route('users', ['uuid' => $user->uuid]) }}">
+                                                    <form id="kt_modal_delete_{{$user->uuid}}" method="POST" action="{{ route('users', ['uuid' => $user->uuid]) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a type="submit" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>

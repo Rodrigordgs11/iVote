@@ -660,9 +660,12 @@
 
 @section('scripts')
 
-    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
+
+
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/vote.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/view-options.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/roles/view/view.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
+
 
 @endsection

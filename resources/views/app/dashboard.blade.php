@@ -334,3 +334,7 @@
 	</div>
 
 @endsection
+
+@section('scripts')
+	<script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
+@endsection
