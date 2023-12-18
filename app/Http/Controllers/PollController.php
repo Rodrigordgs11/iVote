@@ -17,7 +17,7 @@ class PollController extends Controller
 {
     public function show()
     {
-        $polls = Poll::all()->sortBy('title');
+        $polls = Poll::all();
         $users = User::all();
         $attachments = Attachment::all();
 
@@ -31,14 +31,13 @@ class PollController extends Controller
         
         $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
         $options = Option::where('poll_uuid', $poll->uuid)->get();
-        $voteCount = Vote::where('poll_uuid', $poll->uuid)->count();
         $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
         $votes = Vote::where('poll_uuid', $poll->uuid)->get();
 
         //Se o utilizador logado tiver um voto na poll, retorna algo
         $hasVoted = $votes->contains('user_uuid', Auth::user()->uuid);
-        if (Auth::user()->uuid != $poll->owner_uuid && Auth::user()->user_type != 'admin') return view('app.vote', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount, 'votes' => $votes, 'hasVoted' => $hasVoted]);
-        else return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
+        if (Auth::user()->uuid != $poll->owner_uuid && Auth::user()->user_type != 'admin') return view('app.vote', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'votes' => $votes, 'hasVoted' => $hasVoted]);
+        else return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options]);
     }  
     
     public function showByUser()
@@ -208,12 +207,28 @@ class PollController extends Controller
     public function searchPolls(Request $request)
     {
         $searchTerm = $request->input('search');
+        $popularity = $request->input('popularity');
+        $dateFilter = $request->input('date_filter');
 
-        // Realize a busca no banco de dados com base no termo de pesquisa
         $polls = Poll::where('title', 'like', '%' . $searchTerm . '%')->get();
-
         $users = User::all();
         $attachments = Attachment::all();
+
+        if ($popularity == '1') {
+            $polls = $polls->sortByDesc(function ($poll) {
+                return count($poll->votes);
+            });
+        } elseif ($popularity == '2') {
+            $polls = $polls->sortBy(function ($poll) {
+                return count($poll->votes);
+            });
+        }
+
+        if ($dateFilter) {
+            $polls = $polls->filter(function ($poll) use ($dateFilter) {
+                return $poll->start_date >= $dateFilter;
+            });
+        }
 
         if (Auth::user()->user_type == 'admin') return view('app.polls', ['polls' => $polls, 'users' => $users]);
         else return view('app.home', ['polls' => $polls, 'attachments' => $attachments]);

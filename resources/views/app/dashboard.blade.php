@@ -216,10 +216,10 @@
 															</div>
 														</td>
 														<td class="text-start">
-															<a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{ $contributor->name }}</a>
+															<a href="{{route('users.getId', ['user' => $contributor])}}" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{ $contributor->name }}</a>
 														</td>
 														<td>
-															<a href="#" class="text-gray-700 fw-bold text-hover-primary  mb-1 fs-7">{{ $contributor->email }}</a>
+															<a  class="text-gray-700 fw-bold mb-1 fs-7">{{ $contributor->email }}</a>
 														</td>
 														<td class="text-end">
 															<span class="text-muted fw-bold">{{ $contributor->total }} Votes</span>

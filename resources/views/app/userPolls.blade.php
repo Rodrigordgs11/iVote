@@ -10,48 +10,36 @@
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-fluid">
-                <!--begin::Form-->
-                <form action="{{ route('search.polls') }}" method="GET">
-                    <!--begin::Card-->
-                    <div class="card mb-7">
-                        <!--begin::Card body-->
-                        <div class="card-body">
-                            <!--begin::Compact form-->
+                <!--begin::Card-->
+                <div class="card mb-7">
+                    <!--begin::Card body-->
+                    <div class="card-body">
+                        <!--begin::Compact form-->
+                        <div class="d-flex align-items-center">
+                            <h1 class="position-realtive">Polls Management - {{ Request::route()->getName() == 'my.polls' ? 'My Polls' : 'Shared Polls' }}</h1>
                             <div class="d-flex align-items-center">
-                                <!--begin::Input group-->
-                                <div class="position-relative w-md-400px me-md-2">
-                                    <i class="ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"></i>
-                                    <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search" />
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin:Action-->
-                                <div class="d-flex align-items-center">
-                                    <button type="submit" class="btn btn-primary me-5">Search</button>
-                                    <button type="button" class="btn btn-primary position-absolute end-0 me-5" data-bs-toggle="modal" data-bs-target="#kt_modal_add_poll">
-                                        <i class="ki-outline ki-plus fs-2"></i>Add Poll
-                                    </button>
-                                </div>
-                                <!--end:Action-->
+                                <button type="button" class="btn btn-primary position-absolute end-0 me-5" data-bs-toggle="modal" data-bs-target="#kt_modal_add_poll">
+                                    <i class="ki-outline ki-plus fs-2"></i>Add Poll
+                                </button>
                             </div>
-                            <!--end::Compact form-->
+                            <!--end:Action-->
                         </div>
-                        <!--end::Card body-->
+                        <!--end::Compact form-->
                     </div>
-                    <!--end::Card-->
-                </form>
-                <!--end::Form-->
+                    <!--end::Card body-->
+                </div>
+                <!--end::Card-->
                 <!--begin::Toolbar-->
                 <div class="d-flex flex-wrap flex-stack pb-7">
                     <!--begin::Title-->
                     <div class="d-flex flex-wrap align-items-center my-1">
-                        <h3 class="fw-bold me-5 my-1">{{count($polls)}} Items Found 
-                        <span class="text-gray-500 fs-6">by Recent Updates ↓</span></h3>
+                        <h3 class="fw-bold me-5 my-1">{{count($polls)}} Polls Found</h3>
+                        <span class="text-gray-500 fs-6">{{ Request::route()->getName() == 'my.polls' ? 'Hover over the title to see the details of the poll!' : 'Hover over the title to vote!' }}</span>
                     </div>
                     <!--end::Title-->
                     <!--begin::Controls-->
-                    <div class="d-flex flex-wrap my-1">
-                    <button id="togglePollsButton" class="btn btn-primary me-5">Show {{ Request::route()->getName() == 'my.polls' ? 'Shared Polls' : 'My Polls' }}</button>
-
+                    <div class="d-flex flex-wrap my-1 align-items-center" >
+                        <button id="togglePollsButton" class="btn btn-primary me-5">Show {{ Request::route()->getName() == 'my.polls' ? 'Shared Polls' : 'My Polls' }}</button>
                         <!--begin::Tab nav-->
                         <ul class="nav nav-pills me-6 mb-2 mb-sm-0">
                             <li class="nav-item m-0">
@@ -65,26 +53,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <!--end::Tab nav-->
-                        <!--begin::Actions-->
-                        <div class="d-flex my-0">
-                            <!--begin::Select-->
-                            <select name="status" data-control="select2" data-hide-search="true" data-placeholder="Filter" class="form-select form-select-sm form-select-solid w-150px me-5">
-                                <option value="1">Recently Updated</option>
-                                <option value="2">Last Month</option>
-                                <option value="3">Last Quarter</option>
-                                <option value="4">Last Year</option>
-                            </select>
-                            <!--end::Select-->
-                            <!--begin::Select-->
-                            <select name="status" data-control="select2" data-hide-search="true" data-placeholder="Export" class="form-select form-select-sm form-select-solid w-100px">
-                                <option value="1">Excel</option>
-                                <option value="1">PDF</option>
-                                <option value="2">Print</option>
-                            </select>
-                            <!--end::Select-->
-                        </div>
-                        <!--end::Actions-->
+                        <!--end::Tab nav-->                        
                     </div>
                     <!--end::Controls-->
                 </div>
@@ -104,18 +73,33 @@
                                         <div class="card-body d-flex flex-center flex-column pt-12 p-9">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-65px symbol-circle mb-5">
+                                            @php
+                                                $attachmentsForPoll = $attachments->filter(function ($attachment) use ($poll) {
+                                                    return $attachment->poll_uuid == $poll->uuid;
+                                                });
+                                            @endphp
+
+                                            @if($attachmentsForPoll->count() > 0)    
+                                                @foreach($attachmentsForPoll as $attachment)
+                                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
+                                                @endforeach
+                                            @else
                                                 <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="image" />
-                                                <div class="bg-success position-absolute border border-4 border-body h-15px w-15px rounded-circle translate-middle start-100 top-100 ms-n3 mt-n3"></div>
+                                            @endif
                                             </div>
                                             <!--end::Avatar-->
                                             <!--begin::Name-->
-                                            <a href="{{ route('polls.getId', ['poll' => $poll]) }}" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to view details">{{ $poll->title }}</a>
+                                            <a href="{{ route('polls.getId', ['poll' => $poll]) }}" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ Request::route()->getName() == 'my.polls' ? 'Click here to view the details!' : 'Click here to vote!' }}">{{ $poll->title }}</a>
                                             <!--end::Name-->
                                             <!--begin::Position-->
                                             <div class="fw-semibold text-gray-500 mb-6">{{$poll->description}}</div>
                                             <!--end::Position-->
                                             <!--begin::Info-->
                                             <div class="d-flex flex-center flex-wrap">
+                                                <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
+                                                    <div class="fs-6 fw-bold text-gray-700">Start date</div>
+                                                    <div class="fw-semibold text-gray-500">{{$poll->start_date}}</div>
+                                                </div>
                                                 <!--begin::Stats-->
                                                 <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
                                                     <div class="fs-6 fw-bold text-gray-700">End date</div>
@@ -123,7 +107,7 @@
                                                 </div>
                                                 <!--end::Stats-->
                                                 <!--begin::Stats-->
-                                                <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3">
+                                                <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 mx-2 mb-3 text-center">
                                                     <div class="fs-6 fw-bold text-gray-700">Votes</div>
                                                     <div class="fw-semibold text-gray-500">{{count($poll->votes)}}</div>
                                                 </div>
@@ -153,11 +137,11 @@
                                     <table id="kt_project_users_table" class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bold">
                                         <thead class="fs-7 text-gray-500 text-uppercase">
                                             <tr>
-                                                <th class="min-w-250px">Title</th>
+                                                <th></th>
+                                                <th class="min-w-50px">Title</th>
                                                 <th class="min-w-90px">Description</th>
                                                 <th class="min-w-150px">Start Date</th>
                                                 <th class="min-w-90px">End Date</th>
-                                                <th class="min-w-50px text-end">Details</th>
                                             </tr>
                                         </thead>
                                         <tbody class="fs-6">
@@ -181,15 +165,19 @@
                                                                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
                                                                     @endforeach
                                                                 @else
-                                                                    <h3>Sem imagem</h3>
+                                                                    <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="image" />
                                                                 @endif
                                                                 </div>
                                                                 <!--end::Avatar-->
                                                             </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div>
                                                             <!--end::Wrapper-->
                                                             <!--begin::Info-->
                                                             <div class="d-flex flex-column justify-content-center">
-                                                                <a href="{{route('vote', ['poll' => $poll])}}" class="mb-1 text-gray-800 text-hover-primary">{{ $poll->title }}</a>
+                                                                <a href="{{ route('polls.getId', ['poll' => $poll]) }}" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ Request::route()->getName() == 'my.polls' ? 'Click here to view the details!' : 'Click here to vote!' }}">{{ $poll->title }}</a>
                                                             </div>
                                                             <!--end::Info-->
                                                         </div>
@@ -198,9 +186,6 @@
                                                     <td>{{ $poll->description }}</td>
                                                     <td>{{ $poll->start_date }}</td>
                                                     <td>{{ $poll->end_date }}</td>
-                                                    <td class="text-end">
-                                                        <a href="{{route('votes', ['poll' => $poll])}}" class="btn btn-light btn-sm">View</a>
-                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

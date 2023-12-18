@@ -28,8 +28,8 @@ class DashboardController extends Controller
 
         $numberOfVisits = Cache::get('visitor_count', 0);
         $progressBarVisit = round(($numberOfVisits * 100) / 100);
-
-        $bestContributors = Vote::select('users.name', 'users.email')
+        
+        $bestContributors = Vote::select('users.name', 'users.email', 'users.uuid')
             ->selectRaw('COUNT(*) as total')
             ->groupBy('user_uuid')
             ->orderByDesc('total')

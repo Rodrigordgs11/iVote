@@ -43,5 +43,14 @@ class DatabaseSeeder extends Seeder
             'user_type' => 'admin',
             'phone_number' => '987654321'
         ]);
+
+        \App\Models\User::factory()->create([
+            'uuid' => str::uuid(),
+            'name' => 'João Santos',
+            'email' => 'joao@ivote.com',
+            'password' => bcrypt('password'),
+            'user_type' => 'user',
+            'phone_number' => '9988776655'
+        ]);
     }
 }

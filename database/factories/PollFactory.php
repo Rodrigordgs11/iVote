@@ -24,7 +24,7 @@ class PollFactory extends Factory
         $description = $this->faker->paragraph();
         $description = Str::limit($title, 50);
 
-        $start_date = $this->faker->dateTimeBetween(date('Y-01-01'), 'now');
+        $start_date = $this->faker->dateTimeBetween(date('Y-01-01'), '+1 year');
         $end_date = $this->faker->dateTimeBetween($start_date, '+1 year');
 
         return [
