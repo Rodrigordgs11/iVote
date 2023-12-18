@@ -51,7 +51,7 @@ class PollController extends Controller
 
     public function sharedPolls()
     {
-        $polls = Auth::user()->polls;
+        $polls = Auth::user()->sharedPolls;
         $attachments = Attachment::all();
 
         return view('app.userPolls', ['polls' => $polls, 'attachments' => $attachments]);
@@ -141,7 +141,11 @@ class PollController extends Controller
     {
         $selectedPollUuids = json_decode($request->input('selected_polls'));
 
-        Poll::whereIn('uuid', $selectedPollUuids)->delete();
+        $polls = Poll::whereIn('uuid', $selectedPollUuids)->get();
+
+        foreach ($polls as $poll) {
+            $poll->delete();
+        }
 
         return redirect()->back();
     }

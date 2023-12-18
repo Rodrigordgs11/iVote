@@ -142,7 +142,11 @@ class UserController extends Controller
     {
         $selectedUserUuids = json_decode($request->input('selected_users', []));
 
-        User::whereIn('uuid', $selectedUserUuids)->delete();
+        $users = User::whereIn('uuid', $selectedUserUuids)->get();
+
+        foreach ($users as $user) {
+            $user->delete();
+        }
         
         return redirect()->back();
     }

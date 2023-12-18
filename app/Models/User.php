@@ -2,59 +2,69 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids;
+    use HasApiTokens, HasFactory, Notifiable, HasUuids, SoftDeletes;
+
     protected $primaryKey = 'uuid';
     public $incrementing = false;
     protected $keyType = 'string';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
         'user_type',
         'phone_number',
-        'is_deleted'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'is_deleted' => 'boolean'
     ];
 
-    public function polls(): BelongsToMany
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            $user->sharedPolls()->detach();
+
+            foreach ($user->polls()->get() as $poll) {
+                $poll->delete();
+              }
+            
+            foreach ($user->votes()->get() as $vote) {
+                $vote->delete();
+            }
+        });
+    }
+
+    public function polls()
+    {
+        return $this->hasMany(Poll::class, 'owner_uuid', 'uuid');
+    }
+
+    public function sharedPolls(): BelongsToMany
     {
         return $this->belongsToMany(Poll::class, 'shared_polls');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'user_uuid', 'uuid');
     }
 }

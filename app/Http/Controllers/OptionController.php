@@ -50,6 +50,9 @@ class OptionController extends Controller
     public function delete(array $selectedOptionUuids)
     {
         // Find and delete the options by UUIDs
-        Option::whereIn('uuid', $selectedOptionUuids)->delete();
+        foreach ($selectedOptionUuids as $optionUuid) {
+            $option = Option::where('uuid', $optionUuid)->first();
+            $option->delete();
+        }
     }
 }

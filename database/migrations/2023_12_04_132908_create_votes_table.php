@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUuid('option_uuid')->references('uuid')->on('options')->onDelete('cascade');
             $table->foreignUuid('poll_uuid')->references('uuid')->on('polls')->onDelete('cascade');
             $table->foreignUuid('user_uuid')->references('uuid')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

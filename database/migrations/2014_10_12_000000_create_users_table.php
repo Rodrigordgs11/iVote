@@ -20,8 +20,8 @@ return new class extends Migration
             $table->enum('user_type', ['admin', 'user']);
             $table->string('phone_number')->unique();
             $table->string('photo')->nullable();
-            $table->boolean('is_deleted')->unsigned()->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

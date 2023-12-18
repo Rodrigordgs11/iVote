@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->foreignUuid('poll_uuid')->references('uuid')->on('polls')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

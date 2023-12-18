@@ -32,8 +32,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'rodrigo@ivote.com',
             'password' => bcrypt('password'),
             'user_type' => 'admin',
-            'phone_number' => '1234567890',
-            'is_deleted' => false
+            'phone_number' => '1234567890'
         ]);
 
         \App\Models\User::factory()->create([
@@ -42,8 +41,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'pedro@ivote.com',
             'password' => bcrypt('password'),
             'user_type' => 'admin',
-            'phone_number' => '987654321',
-            'is_deleted' => false
+            'phone_number' => '987654321'
         ]);
     }
 }
