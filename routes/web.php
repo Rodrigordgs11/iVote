@@ -70,6 +70,7 @@ use App\Http\Controllers\VoteController;
 
 
             Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
+            Route::delete('/attachments', [AttachmentController::class, 'delete'])->name('attachments.delete');
 
             Route::post('/votes', [VoteController::class, 'create'])->name('votes');
 

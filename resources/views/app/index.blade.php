@@ -79,7 +79,7 @@
                             <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
                             <script src="{{asset('app/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
                         <!--end::Vendors Javascript-->
-                    begin::Custom Javascript(used for this page only)
+                    <!-- begin::Custom Javascript(used for this page only) -->
                         <script src="{{asset('app/assets/js/widgets.bundle.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/widgets.js')}}"></script>
                         <script src="{{asset('app/assets/js/custom/apps/chat/chat.js')}}"></script>

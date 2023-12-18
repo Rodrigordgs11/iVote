@@ -57,10 +57,11 @@
                                     @foreach($attachments as $attachment)
                                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
                                     @endforeach
+                                    <button type="button" class="btn btn-light btn-active-danger mt-6" data-bs-toggle="modal" data-bs-target="#kt_modal_remove_attachment">Delete attachment</button>
                                 @else
-                                    <h3 class="mb-0">This poll hasn't images</h>
+                                    <h4 class="mb-0">This poll doesn't have any images.</h4>
                                 @endif
-                            <button type="button" class="btn btn-light btn-active-primary mt-6" data-bs-toggle="modal" data-bs-target="#kt_modal_add_attachment">Add attachment</button>
+                            <button type="button" class="btn btn-light btn-active-primary mt-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_attachment">Add attachment</button>
                             </div>
                             <!--end::Card footer-->
                         </div>
@@ -73,7 +74,7 @@
                                 <div class="card-header pt-5">
                                     <!--begin::Card title-->
                                     <div class="card-title">
-                                        <h2 class="d-flex align-items-center">Options
+                                        <h2 class="d-flex align-items-center">Vote Options
                                         <span class="text-gray-600 fs-6 ms-1">({{ count($options) }})</span></h2>
                                     </div>
                                     <!--end::Card title-->
@@ -272,8 +273,6 @@
                     @csrf
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                        <button type="button" class="btn btn-primary" id="addUserOption">Add User</button>
-
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row" id="userList">
                             <!--begin::Label-->
@@ -292,9 +291,9 @@
                                     <option value="{{ $user->uuid }}">{{ $user->name }}</option>
                                 @endforeach    
                             </select>
-
                             <!--end::Input-->
                         </div>
+                        <button type="button" class="btn btn-primary ms-10 me-10" id="addUserOption">Add User</button>
                         <!--end::Input group-->
                     </div>
                     <!--end::Scroll-->
@@ -531,10 +530,10 @@
             <!--begin::Modal header-->
             <div class="modal-header">
                 <!--begin::Modal title-->
-                <h2 class="fw-bold">Add attachment</h2>
+                <h2 class="fw-bold">Add Attachments</h2>
                 <!--end::Modal title-->
                 <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-attachment-modal-action="close">
                     <i class="ki-outline ki-cross fs-1"></i>
                 </div>
                 <!--end::Close-->
@@ -543,7 +542,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 my-7">
                 <!--begin::Form-->
-                <form id="kt_modal_add_poll_form" enctype="multipart/form-data" class="form" method="POST" action="{{ route('attachments', ['poll' => $poll])}}">
+                <form id="kt_modal_add_attachment_form" enctype="multipart/form-data" class="form" method="POST" action="{{ route('attachments', ['poll' => $poll])}}">
                     @csrf
                     @method('POST')
                     <!--begin::Scroll-->
@@ -565,7 +564,7 @@
                                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                         <i class="ki-outline ki-pencil fs-7"></i>
                                         <!--begin::Inputs-->
-                                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg, .gif" />
                                         <input type="hidden" name="avatar_remove" />
                                         <!--end::Inputs-->
                                     </label>
@@ -583,7 +582,7 @@
                                 </div>
                                 <!--end::Image input-->
                                 <!--begin::Hint-->
-                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                <div class="form-text">Allowed file types: png, jpg, jpeg, .gif.</div>
                                 <!--end::Hint-->
                             </div>
                         <!--end::Input group-->
@@ -591,8 +590,8 @@
                     <!--end::Scroll-->
                     <!--begin::Actions-->
                     <div class="text-center pt-15">
-                        <button type="reset" class="btn btn-light me-3" data-kt-roles-modal-action="cancel">Discard</button>
-                        <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                        <button type="reset" class="btn btn-light me-3" data-kt-attachment-modal-action="cancel">Discard</button>
+                        <button type="submit" class="btn btn-primary" data-kt-attachment-modal-action="submit">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait... 
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -608,6 +607,71 @@
     </div>
     <!--end::Modal dialog-->
 </div>
+
+<div class="modal fade" id="kt_modal_remove_attachment" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-800px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2 class="fw-bold">Remove Attachments</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-attachment-modal-action="close">
+                    <i class="ki-outline ki-cross fs-1"></i>
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 my-7">
+                <!--begin::Form-->
+                <form id="kt_modal_remove_attachment_form" enctype="multipart/form-data" class="form" method="POST" action="{{ route('attachments.delete', ['poll' => $poll])}}">
+                    @csrf
+                    @method('DELETE')
+                    <!--begin::Scroll-->
+                    <div class="d-flex flex-wrap justify-content-start me-n7 pe-7" id="kt_modal_update_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header" data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
+                        <!-- Loop sobre as imagens existentes -->
+                        @foreach($attachments as $attachment)
+                            <div class="fv-row mb-7 me-7"> <!-- Ajuste a margem conforme necessário -->
+                                <label class="d-block fw-semibold fs-6 mb-5">Attachment</label>
+                                <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
+                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }});"></div>
+                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"  data-bs-toggle="tooltip" title="Remove attachment">
+                                        <input type="checkbox" name="attachments_to_remove[]" value="{{ $attachment->uuid }}">
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-15">
+                        <button type="reset" class="btn btn-light me-3" data-kt-attachment-modal-action="cancel">Discard</button>
+                        <button type="submit" class="btn btn-danger" data-kt-attachment-modal-action="submit">
+                            <span class="indicator-label">Remove</span>
+                            <span class="indicator-progress">Please wait... 
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+
+
+
+
 
 @if($errors->any())
     <script>
@@ -636,7 +700,7 @@
         // Create a new line or input field
         var newUserLine = document.createElement('div');
         newUserLine.innerHTML = `
-        <label class="fs-6 fw-semibold mb-2">
+        <label class="fs-6 fw-semibold mb-2 mt-5">
             <span>Users</span>
             <span class="ms-1" data-bs-toggle="tooltip" title="Users">
                 <i class="ki-outline ki-information fs-7"></i>
@@ -660,12 +724,10 @@
 
 @section('scripts')
 
-
-
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/vote.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/attachments.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/view-options.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/roles/view/view.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/update-details.js')}}"></script>
-
 
 @endsection

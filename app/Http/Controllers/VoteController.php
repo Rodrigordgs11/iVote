@@ -19,7 +19,6 @@ class VoteController extends Controller
     public function create(Request $request)
     {
         $selectedOptionUuids = json_decode($request->selected_options);
-
         foreach ($selectedOptionUuids as $selectedOptionUuid) {
             $vote = new Vote();
             $vote->uuid = Uuid::uuid4()->toString();

@@ -16,7 +16,6 @@ class AttachmentController extends Controller
         $input = $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
         $path = $input['avatar']->store('attachments', 'public');
 
         $attachment = new Attachment();
@@ -28,4 +27,17 @@ class AttachmentController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete(Request $request)
+    {
+        $attachmentsToRemove = $request->input('attachments_to_remove', []);
+
+        foreach ($attachmentsToRemove as $attachmentId) {
+            // Lógica para excluir a imagem usando o ID
+            Attachment::find($attachmentId)->delete();
+        }
+
+        return redirect()->back();
+    }
+
 }

@@ -28,12 +28,16 @@ class PollController extends Controller
 
     public function showById(Poll $poll)
     {
+        
         $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
         $options = Option::where('poll_uuid', $poll->uuid)->get();
         $voteCount = Vote::where('poll_uuid', $poll->uuid)->count();
         $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
+        $votes = Vote::where('poll_uuid', $poll->uuid)->get();
 
-        if (Auth::user()->uuid != $poll->owner_uuid && Auth::user()->user_type != 'admin') return view('app.vote', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
+        //Se o utilizador logado tiver um voto na poll, retorna algo
+        $hasVoted = $votes->contains('user_uuid', Auth::user()->uuid);
+        if (Auth::user()->uuid != $poll->owner_uuid && Auth::user()->user_type != 'admin') return view('app.vote', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount, 'votes' => $votes, 'hasVoted' => $hasVoted]);
         else return view('app.pollView', ['poll' => $poll, 'attachments' => $attachments, 'users' => $users, 'options' => $options, 'voteCount' => $voteCount]);
     }  
     
