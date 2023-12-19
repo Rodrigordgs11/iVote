@@ -131,9 +131,15 @@
                                             <!--begin:: Avatar -->
                                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                                 <a href="{{route('users.getId', ['user' => $user])}}">
+                                                    @if($user->photo)
                                                     <div class="symbol-label">
                                                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($user->photo) }}" alt="" width="100"> 
                                                     </div>
+                                                    @else
+                                                    <div class="symbol-label">
+                                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=random&font-size=0.25&bold=true" alt="" width="100"> 
+                                                    </div>
+                                                    @endif
                                                 </a>
                                             </div>
                                             <!--end::Avatar-->

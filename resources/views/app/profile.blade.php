@@ -23,9 +23,15 @@
                                 <!--begin::User Info-->
                                 <div class="d-flex flex-center flex-column py-5">
                                     <!--begin::Avatar-->
+                                    @if($user->photo)
                                     <div class="symbol symbol-100px symbol-circle mb-7">
                                         <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($user->photo) }}" alt="" width="100"> 
                                     </div>
+                                    @else
+                                    <div class="symbol symbol-100px symbol-circle mb-7">
+                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=random&font-size=0.25&bold=true" alt="" width="100"> 
+                                    </div>
+                                    @endif
                                     <!--end::Avatar-->
                                     <!--begin::Name-->
                                     <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-3">{{ $user->name }}</a>

@@ -5,7 +5,11 @@
         <div class="menu-content d-flex align-items-center px-3">
             <!--begin::Avatar-->
             <div class="symbol symbol-50px me-5">
-                <img alt="Logo" src="{{asset('app/assets/media/avatars/300-2.jpg')}}"/>
+                @if(Auth::user()->photo)
+                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(Auth::user()->photo) }}" alt="" width="100"> 
+                @else
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random&font-size=0.25&bold=true" alt="" width="100"> 
+                @endif             
             </div>
             <!--end::Avatar-->
             <!--begin::Username-->

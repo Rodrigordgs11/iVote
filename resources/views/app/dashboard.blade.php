@@ -209,10 +209,16 @@
 												@foreach($bestContributors as $key => $contributor)
 													<tr>
 														<td class="w-10">
-															<div class="symbol symbol-50px me-2">
-																<span class="symbol-label">
-                                                        			<img src="{{asset('app/assets/media/avatars/300-6.jpg')}}" alt="Emma Smith" class="w-100" />
-																</span>
+															<div class="symbol-50px me-2">
+															@if($contributor->photo)
+																<div class="symbol symbol-circle">
+																	<img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($contributor->photo) }}" alt="" width="100"> 
+																</div>
+															@else
+																<div class="symbol symbol-circle">
+																	<img src="https://ui-avatars.com/api/?name={{ urlencode($contributor->name) }}&background=random&font-size=0.25&bold=true" alt="" width="100"> 
+																</div>
+															@endif
 															</div>
 														</td>
 														<td class="text-start">

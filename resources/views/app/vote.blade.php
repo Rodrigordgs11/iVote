@@ -117,7 +117,7 @@
                                                 <input class="form-check-input" type="checkbox" value="{{ $option->uuid }}" 
                                                     @if($votes->where('option_uuid', $option->uuid)->where('user_uuid', auth()->user()->uuid)->first())
                                                         checked="true" disabled 
-                                                    @elseif($votes->isNotEmpty())
+                                                    @elseif($votes->where('user_uuid', auth()->user()->uuid)->isNotEmpty())
                                                         disabled
                                                     @endif
                                                 />

@@ -80,11 +80,9 @@
                                             @endphp
 
                                             @if($attachmentsForPoll->count() > 0)    
-                                                @foreach($attachmentsForPoll as $attachment)
-                                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
-                                                @endforeach
+                                                <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachmentsForPoll->first()->attachment) }}" alt="" width="100">
                                             @else
-                                                <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="image" />
+                                                <img src="{{asset('app/assets/media/polls/pollImage.png')}}" alt="image" />
                                             @endif
                                             </div>
                                             <!--end::Avatar-->
@@ -151,7 +149,7 @@
                                                         <!--begin::User-->
                                                         <div class="d-flex align-items-center">
                                                             <!--begin::Wrapper-->
-                                                            <div class="me-5 position-relative">
+                                                            <div class="position-relative">
                                                                 <!--begin::Avatar-->
                                                                 <div class="symbol symbol-35px symbol-circle">
                                                                 @php
@@ -161,11 +159,9 @@
                                                                 @endphp
 
                                                                 @if($attachmentsForPoll->count() > 0)    
-                                                                    @foreach($attachmentsForPoll as $attachment)
-                                                                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
-                                                                    @endforeach
+                                                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachmentsForPoll->first()->attachment) }}" alt="" width="100">
                                                                 @else
-                                                                    <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="image" />
+                                                                    <img src="{{asset('app/assets/media/polls/pollImage.png')}}" alt="image" />
                                                                 @endif
                                                                 </div>
                                                                 <!--end::Avatar-->
@@ -386,17 +382,42 @@
     <!--end::Modal dialog-->
 </div>
 
-<script>
-    document.getElementById('togglePollsButton').addEventListener('click', function () {
-        // Redirect to the toggle route on click
-        window.location.href = "{{ route('toggle.polls', ['currentRoute' => Request::route()->getName()]) }}";
-    });
-</script>
+
 
 @endsection
 
 @section('scripts')
 
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
+    <script>
+        document.getElementById('togglePollsButton').addEventListener('click', function () {
+            // Redirect to the toggle route on click
+            window.location.href = "{{ route('toggle.polls', ['currentRoute' => Request::route()->getName()]) }}";
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#kt_daterangepicker_3").flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#kt_project_users_table').DataTable({
+                "paging": true, // ativar paginação
+                "lengthMenu": [5, 10, 25, 50], // escolher o número de itens por página
+                "pageLength": 5, // itens por página padrão
+                "ordering": true, // permitir ordenação nas colunas
+                "info": true, // mostrar informações sobre a paginação
+                "searching": true // ativar a pesquisa
+            });
+        });
+    </script>
 
 @endsection

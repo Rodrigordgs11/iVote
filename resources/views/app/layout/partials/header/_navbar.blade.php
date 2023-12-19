@@ -17,7 +17,11 @@
             data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
             data-kt-menu-attach="parent"
             data-kt-menu-placement="bottom-end">
-            <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="user"/>
+            @if(Auth::user()->photo)
+                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url(Auth::user()->photo) }}" alt="" width="100"> 
+            @else
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=random&font-size=0.25&bold=true" alt="" width="100"> 
+            @endif 
         </div>
 @include('app.partials.menus._user-account-menu')
         <!--end::Menu wrapper-->

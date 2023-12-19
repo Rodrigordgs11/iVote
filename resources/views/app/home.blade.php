@@ -111,7 +111,7 @@
                                                     <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
                                                 @endforeach
                                             @else
-                                                <img src="{{asset('app/assets/media/avatars/300-2.jpg')}}" alt="image" />
+                                                <img src="{{asset('app/assets/media/polls/pollImage.png')}}" alt="image" />
                                             @endif
                                             </div>
                                             <!--end::Avatar-->
@@ -156,43 +156,6 @@
                             <!--end::Col-->
                         </div>
                         <!--end::Row-->
-                        <!-- begin::Pagination-->
-                        <div class="d-flex flex-stack flex-wrap pt-10">
-                            <div class="fs-6 fw-semibold text-gray-700">Showing 1 to 10 of 50 entries</div>
-                            <!--begin::Pages-->
-                            <ul class="pagination">
-                                <li class="page-item previous">
-                                    <a href="#" class="page-link">
-                                        <i class="previous"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">6</a>
-                                </li>
-                                <li class="page-item next">
-                                    <a href="#" class="page-link">
-                                        <i class="next"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!--end::Pages-->
-                        </div>
-                        <!--end::Pagination-->
                     </div>
                     <!--end::Tab pane -->
                     <!--begin::Tab pane-->
@@ -208,9 +171,9 @@
                                         <thead class="fs-7 text-gray-500 text-uppercase">
                                             <tr>
                                                 <th></th>
-                                                <th class="min-w-250px">Title</th>
-                                                <th class="min-w-90px">Description</th>
-                                                <th class="min-w-150px">Start Date</th>
+                                                <th class="min-w-150px">Title</th>
+                                                <th class="min-w-150px">Description</th>
+                                                <th class="min-w-90px">Start Date</th>
                                                 <th class="min-w-90px">End Date</th>
                                                 <th class="min-w-90px text-center">Votes</th>
                                             </tr>
@@ -225,7 +188,7 @@
                                                                 <!--begin::Wrapper-->
                                                                 <div class="me-5 position-relative">
                                                                     <!--begin::Avatar-->
-                                                                    <div class="symbol symbol-35px symbol-circle">
+                                                                    <div class="symbol symbol-50px symbol-circle">
                                                                     @php
                                                                         $attachmentsForPoll = $attachments->filter(function ($attachment) use ($poll) {
                                                                             return $attachment->poll_uuid == $poll->uuid;
@@ -233,11 +196,9 @@
                                                                     @endphp
 
                                                                     @if($attachmentsForPoll->count() > 0)    
-                                                                        @foreach($attachmentsForPoll as $attachment)
-                                                                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachment->attachment) }}" alt="" width="100"> 
-                                                                        @endforeach
+                                                                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($attachmentsForPoll->first()->attachment) }}" alt="" width="100"> 
                                                                     @else
-                                                                        <img src="assets/media//avatars/300-2.jpg" alt="image" />
+                                                                        <img src="{{asset('app/assets/media/polls/pollImage.png')}}" alt="image" />
                                                                     @endif
                                                                     </div>
                                                                     <!--end::Avatar-->
@@ -283,14 +244,33 @@
 </div>
 
 @endsection
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#kt_daterangepicker_3").flatpickr({
-            enableTime: true,
-            dateFormat: "Y-m-d H:i",
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#kt_daterangepicker_3").flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#kt_project_users_table').DataTable({
+                "paging": true, // ativar paginação
+                "lengthMenu": [10, 20, 30, 40], // escolher o número de itens por página
+                "pageLength": 10, // itens por página padrão
+                "ordering": true, // permitir ordenação nas colunas
+                "info": true, // mostrar informações sobre a paginação
+                "searching": true // ativar a pesquisa
+            });
+        });
+    </script>
+@endsection
+
+
+
