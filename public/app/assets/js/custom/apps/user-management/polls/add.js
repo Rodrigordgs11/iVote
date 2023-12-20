@@ -10,7 +10,6 @@ var KTPollsAddPoll = function () {
     // Init add schedule modal
     var initAddPoll = () => {
 
-
         // Inicializar o seletor de data de início
         $("#kt_modal_datepicker_start").flatpickr({
             enableTime: true,
@@ -40,6 +39,15 @@ var KTPollsAddPoll = function () {
             minDate: $("#kt_modal_datepicker_start").val(),
         });
 
+        //UserPollsTable
+        $('#kt_project_users_table').DataTable({
+            "paging": true, // ativar paginação
+            "lengthMenu": [5, 10, 25, 50], // escolher o número de itens por página
+            "pageLength": 5, // itens por página padrão
+            "ordering": true, // permitir ordenação nas colunas
+            "info": true, // mostrar informações sobre a paginação
+            "searching": true // ativar a pesquisa
+        });
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         var validator = FormValidation.formValidation(

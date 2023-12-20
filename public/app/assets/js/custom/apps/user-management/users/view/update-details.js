@@ -10,6 +10,23 @@ var KTUsersUpdateDetails = function () {
     // Init add schedule modal
     var initUpdateDetails = () => {
 
+        $('#kt_table_polls').DataTable({
+            "paging": true, // ativar paginação
+            "lengthMenu": [5, 10, 25, 50], // escolher o número de itens por página
+            "pageLength": 5, // itens por página padrão
+            "ordering": true, // permitir ordenação nas colunas
+            "info": true, // mostrar informações sobre a paginação
+            "searching": true // ativar a pesquisa
+        });
+
+        $('#kt_table_votes').DataTable({
+            "paging": true, // ativar paginação
+            "lengthMenu": [5, 10, 25, 50], // escolher o número de itens por página
+            "pageLength": 5, // itens por página padrão
+            "ordering": true, // permitir ordenação nas colunas
+            "info": true, // mostrar informações sobre a paginação
+        });
+
         // Close button handler
         const closeButton = element.querySelector('[data-kt-users-modal-action="close"]');
         closeButton.addEventListener('click', e => {
@@ -113,8 +130,8 @@ var KTUsersUpdateDetails = function () {
                         modal.hide();
                     }
                 }
-            )
-        }, 2000);;
+                )
+            }, 2000);;
         });
     }
 

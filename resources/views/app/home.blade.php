@@ -21,7 +21,7 @@
                                 <!--begin::Input group-->
                                 <div class="position-relative w-md-400px me-md-2 me-6">
                                     <i class="ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"></i>
-                                    <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search" />
+                                    <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search for Poll Title" />
                                 </div>
                                 <!-- Filtros de Popularidade e Data -->
                                 <div class="d-flex align-items-center flex-wrap me-md-2">
@@ -91,7 +91,7 @@
                         <!--begin::Row-->
                         <div class="row g-6 g-xl-9">
                             <!--begin::Col-->
-                            @foreach($polls as $poll)
+                            @foreach($polls->sortBy('title') as $poll)
                                 @if($poll->poll_privacy == 'public' && $poll->owner_uuid != Auth::user()->uuid)
                                 <div class="col-md-6 col-xxl-4">
                                     <!--begin::Card-->
@@ -173,6 +173,7 @@
                                                 <th></th>
                                                 <th class="min-w-150px">Title</th>
                                                 <th class="min-w-150px">Description</th>
+                                                <th class="min-w-150px">Owner</th>
                                                 <th class="min-w-90px">Start Date</th>
                                                 <th class="min-w-90px">End Date</th>
                                                 <th class="min-w-90px text-center">Votes</th>
@@ -219,6 +220,7 @@
                                                             <!--end::User-->
                                                         </td>
                                                         <td>{{ $poll->description }}</td>
+                                                        <td>{{ $poll->user->name }}</td>
                                                         <td>{{ $poll->start_date }}</td>
                                                         <td>{{ $poll->end_date }}</td>
                                                         <td class="text-center">{{ count($poll->votes) }}</td>
@@ -246,10 +248,12 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('app/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
     <script>
         $(document).ready(function () {
             $("#kt_daterangepicker_3").flatpickr({
@@ -262,14 +266,15 @@
         $(document).ready(function() {
             $('#kt_project_users_table').DataTable({
                 "paging": true, // ativar paginação
-                "lengthMenu": [10, 20, 30, 40], // escolher o número de itens por página
-                "pageLength": 10, // itens por página padrão
+                "lengthMenu": [5, 10, 25, 50], // escolher o número de itens por página
+                "pageLength": 20, // itens por página padrão
                 "ordering": true, // permitir ordenação nas colunas
                 "info": true, // mostrar informações sobre a paginação
                 "searching": true // ativar a pesquisa
             });
         });
     </script>
+
 @endsection
 
 

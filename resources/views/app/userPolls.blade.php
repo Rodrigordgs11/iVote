@@ -395,29 +395,5 @@
             window.location.href = "{{ route('toggle.polls', ['currentRoute' => Request::route()->getName()]) }}";
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker@3.1.0/daterangepicker.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#kt_daterangepicker_3").flatpickr({
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#kt_project_users_table').DataTable({
-                "paging": true, // ativar paginação
-                "lengthMenu": [5, 10, 25, 50], // escolher o número de itens por página
-                "pageLength": 5, // itens por página padrão
-                "ordering": true, // permitir ordenação nas colunas
-                "info": true, // mostrar informações sobre a paginação
-                "searching": true // ativar a pesquisa
-            });
-        });
-    </script>
 
 @endsection

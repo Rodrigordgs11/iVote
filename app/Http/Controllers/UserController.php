@@ -18,7 +18,9 @@ class UserController extends Controller
 
     public function showById(User $user)
     {
-        return view('app.profile', ['user' => $user]);
+        $polls = $user->polls()->get();
+        $votes = $user->votes()->get();
+        return view('app.profile', ['user' => $user, 'polls' => $polls, 'votes' => $votes]);
     }
 
     public function create(Request $request)
@@ -52,20 +54,26 @@ class UserController extends Controller
         }
 
         $input = $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         // Create a new user
         $user = new User();
 
-        $path = $input['avatar']->store('users', 'public');
         $user->uuid = Uuid::uuid4()->toString();
         $user->name = $request->user_name;
         $user->email = $request->user_email;
         $user->password = bcrypt($request->user_password);
         $user->phone_number = $request->user_phone;
-        $user->photo = $path;
         $user->user_type = $request->user_role;
+
+        if ($request->has('avatar')) {
+            $path = $input['avatar']->store('users', 'public');
+            $user->photo = $path;
+        } else {
+            $user->photo = null;
+        }
+
         $user->save();
         
         // Redirect to the user's profile page
@@ -105,6 +113,17 @@ class UserController extends Controller
             'phone_number.required' => 'The phone number field is required.',
             'phone_number.unique' => 'The phone number already exists.',
         ];
+
+        $input = $request->validate([
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        if ($request->has('avatar')) {
+            $path = $input['avatar']->store('users', 'public');
+            $user->photo = $path;
+        } else {
+            $user->photo = null;
+        }
 
         // Validate the request
         $validator = Validator::make($request->all(), $rules, $messages);
