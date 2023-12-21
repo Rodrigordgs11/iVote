@@ -174,6 +174,9 @@ class PollController extends Controller
         $uniqueUsers = array_unique($users);
         $poll->users()->attach($uniqueUsers);
 
+        $notification = new NotificationController();
+        $notification->create($request);
+        
         return redirect()->back()->with('success', 'Selected users added successfully.');
     }
 

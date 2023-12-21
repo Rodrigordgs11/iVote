@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PollController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,7 @@ use App\Http\Controllers\VoteController;
             Route::post('/myPolls', [PollController::class, 'create'])->name('userPolls');
             Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
 
+            Route::put('/notifications/{notification}/seen', [NotificationController::class, 'seen'])->name('notifications.seen');
 
             Route::post('/attachments/{poll}', [AttachmentController::class, 'create'])->name('attachments');
             Route::delete('/attachments', [AttachmentController::class, 'delete'])->name('attachments.delete');

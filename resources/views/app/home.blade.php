@@ -91,7 +91,7 @@
                         <!--begin::Row-->
                         <div class="row g-6 g-xl-9">
                             <!--begin::Col-->
-                            @foreach($polls->sortBy('title') as $poll)
+                            @foreach($polls as $poll)
                                 @if($poll->poll_privacy == 'public' && $poll->owner_uuid != Auth::user()->uuid)
                                 <div class="col-md-6 col-xxl-4">
                                     <!--begin::Card-->

@@ -50,6 +50,10 @@ class User extends Authenticatable
             foreach ($user->votes()->get() as $vote) {
                 $vote->delete();
             }
+
+            foreach ($user->notifications()->get() as $notification) {
+                $notification->delete();
+            }
         });
     }
 
@@ -66,5 +70,10 @@ class User extends Authenticatable
     public function votes()
     {
         return $this->hasMany(Vote::class, 'user_uuid', 'uuid');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_uuid', 'uuid');
     }
 }

@@ -4,7 +4,7 @@
     <div class="app-navbar-item ms-2 ms-lg-6">
         <!--begin::Menu- wrapper-->
         <div class="btn btn-icon btn-custom btn-color-gray-600 btn-active-color-primary w-35px h-35px w-md-40px h-md-40px position-relative" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-            <i class="ki-outline ki-notification-on fs-1"></i><span class="position-absolute top-0 start-100 translate-middle  badge badge-circle badge-danger w-15px h-15px ms-n4 mt-3">5</span>
+            <i class="ki-outline ki-notification-on fs-1"></i><span class="position-absolute top-0 start-100 translate-middle  badge badge-circle badge-danger w-15px h-15px ms-n4 mt-3">{{count(Auth::user()->notifications->where('seen', false))}}</span>
         </div>
 @include('app.partials.menus._notifications-menu')
         <!--end::Menu wrapper-->
