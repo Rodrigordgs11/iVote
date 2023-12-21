@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Poll;
+use App\Models\Option;
 use App\Models\Vote;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
-    public function showById(Poll $poll)
+    public function showById(Option $option)
     {
-        $votes = Vote::where('poll_uuid', $poll->uuid)->get();
-        return view('app.votes', ['votes' => $votes]);
+        $votes = Vote::where('option_uuid', $option->uuid)->get();
+        return view('app.votes', ['votes' => $votes, 'option' => $option]);
     }
 
     public function create(Request $request)

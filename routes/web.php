@@ -41,7 +41,7 @@ use App\Http\Controllers\VoteController;
 
         Route::get('/options/{options}', [AttachmentController::class, 'showById'])->name('options.getId');
 
-        Route::get('/votes/{poll}', [VoteController::class, 'showById'])->name('votes.getByPollId');
+        Route::get('/votes/{option}', [VoteController::class, 'showById'])->name('votes.getByOptionId');
     });
 
     Route::prefix('/app')->group(function () {

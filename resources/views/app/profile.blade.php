@@ -94,12 +94,12 @@
                         <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
                             <!--begin:::Tab item-->
                             <li class="nav-item">
-                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_user_view_overview_tab">Polls</a>
+                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_user_view_overview_tab">User Polls</a>
                             </li>
                             <!--end:::Tab item-->
                             <!--begin:::Tab item-->
                             <li class="nav-item">
-                                <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">Votes</a>
+                                <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">User Votes</a>
                             </li>
                             <!--end:::Tab item-->
                         </ul>
@@ -145,14 +145,12 @@
                             <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
                                 <!--begin::Card-->
                                 <div class="card pt-4 mb-6 mb-xl-9 p-5">
-                                    <table class="table align-middle table-row-dashed fs-8 gy-5" id="kt_table_votes">
+                                    <table class="table align-middle table-row-dashed fs-5 gy-5" id="kt_table_votes">
                                         <thead>
                                             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                                 <th class="min-w-125px">Poll Title</th>
                                                 <th class="min-w-125px">Poll Privacy</th>
                                                 <th class="min-w-125px">Poll Owner</th>
-                                                <th class="min-w-125px">Poll Start Date</th>
-                                                <th class="min-w-125px">Poll End Date</th>
                                                 <th class="min-w-125px">Option</th>
                                                 <th class="min-w-125px">Vote Time</th>
                                                 <th></th>
@@ -164,8 +162,6 @@
                                                     <td><a href="{{route('polls.getId', ['poll' => $vote->poll])}}">{{ $vote->poll->title }}</a></td>                           
                                                     <td>{{ $vote->poll->poll_privacy }}</td>
                                                     <td> {{ $vote->poll->user->name }} </td>
-                                                    <td>{{ $vote->poll->start_date }}</td>
-                                                    <td>{{ $vote->poll->end_date }}</td>
                                                     <td>{{ $vote->option->title }}</td>
                                                     <td>{{ $vote->created_at }}</td>
                                                     <td></td>

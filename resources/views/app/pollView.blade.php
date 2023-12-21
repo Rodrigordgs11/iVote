@@ -134,7 +134,11 @@
                                                 </td>
                                                 <td>{{ $option->title }}</td>
                                                 <td>{{ $option->description }}</td>
-                                                <td class="text-end"><a href="{{route('votes.getByPollId', ['poll' => $poll])}}">{{count($option->votes)}}</a></td>
+                                                @if(count($option->votes) > 0)
+                                                    <td class="text-end"><a href="{{route('votes.getByOptionId', ['option' => $option])}}">{{count($option->votes)}}</a></td>
+                                                @else
+                                                    <td class="text-end">0</td>
+                                                @endif
                                             </tr>
                                             @endforeach
                                         </tbody>

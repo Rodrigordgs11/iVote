@@ -37,7 +37,7 @@ class Option extends Model
         });
     }
 
-    public function polls()
+    public function poll()
     {
         return $this->belongsTo(Poll::class, 'poll_uuid', 'uuid');
     }
