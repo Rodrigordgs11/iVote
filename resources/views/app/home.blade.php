@@ -19,14 +19,14 @@
                             <!--begin::Compact form-->
                             <div class="d-flex align-items-center">
                                 <!--begin::Input group-->
-                                <div class="position-relative w-md-400px me-md-2 me-6">
-                                    <i class="ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"></i>
-                                    <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search for Poll Title" />
-                                </div>
                                 <!-- Filtros de Popularidade e Data -->
                                 <div class="d-flex align-items-center flex-wrap me-md-2">
+                                    <div class="position-relative w-md-400px me-md-2 me-6">
+                                        <i class="ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"></i>
+                                        <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search for Poll Title" />
+                                    </div>
                                     <!-- Filtro de Data -->
-                                    <div class="me-3">
+                                    <div class="me-3 mt-2">
                                         <input class="form-control form-control-solid" placeholder="Pick date range" name="date_filter" id="kt_daterangepicker_3"/>
                                     </div>
                                     <!-- Filtro de Popularidade -->

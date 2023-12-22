@@ -15,14 +15,16 @@
                     <!--begin::Card body-->
                     <div class="card-body">
                         <!--begin::Compact form-->
-                        <div class="d-flex align-items-center">
-                            <h1 class="position-realtive">Polls Management - {{ Request::route()->getName() == 'my.polls' ? 'My Polls' : 'Shared Polls' }}</h1>
-                            <div class="d-flex align-items-center">
-                                <button type="button" class="btn btn-primary position-absolute end-0 me-5" data-bs-toggle="modal" data-bs-target="#kt_modal_add_poll">
-                                    <i class="ki-outline ki-plus fs-2"></i>Add Poll
-                                </button>
+                        <div class="d-md-flex align-items-center flex-wrap me-md-2">
+                            <!-- Filtro de Data -->
+                            <div class="me-3 mt-2">
+                                <h1 class="position-relative">Polls Management - {{ Request::route()->getName() == 'my.polls' ? 'My Polls' : 'Shared Polls' }}</h1>
                             </div>
-                            <!--end:Action-->
+                            <!-- Filtro de Popularidade -->
+                            <!-- Adjusted class for vertical alignment -->
+                            <button type="button" class="btn btn-primary mt-2 mt-md-0 ms-md-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_add_poll">
+                                <i class="ki-outline ki-plus fs-2"></i>Add Poll
+                            </button>
                         </div>
                         <!--end::Compact form-->
                     </div>

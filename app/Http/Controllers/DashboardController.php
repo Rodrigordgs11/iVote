@@ -6,40 +6,67 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Poll;
 use App\Models\Vote;
+use App\Models\Statistics;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\CarbonPeriod;
 use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
     public function showStatistics()
     {
-        $users = User::all();
-        $usersCount = count($users);
-        $progressBarUser = round(($usersCount * 100) / 20000);
+        $usersCount = User::count();
+        $progressBarUser = $this->calculateProgressBar($usersCount, 20000);
 
-        $votes = Vote::all();
-        $votesCount = count($votes);
-        $progressBarVote = round(($votesCount * 100) / 15000);
+        $votesCount = Vote::count();
+        $progressBarVote = $this->calculateProgressBar($votesCount, 15000);
 
-        $polls = Poll::where('start_date', '<=', now())->get();
-        $pollsCount = count($polls);
-        $progressBarPoll = round(($pollsCount * 100) / 500);
+        $pollsCount = Poll::where('start_date', '<=', now())->where('end_date', '>=', now())->count();
+        $progressBarPoll = $this->calculateProgressBar($pollsCount, 500);
 
         $numberOfVisits = Cache::get('visitor_count', 0);
-        $progressBarVisit = round(($numberOfVisits * 100) / 100);
-        
-        $bestContributors = Vote::select('users.name', 'users.email', 'users.uuid', 'users.photo')
+        $progressBarVisit = $this->calculateProgressBar($numberOfVisits, 100);
+
+        $this->updateStatistics('users_count', $usersCount);
+        $this->updateStatistics('votes_count', $votesCount);
+        $this->updateStatistics('polls_count', $pollsCount);
+        $this->updateStatistics('visits_count', $numberOfVisits);
+
+        $bestContributors = $this->getBestContributors();
+
+        $pollsByDay = $this->getPollsByDay(); 
+
+        return view('app.dashboard', compact('progressBarUser', 'pollsByDay', 'progressBarVote', 'progressBarPoll', 'progressBarVisit', 'bestContributors'));
+    }
+
+    private function calculateProgressBar($value, $total)
+    {
+        return round(($value * 100) / $total);
+    }
+
+    private function getBestContributors()
+    {
+        return Vote::select('users.name', 'users.email', 'users.uuid', 'users.photo')
             ->selectRaw('COUNT(*) as total')
             ->groupBy('user_uuid')
             ->orderByDesc('total')
             ->limit(5)
             ->join('users', 'votes.user_uuid', '=', 'users.uuid')
             ->get();
+    }
 
-        $pollsByDay = $this->getPollsByDay(); 
-
-        return view('app.dashboard', ['progressBarUser' => $progressBarUser, 'pollsByDay' => $pollsByDay, 'progressBarVote' => $progressBarVote, 'progressBarPoll' => $progressBarPoll, 'progressBarVisit' => $progressBarVisit, 'bestContributors' => $bestContributors]);
+   private function updateStatistics($name, $value)
+    {
+        $statistic = Statistics::where('name', $name)->first();
+        if ($statistic) {
+            $statistic->update(['value' => $value]);
+        } else {
+            $statistic = new Statistics();
+            $statistic->uuid = Uuid::uuid4()->toString();
+            $statistic->name = $name;
+            $statistic->value = $value;
+            $statistic->save();
+        }
     }
 
     private function getPollsByDay()

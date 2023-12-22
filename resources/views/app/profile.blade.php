@@ -62,8 +62,6 @@
                                 <div id="kt_user_view_details" class="collapse show">
                                     <div class="pb-5 fs-6">
                                         <!--begin::Details item-->
-                                        <div class="fw-bold mt-5">Account ID</div>
-                                        <div class="text-gray-600">{{ $user->uuid }}</div>
                                         <!--begin::Details item-->
                                         <!--begin::Details item-->
                                         <div class="fw-bold mt-5">Name</div>
@@ -375,20 +373,6 @@
 
 @section('scripts')
 
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/view.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-task.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-email.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-password.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-role.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-auth-app.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-one-time-password.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/table.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/list/add.js')}}"></script>
-    <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/add-schedule.js')}}"></script>
-
-    <!-- Está a usar -->
     <script src="{{asset('app/assets/js/custom/apps/user-management/users/view/update-details.js')}}"></script>
-
 
 @endsection

@@ -34,15 +34,7 @@ use App\Http\Controllers\NotificationController;
         Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
         Route::delete('/polls-selected', [PollController::class, 'deleteSelected'])->name('polls.deleteSelected');
 
-        Route::delete('/polls/{poll}/deleteUsers', [PollController::class, 'deleteSelectedUsers'])->name('polls.deleteSelectedUsers');
-        Route::post('/polls/{poll}/addUser', [PollController::class, 'addSelectedUsers'])->name('polls.addSelectedUsers');
-        
-        Route::post('/polls/{poll}/addOption', [PollController::class, 'addSelectedOptions'])->name('polls.addOption');
-        Route::delete('/polls/{poll}/deleteOption', [PollController::class, 'deleteSelectedOptions'])->name('polls.deleteOption');
-
         Route::get('/options/{options}', [AttachmentController::class, 'showById'])->name('options.getId');
-
-        Route::get('/votes/{option}', [VoteController::class, 'showById'])->name('votes.getByOptionId');
     });
 
     Route::prefix('/app')->group(function () {
@@ -68,6 +60,11 @@ use App\Http\Controllers\NotificationController;
             Route::get('/polls/{poll}/vote', [PollController::class, 'showById'])->name('vote');
             Route::post('/myPolls', [PollController::class, 'create'])->name('userPolls');
             Route::put('/polls/{poll}/edit', [PollController::class, 'update'])->name('polls.update');
+            Route::post('/polls/{poll}/addUser', [PollController::class, 'addSelectedUsers'])->name('polls.addSelectedUsers');
+
+            Route::delete('/polls/{poll}/deleteUsers', [PollController::class, 'deleteSelectedUsers'])->name('polls.deleteSelectedUsers');
+            Route::post('/polls/{poll}/addOption', [PollController::class, 'addSelectedOptions'])->name('polls.addOption');
+            Route::delete('/polls/{poll}/deleteOption', [PollController::class, 'deleteSelectedOptions'])->name('polls.deleteOption');
 
             Route::put('/notifications/{notification}/seen', [NotificationController::class, 'seen'])->name('notifications.seen');
 
@@ -75,6 +72,7 @@ use App\Http\Controllers\NotificationController;
             Route::delete('/attachments', [AttachmentController::class, 'delete'])->name('attachments.delete');
 
             Route::post('/votes', [VoteController::class, 'create'])->name('votes');
+            Route::get('/votes/{option}', [VoteController::class, 'showById'])->name('votes.getByOptionId');
 
             Route::get('/search-polls', [PollController::class, 'searchPolls'])->name('search.polls');
 

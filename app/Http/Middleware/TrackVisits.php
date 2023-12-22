@@ -16,14 +16,22 @@ class TrackVisits
      */
     public function handle($request, Closure $next)
     {
-        $key = 'visitor_count';
+        $key = 'visited';
 
-        if (!Cache::has($key)) {
-            Cache::put($key, 1, now()->addHours(24)); 
-        } else {
-            Cache::increment($key);
+        if (!$request->session()->has($key)) {
+            $request->session()->put($key, true);
+
+            $totalVisitsKey = 'visitor_count';
+            if (!Cache::has($totalVisitsKey)) {
+                $numberOfVisits = Statistics::where('name', 'visits_count')->first();
+                Cache::put($totalVisitsKey, $numberOfVisits, now()->addSeconds(10));
+            } else {
+                Cache::increment($totalVisitsKey);
+                Statistics::where('name', 'visits_count')->first()->increment('value');
+            }
         }
 
         return $next($request);
     }
+
 }

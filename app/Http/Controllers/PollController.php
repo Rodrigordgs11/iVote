@@ -12,6 +12,7 @@ use App\Models\Option;
 use App\Models\Attachment;
 use App\Models\Vote;
 use Ramsey\Uuid\Uuid;
+use App\Models\Notification;
 
 class PollController extends Controller
 {
@@ -28,7 +29,6 @@ class PollController extends Controller
 
     public function showById(Poll $poll)
     {
-        
         $attachments = Attachment::where('poll_uuid', $poll->uuid)->get();
         $options = Option::where('poll_uuid', $poll->uuid)->get();
         $users = User::whereNotIn('uuid', $poll->users->pluck('uuid'))->get();
@@ -185,6 +185,7 @@ class PollController extends Controller
         $selectedUserUuids = json_decode($request->input('selected_users'));
 
         $poll->users()->detach($selectedUserUuids);
+        Notification::where('poll_uuid', $poll->uuid)->whereIn('user_uuid', $selectedUserUuids)->delete();
 
         return redirect()->back()->with('success', 'Selected users deleted successfully.');
     }
