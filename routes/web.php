@@ -44,6 +44,11 @@ use App\Http\Controllers\NotificationController;
         Route::view('/register', 'app.register')->name('register');
         Route::post('/register',[AuthController::class, 'register'])->name('register');
 
+        Route::get('/forgot-password', function () { return view('app.forgot-password');})->middleware('guest')->name('password.request');
+        Route::post('/forgot-password', [AuthController::class, 'verifyEmail'])->middleware('guest')->name('password.email');
+        Route::get('/reset-password/{token}', function (string $token) {return view('app.reset-password', ['token' => $token]);})->middleware('guest')->name('password.reset');        
+        Route::post('/reset-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.update');
+
         Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 
         Route::middleware(['auth', 'track_visits'])->group(function () {
