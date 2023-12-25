@@ -203,6 +203,62 @@ var KTAuthI18nDemo = function() {
 			"French" : "Avez-vous déjà réinitialisé le mot de passe ?",
 		},
 
+		"new-password-input-email" : {
+			"English" : "Email",
+			"Spanish" : "Correo electrónico",
+			"German" : "Email",
+			"Japanese" : "Eメール",
+			"French" : "E-mail",
+		},
+
+		"forgot-password-head-desc" : {
+			"English" : "Return to the",
+			"Spanish" : "Volver a",
+			"German" : "Zurück zu",
+			"Japanese" : "に戻る",
+			"French" : "Revenir à",
+		},
+
+		"forgot-password-head-link" : {
+			"English" : "Sign In Page",
+			"Spanish" : "Página de inicio de sesión",
+			"German" : "Anmeldeseite",
+			"Japanese" : "ログインページ",
+			"French" : "Page de connexion",
+		},	
+
+		"forgot-password-desc" : {
+			"English" : "Enter your email to reset your password.",
+			"Spanish" : "Ingrese su correo electrónico para restablecer su contraseña.",
+			"German" : "Geben Sie Ihre E-Mail-Adresse ein, um Ihr Passwort zurückzusetzen.",
+			"Japanese" : "メールアドレスを入力してパスワードをリセットしてください。",
+			"French" : "Entrez votre e-mail pour réinitialiser votre mot de passe.",
+		},
+
+		"forgot-password-title" : {
+			"English" : "Forgot Password ?",
+			"Spanish" : "Has olvidado tu contraseña ?",
+			"German" : "Passwort vergessen ?",
+			"Japanese" : "パスワードをお忘れですか ？",
+			"French" : "Mot de passe oublié ?",
+		},
+
+		"reset-password-desc" : {
+			"English" : "Please enter your email, the new password and confirmed it.",
+			"Spanish" : "Por favor ingrese su correo electrónico, la nueva contraseña y confírmela.",
+			"German" : "Bitte geben Sie Ihre E-Mail-Adresse, das neue Passwort und bestätigen Sie es ein.",
+			"Japanese" : "メールアドレス、新しいパスワード、確認済みのパスワードを入力してください。",
+			"French" : "Veuillez saisir votre e-mail, le nouveau mot de passe et le confirmer.",
+		},
+
+		"reset-password-title" : {
+			"English" : "Reset Password",
+			"Spanish" : "Restablecer la contraseña",
+			"German" : "Passwort zurücksetzen",
+			"Japanese" : "パスワードを再設定する",
+			"French" : "Réinitialiser le mot de passe",
+		},
+
 		"new-password-input-password" : {
 			"English" : "Password",
 			"Spanish" : "Clave",

@@ -57,7 +57,10 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Header-->
 						<div class="d-flex flex-stack py-2">
 							<!--begin::Sign Up link-->
-							<div class="me-2"></div>
+							<div class="m-0">
+								<span class="text-gray-500 fw-bold fs-5" data-kt-translate="forgot-password-head-desc">Return to the</span>
+								<a href="/app/login" class="link-primary fw-bold fs-5" data-kt-translate="forgot-password-head-link">Sign In Page</a>
+							</div>
 							<!--end::Sign Up link=-->
 						</div>
 						<!--end::Header-->
@@ -69,10 +72,10 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Heading-->
 								<div class="text-start mb-10">
 									<!--begin::Title-->
-									<h1 class="text-gray-900 mb-3 fs-3x">Forgot Your Password?</h1>
+									<h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="forgot-password-title">Forgot Your Password?</h1>
 									<!--end::Title-->
 									<!--begin::Text-->
-									<div class="text-gray-500 fw-semibold fs-6">Please enter your email to create a new password</div>
+									<div class="text-gray-500 fw-semibold fs-6 " data-kt-translate="forgot-password-desc">Enter your email to reset your password.</div>
 									<!--end::Link-->
 								</div>
 								<!--end::Heading-->
@@ -82,7 +85,7 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Wrapper-->
 									<div class="fv-row mb-7">
 										<!--begin::Label-->
-										<label class="required fw-semibold fs-6 mb-2">Email</label>
+										<label class="required fw-semibold fs-6 mb-2" data-kt-translate="new-password-input-email">Email</label>
 										<!--end::Label-->
 										<!--begin::Input-->
 										<input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@ivote.com"/>

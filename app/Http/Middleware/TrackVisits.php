@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Cache;
+use App\Models\Statistics;
 
 class TrackVisits
 {
@@ -23,14 +24,13 @@ class TrackVisits
 
             $totalVisitsKey = 'visitor_count';
             if (!Cache::has($totalVisitsKey)) {
-                $numberOfVisits = Statistics::where('name', 'visits_count')->first();
-                Cache::put($totalVisitsKey, $numberOfVisits, now()->addSeconds(10));
+                $numberOfVisits = Statistics::where('name', 'visits_count')->first()->value;
+                Cache::put($totalVisitsKey, $numberOfVisits, now()->addMinutes(60));
             } else {
                 Cache::increment($totalVisitsKey);
                 Statistics::where('name', 'visits_count')->first()->increment('value');
             }
         }
-
         return $next($request);
     }
 

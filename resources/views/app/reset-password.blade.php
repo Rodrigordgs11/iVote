@@ -69,10 +69,10 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Heading-->
 								<div class="text-start mb-10">
 									<!--begin::Title-->
-									<h1 class="text-gray-900 mb-3 fs-3x">Forgot Your Password?</h1>
+									<h1 class="text-gray-900 mb-3 fs-3x" data-kt-translate="reset-password-title">Reset Password</h1>
 									<!--end::Title-->
 									<!--begin::Text-->
-									<div class="text-gray-500 fw-semibold fs-6">Please enter your email to create a new password</div>
+									<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="reset-password-desc">Please enter your email, the new password and confirmed it.</div>
 									<!--end::Link-->
 								</div>
 								<!--end::Heading-->
@@ -119,7 +119,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Input group=-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
-									<label class="fw-semibold fs-6 mb-2">Confirm Password</label>
+									<label class="fw-semibold fs-6 mb-2" data-kt-translate="new-password-confirm-password">Confirm Password</label>
 									<input class="form-control form-control-lg form-control-solid" type="password" placeholder="Confirm Password" name="password_confirmation" autocomplete="off" data-kt-translate="sign-up-input-confirm-password" />
 								</div>
 								<!--begin::Actions-->
