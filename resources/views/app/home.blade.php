@@ -21,7 +21,7 @@
                                 <!--begin::Input group-->
                                 <!-- Filtros de Popularidade e Data -->
                                 <div class="d-flex align-items-center flex-wrap me-md-2">
-                                    <div class="position-relative w-md-400px me-md-2 me-6">
+                                    <div class="position-relative w-md-400px me-md-2 me-6 mt-2">
                                         <i class="ki-outline ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6"></i>
                                         <input type="text" class="form-control form-control-solid ps-10" name="search" value="" placeholder="Search for Poll Title" />
                                     </div>
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <!-- Botão de Pesquisa -->
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center mt-2">
                                     <button type="submit" class="btn btn-primary me-5">Search</button>
                                 </div>
                                 <!--end:Action-->

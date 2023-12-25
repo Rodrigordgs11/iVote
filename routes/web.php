@@ -31,7 +31,6 @@ use App\Http\Controllers\NotificationController;
 
         Route::get('/polls', [PollController::class, 'show'])->name('polls');
         Route::post('/polls', [PollController::class, 'create'])->name('polls');
-        Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
         Route::delete('/polls-selected', [PollController::class, 'deleteSelected'])->name('polls.deleteSelected');
 
         Route::get('/options/{options}', [AttachmentController::class, 'showById'])->name('options.getId');
@@ -56,7 +55,7 @@ use App\Http\Controllers\NotificationController;
             Route::get('/my-polls/myPolls', [PollController::class, 'showByUser'])->name('my.polls');
             Route::get('/my-polls/sharedPolls', [PollController::class, 'sharedPolls'])->name('shared.polls');
             Route::get('/my-polls/{currentRoute}', [PollController::class, 'togglePolls'])->name('toggle.polls');
-
+            Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
 
             Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
             Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');

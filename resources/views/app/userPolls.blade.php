@@ -115,6 +115,17 @@
                                             </div>
                                             <!--end::Info-->
                                         </div>
+                                        @if (Request::route()->getName() == 'my.polls')
+                                        <div class="dropdown position-absolute top-0 end-0 p-2">
+                                            <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls', ['uuid' => $poll->uuid]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-icon btn-light-danger">
+                                                <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        @endif
                                         <!--end::Card body-->
                                     </div>
                                     <!--end::Card-->
@@ -142,6 +153,10 @@
                                                 <th class="min-w-90px">Description</th>
                                                 <th class="min-w-150px">Start Date</th>
                                                 <th class="min-w-90px">End Date</th>
+                                                <th class="min-w-90px text-center">Votes</th>
+                                                @if (Request::route()->getName() == 'my.polls')
+                                                    <th class="min-w-90px text-center">Delete</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody class="fs-6">
@@ -184,6 +199,18 @@
                                                     <td>{{ $poll->description }}</td>
                                                     <td>{{ $poll->start_date }}</td>
                                                     <td>{{ $poll->end_date }}</td>
+                                                    <td class="text-center">{{ count($poll->votes) }}</td>
+                                                    @if (Request::route()->getName() == 'my.polls')
+                                                        <td class="text-center">
+                                                                <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls', ['uuid' => $poll->uuid]) }}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-icon btn-light-danger">
+                                                                    <i class="bi bi-trash"></i>
+                                                                    </button>
+                                                                </form>
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -391,6 +418,7 @@
 @section('scripts')
 
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
+    <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
     <script>
         document.getElementById('togglePollsButton').addEventListener('click', function () {
             // Redirect to the toggle route on click

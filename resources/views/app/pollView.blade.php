@@ -219,7 +219,6 @@
                                                     </td>
                                                     <td class="d-flex align-items-center">
                                                         <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                            <a href="{{route('users.getId', ['user' => $user])}}">
                                                             @if($user->photo)
                                                                 <div class="symbol-label">
                                                                     <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($user->photo) }}" alt="" width="100"> 
@@ -232,7 +231,11 @@
                                                             </a>
                                                         </div>
                                                         <div class="d-flex flex-column">
-                                                            <a href="{{route('users.getId', ['user' => $user])}}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                                            @if(Auth::user()->user_type == 'admin')
+                                                                <a href="{{route('users.getId', ['user' => $user])}}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                                            @else
+                                                                <span class="text-gray-800 mb-1">{{ $user->name }}</span>
+                                                            @endif
                                                             <span>{{ $user->email }}</span>
                                                         </div>
                                                     </td>

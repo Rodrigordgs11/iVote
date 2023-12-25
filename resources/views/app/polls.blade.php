@@ -415,5 +415,4 @@
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/table.js')}}"></script>
     <script src="{{asset('app/assets/js/custom/apps/user-management/polls/add.js')}}"></script>
 
-
 @endsection
