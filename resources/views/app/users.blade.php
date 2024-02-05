@@ -169,7 +169,7 @@
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <form id="kt_modal_delete_{{$user->uuid}}" method="POST" action="{{ route('users', ['uuid' => $user->uuid]) }}">
+                                                    <form id="kt_modal_delete_{{$user->uuid}}" method="POST" action="{{ route('users.delete', ['uuid' => $user->uuid]) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a type="submit" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
@@ -215,7 +215,7 @@
             <!--begin::Modal body-->
             <div class="modal-body px-5 my-7">
                 <!--begin::Form-->
-                <form id="kt_modal_add_user_form" class="form" enctype="multipart/form-data" method="POST" action="{{ route('users') }}">
+                <form id="kt_modal_add_user_form" class="form" enctype="multipart/form-data" method="POST" action="{{ route('users.post') }}">
                     @csrf
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">

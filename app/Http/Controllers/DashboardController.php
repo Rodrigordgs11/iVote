@@ -48,7 +48,7 @@ class DashboardController extends Controller
     {
         return Vote::select('users.name', 'users.email', 'users.uuid', 'users.photo')
             ->selectRaw('COUNT(*) as total')
-            ->groupBy('user_uuid')
+            ->groupBy('users.uuid', 'users.name', 'users.email', 'users.photo')
             ->orderByDesc('total')
             ->limit(5)
             ->join('users', 'votes.user_uuid', '=', 'users.uuid')

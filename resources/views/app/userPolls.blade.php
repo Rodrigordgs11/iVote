@@ -117,7 +117,7 @@
                                         </div>
                                         @if (Request::route()->getName() == 'my.polls')
                                         <div class="dropdown position-absolute top-0 end-0 p-2">
-                                            <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls', ['uuid' => $poll->uuid]) }}">
+                                            <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls.delete', ['uuid' => $poll->uuid]) }}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-icon btn-light-danger">
@@ -202,7 +202,7 @@
                                                     <td class="text-center">{{ count($poll->votes) }}</td>
                                                     @if (Request::route()->getName() == 'my.polls')
                                                         <td class="text-center">
-                                                                <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls', ['uuid' => $poll->uuid]) }}">
+                                                                <form id="kt_modal_delete_{{$poll->uuid}}" method="POST" action="{{ route('polls.delete', ['uuid' => $poll->uuid]) }}">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn btn-icon btn-light-danger">

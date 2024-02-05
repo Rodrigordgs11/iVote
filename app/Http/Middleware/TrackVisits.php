@@ -24,8 +24,17 @@ class TrackVisits
 
             $totalVisitsKey = 'visitor_count';
             if (!Cache::has($totalVisitsKey)) {
-                $numberOfVisits = Statistics::where('name', 'visits_count')->first()->value;
-                Cache::put($totalVisitsKey, $numberOfVisits, now()->addMinutes(60));
+                $numberOfVisits = Statistics::where('name', 'visits_count')->first();
+
+                if ($numberOfVisits) {
+                    Cache::put($totalVisitsKey, $numberOfVisits->value, now()->addMinutes(60));
+                } else {
+                    // Handle the case when the "visits_count" record is not found
+                    // You can set a default value or throw an exception
+                    // For example:
+                    // Cache::put($totalVisitsKey, 0, now()->addMinutes(60));
+                    // throw new \Exception('Unable to find "visits_count" record');
+                }
             } else {
                 Cache::increment($totalVisitsKey);
                 Statistics::where('name', 'visits_count')->first()->increment('value');

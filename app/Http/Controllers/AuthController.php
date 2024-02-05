@@ -36,13 +36,13 @@ class AuthController extends Controller
             'phone_number' => ['required', 'string', 'max:20', 'unique:users'],
         ], $customMessages);
 
-        $user = \App\Models\User::factory()->create([
-            'uuid' => Uuid::uuid4()->toString(),
+        User::create([
+            'id' => Uuid::uuid4(),
             'name' => $credentials['name'],
             'email' => $credentials['email'],
             'password' => Hash::make($credentials['password']),
             'phone_number' => $credentials['phone_number'],
-            'user_type' => 'User',
+            'user_type' => 'user',
         ]);
 
         return redirect()->route('login')->with('success', 'Register with success!');

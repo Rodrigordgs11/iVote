@@ -25,6 +25,9 @@ class User extends Authenticatable
         'password',
         'user_type',
         'phone_number',
+        'provider',
+        'provider_id',
+        'provider_token',
     ];
 
     protected $hidden = [
@@ -76,5 +79,11 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class, 'user_uuid', 'uuid');
+    }
+
+    public function generatePassword()
+    {
+        $password = Hash::make(Str::random(8));
+        return $password;
     }
 }

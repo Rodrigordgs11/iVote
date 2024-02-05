@@ -17,8 +17,14 @@
     </div>
     <!--end::Sidebar mobile toggle-->
     <!--begin::Logo-->
-    <a href="/" class="app-sidebar-logo">
-        <img alt="Logo" src="{{asset('app/assets/media/logos/Logo.png')}}" class="h-25px theme-light-show"/>
-    </a>
+    @if(User::user_type() == 'admin')
+        <a href="/" class="app-sidebar-logo">
+            <img alt="Logo" src="{{asset('app/assets/media/logos/Logo.png')}}" class="h-25px theme-light-show"/>
+        </a>
+    @else
+        <a href="/app/home" class="app-sidebar-logo">
+            <img alt="Logo" src="{{asset('app/assets/media/logos/Logo.png')}}" class="h-25px theme-light-show"/>
+        </a>
+    @endif    
     <!--end::Logo-->
 </div>

@@ -127,7 +127,7 @@ License: For each use you must have a valid license purchased only from above li
 										<div class="d-flex align-items-center">
 											<div class="text-gray-500 fw-semibold fs-6 me-3 me-md-6" data-kt-translate="general-or">Or</div>
 											<!--begin::Symbol-->
-											<a href="#" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
+											<a href="/auth/google/redirect" class="symbol symbol-circle symbol-45px w-45px bg-light me-3">
 												<img alt="Logo" src="/app/assets/media/svg/brand-logos/google-icon.svg" class="p-4" />
 											</a>
 											<!--end::Symbol-->
@@ -249,21 +249,21 @@ License: For each use you must have a valid license purchased only from above li
 				</script>
 			@endif
 			@if (session()->has('success'))
-    <script>
-        setTimeout(function() {
-            Swal.fire({
-                text: "{{ session('success') }}",
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            });
-        }, 300);
-    </script>
-@endif
-</div>
+				<script>
+					setTimeout(function() {
+						Swal.fire({
+							text: "{{ session('success') }}",
+							icon: "success",
+							buttonsStyling: false,
+							confirmButtonText: "Ok, got it!",
+							customClass: {
+								confirmButton: "btn btn-primary"
+							}
+						});
+					}, 300);
+				</script>
+			@endif
+		</div>
 
 		<!--end::Root-->
 		<!--begin::Javascript-->

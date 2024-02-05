@@ -8,6 +8,7 @@ use App\Http\Controllers\PollController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,17 +21,22 @@ use App\Http\Controllers\NotificationController;
 |
 */
 
+    
+    Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
+        
+    Route::get('/auth/{provider}/callback', [ProviderController::class, 'callback']);
+
     Route::middleware(['auth', 'is_admin'])->group(function () {
 
         Route::get('/', [DashboardController::class, 'showStatistics'])->name('dashboard');
         
-        Route::get('/users', [UserController::class, 'show'])->name('users');
-        Route::post('/users', [UserController::class, 'create'])->name('users');
-        Route::delete('/users', [UserController::class, 'delete'])->name('users');
+        Route::get('/users', [UserController::class, 'show'])->name('users.get');
+        Route::post('/users', [UserController::class, 'create'])->name('users.post');
+        Route::delete('/users', [UserController::class, 'delete'])->name('users.delete');
         Route::delete('/users-selected', [UserController::class, 'deleteSelected'])->name('users.deleteSelected');
 
-        Route::get('/polls', [PollController::class, 'show'])->name('polls');
-        Route::post('/polls', [PollController::class, 'create'])->name('polls');
+        Route::get('/polls', [PollController::class, 'show'])->name('polls.get');
+        Route::post('/polls', [PollController::class, 'create'])->name('polls.post');
         Route::delete('/polls-selected', [PollController::class, 'deleteSelected'])->name('polls.deleteSelected');
 
         Route::get('/options/{options}', [AttachmentController::class, 'showById'])->name('options.getId');
@@ -55,7 +61,7 @@ use App\Http\Controllers\NotificationController;
             Route::get('/my-polls/myPolls', [PollController::class, 'showByUser'])->name('my.polls');
             Route::get('/my-polls/sharedPolls', [PollController::class, 'sharedPolls'])->name('shared.polls');
             Route::get('/my-polls/{currentRoute}', [PollController::class, 'togglePolls'])->name('toggle.polls');
-            Route::delete('/polls', [PollController::class, 'delete'])->name('polls');
+            Route::delete('/polls', [PollController::class, 'delete'])->name('polls.delete');
 
             Route::get('/users/{user}', [UserController::class, 'showByid'])->name('users.getId');
             Route::put('/users/{user}/edit', [UserController::class, 'update'])->name('users.update');
