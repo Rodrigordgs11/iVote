@@ -1,3 +1,6 @@
+@php
+use App\Models\User;
+@endphp
 <div class="app-header-logo d-flex align-items-center ps-lg-12" id="kt_app_header_logo">
             <!--begin::Sidebar toggle-->
         <div
@@ -17,7 +20,7 @@
     </div>
     <!--end::Sidebar mobile toggle-->
     <!--begin::Logo-->
-    @if(User::user_type() == 'admin')
+    @if(auth()->user()->user_type == 'admin')
         <a href="/" class="app-sidebar-logo">
             <img alt="Logo" src="{{asset('app/assets/media/logos/Logo.png')}}" class="h-25px theme-light-show"/>
         </a>
