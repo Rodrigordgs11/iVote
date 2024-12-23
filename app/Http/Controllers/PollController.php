@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 use App\Models\Poll;
 use App\Models\User;
@@ -213,11 +214,31 @@ class PollController extends Controller
         $searchTerm = $request->input('search');
         $popularity = $request->input('popularity');
         $dateFilter = $request->input('date_filter');
-
+       
+        if ($searchTerm) {
+            if (filter_var($searchTerm, FILTER_VALIDATE_URL) !== false) {
+                return response()->json([
+                    'error' => 'Invalid search. URLs are not allowed.',
+                ], 400);
+            }
+   
+            $disallowedHosts = ['localhost', '127.0.0.1', '::1'];
+            $parsedUrl = parse_url($searchTerm);
+   
+            if (
+                isset($parsedUrl['host']) && in_array($parsedUrl['host'], $disallowedHosts) ||
+                isset($parsedUrl['scheme'])
+            ) {
+                return response()->json([
+                    'error' => 'Invalid search. Hosts or URLs are not allowed.',
+                ], 400);
+            }
+        }
+   
         $polls = Poll::where('title', 'like', '%' . $searchTerm . '%')->get();
         $users = User::all();
         $attachments = Attachment::all();
-
+   
         if ($popularity == '1') {
             $polls = $polls->sortByDesc(function ($poll) {
                 return count($poll->votes);
@@ -227,14 +248,24 @@ class PollController extends Controller
                 return count($poll->votes);
             });
         }
-
+   
         if ($dateFilter) {
             $polls = $polls->filter(function ($poll) use ($dateFilter) {
                 return $poll->start_date >= $dateFilter;
             });
         }
-
-        if (Auth::user()->user_type == 'admin') return view('app.polls', ['polls' => $polls, 'users' => $users]);
-        else return view('app.home', ['polls' => $polls, 'attachments' => $attachments]);
+   
+        if (Auth::user()->user_type == 'admin') {
+            return view('app.polls', [
+                'polls' => $polls,
+                'users' => $users
+            ]);
+        } else {
+            return view('app.home', [
+                'polls' => $polls,
+                'attachments' => $attachments,
+            ]);
+        }
     }
+
 }
